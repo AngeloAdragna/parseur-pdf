@@ -9,7 +9,7 @@
 
 <!--jupyter nbconvert --to pdf integrale.ipynb-->
 
-## **Roles **
+## **Roles**
 
 - Angelo est le maitre de `SCRUB`.
 - Corentin et Elliot travailleront sur la méthode `pdftotext`.
