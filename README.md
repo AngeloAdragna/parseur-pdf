@@ -5,6 +5,7 @@
 - Angelo Adragna
 - Corentin Saccoman
 - Elliot Pozucek
+- Colin Palazzetti Rubera
 - Elvin FICHOT--CORGERON
 
 <!--jupyter nbconvert --to pdf integrale.ipynb-->
