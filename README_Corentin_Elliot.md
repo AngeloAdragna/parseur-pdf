@@ -45,7 +45,9 @@ TODO
 ```
 
 ## Appréciation générale de pdftotext
-pdftotext est très simple d'utilisation mais son utilisation sur des articles scientifiques ayant un format assez particulier, avec des graphiques, des tableaux et des colonnes nécessite un énorme travail en post-traitement (script python ou bash).
+pdftotext est très simple d'utilisation mais son utilisation sur des articles scientifiques ayant un format assez particulier, avec des graphiques, des tableaux et des colonnes nécessite un énorme travail en post-traitement (script python ou bash) pour :
+- Récupérer le bon format de texte
+- Bien structurer le document (Parties Auteur, titre...).
 
 Voir ce que sortent Colin et Elvin sur pdf2txt pour comparer.
 
