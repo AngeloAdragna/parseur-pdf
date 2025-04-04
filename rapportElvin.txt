@@ -1,0 +1,21 @@
+pdf2text : 
+
+Analyse sur fichier Torres.pdf 
+
+pdf2text Torres.pdf => affiche le fichier seulement dans le terminal 
+pdf2text Torres.pdf > Torres.txt => mauvais parsage des formules mathématiques et tableau et certains symbole tel que la somme n'est pas traité
+pdf2txt -t xml Torres.pdf > Torres.xml => Met chaque caractère dans une balise <text> chaque espace est symbolisé 
+par une balise vide certaine balise on plusieurs caractères, mauvais regroupement des caractères pour les formules
+
+Peut permettre de regrouper les données pour un tableau car la ligne est contenu dans une balise texteline qui contient des balises text de toute la ligne
+ne prend pas en compte les signes "<" contrairement au txt 
+
+Chaque colonne est contenu dans une balise textbox donc un tableau est un enchainement de textbox qui ont un id pour indiquer leurs ordre
+
+
+Solution :
+Pour les tableaux transformer en xml puis extraire les tableaux 
+Pour les caractères utiliser l'option -c puis préciser l'option 
+
+Pour les formules mathématiques il faut transformer en xml puis repérer les symboles particulier avec un script python avec pdf miner
+
