@@ -27,16 +27,16 @@ Ces options produisent un fichier texte vide.
 Converti le pdf en texte sans retranscrire la structure du pdf. L'ordre de lecture est donc conservé.
 
 ```diff
-+ Cette option fonctionne bien avec les structures en colonnes : le texte est mis à la ligne de manière séquencielle, le texte reste donc cohérent (l'orde de lecture est repsecté).
++ Cette option fonctionne bien avec les structures en colonnes : le texte est mis à la ligne de manière séquencielle, le texte reste donc cohérent (l'orde de lecture est respecté)
 + Les tableaux restent cohérent dans leur structure
 - Les espaces sont réduits, rendant le tableau impossible à détecter pour un système (et peu lisible pour un humain)
 - Les figures ne sont pas lisibles, le texte est reporté de manière linéaire (incompréhensible)
-- Les mots coupés en deux dans le pdf (retour à la ligne) sont aussi coupés en deux dans le fichier texte.
-- Le changement de pages sont visibles dans le fichier texte et coupent le texte. 
+- Les mots coupés en deux dans le pdf (retour à la ligne) sont aussi coupés en deux dans le fichier texte
+- Le changement de pages sont visibles dans le fichier texte et coupent le texte
 ```
 ### pdftotext -fixed 5
 
-TODO
++ pdftotext -fixed 5 : rend bien les tableaux et les paragraphes, mais ne fonctionne pas avec les colonnes.
 
 ## pdftotext -layout :
 ```diff    
