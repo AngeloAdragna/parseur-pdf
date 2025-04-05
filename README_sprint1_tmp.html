@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README_sprint1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="sprint-1---carnet-du-produit">Sprint 1 - Carnet du Produit</h1>
+<p><strong>Auteurs : L3 CMI Informatique</strong></p>
+<ul>
+<li>Angelo Adragna</li>
+<li>Corentin Saccoman</li>
+<li>Elliot Pozucek</li>
+<li>Colin Palazzetti Rubera</li>
+<li>Elvin Fichot-Corgeron</li>
+</ul>
+<!--jupyter nbconvert --to pdf integrale.ipynb-->
+<h2 id="r%C3%B4les"><strong>Rôles</strong></h2>
+<ul>
+<li>Angelo est le maître de <code>SCRUM</code>.</li>
+<li>Corentin et Elliot travailleront sur la méthode <code>pdftotext</code>, ensemble dans un seul fichier en Python.</li>
+<li>Colin et Elvin travailleront sur la méthode <code>pdf2txt</code>, chacun de leur côté : Colin dans un fichier <code>.py</code> et Elvin dans un autre.</li>
+</ul>
+<h2 id="objectif"><strong>Objectif</strong></h2>
+<p>Fournir une évaluation qualitative (manuellement par inspection) des sorties afin de décider
+quels outils et options utiliser :</p>
+<ul>
+<li>Frontières des phrases : Vérifiez si les phrases sont correctement segmentées.</li>
+<li>écoupage des mots : Assurez-vous que les mots ne sont pas incorrectement séparés, notamment aux endroits où il y a des coupures de ligne ou des traits d'union.</li>
+<li>Alignement des lignes ou des phrases : Comparez les sorties avec le fichier original pour repérer des cas où les lignes ou les phrases sont mélangées, dédoublées ou manquantes.</li>
+<li>Traitement des tableaux : Vérifiez que les données des tableaux sont bien structurées, avec les relations entre les colonnes et les lignes préservées.</li>
+<li>Caractères spéciaux et symboles : Assurez-vous que les caractères spéciaux sont correctement interprétés et non transformés en caractères invalides.</li>
+<li>Hiérarchie et formatage : Vérifiez la hiérarchie des titres, sous-titres, listes, et autres éléments formatés.</li>
+<li>Langue et sens : Inspectez si la langue et le sens des textes sont respectés sans distorsion.</li>
+<li>Métadonnées : Assurez-vous que les métadonnées pertinentes du fichier source sont extraites correctement.</li>
+<li>Compatibilité des outils : Testez différents outils pour identifier ceux qui offrent les meilleurs résultats pour vos besoins spécifiques.</li>
+<li>etc.</li>
+</ul>
+<p>Nous réussir à extraire correctement :</p>
+<ul>
+<li>Les titres</li>
+<li>Les auteurs</li>
+<li>Un abstract</li>
+<li>Une introduction</li>
+<li>Un corps</li>
+<li>Une conclusion</li>
+<li>Une discussion</li>
+<li>Une bibliographie</li>
+</ul>
+<p><strong>Veuillez apporter une attention particulière à la façon dont ces différents éléments sont agencés afin de réussir à vous adapter au plus de cas possibles !</strong></p>
+<h2 id="travail-de-chaque-codeur-pendant-la-m%C3%AAl%C3%A9e-revue-sprint"><strong>Travail de chaque codeur pendant la mêlée (Revue Sprint)</strong></h2>
+<p><em>Consignes</em> : Déposez vos comptes rendu au plus tard le 04/04/2025 sur la branche 1</p>
+<hr>
+<ol>
+<li>
+<p><strong>Corentin et Elliot</strong> : <code>pdftotext</code></p>
+<ul>
+<li>
+<p><strong>Options de lancement</strong> :</p>
+<ul>
+<li>
+<p><code>pdftotext -H 20 | 1080</code></p>
+<ul>
+<li><strong>Avantages</strong> : Aucun.</li>
+<li><strong>Inconvénients</strong> : Produit un fichier texte vide.</li>
+</ul>
+</li>
+<li>
+<p><code>pdftotext -x 0 | 1 | 640 | 1200000 | 12000</code></p>
+<ul>
+<li><strong>Avantages</strong> : Aucun.</li>
+<li><strong>Inconvénients</strong> : Produit un fichier texte vide.</li>
+</ul>
+</li>
+<li>
+<p><code>pdftotext -y 0 | 1 | 640 | 1200000 | 12000</code></p>
+<ul>
+<li><strong>Avantages</strong> : Aucun.</li>
+<li><strong>Inconvénients</strong> : Produit un fichier texte vide.</li>
+</ul>
+</li>
+<li>
+<p><code>pdftotext -colspacing 0.1 | 0.3 | 0.7</code></p>
+<ul>
+<li><strong>Avantages</strong> : Aucun.</li>
+<li><strong>Inconvénients</strong> : N'affecte pas le fichier texte par rapport à la commande sans option.</li>
+</ul>
+</li>
+<li>
+<p><code>pdftotext -eol unix | mac</code></p>
+<ul>
+<li><strong>Avantages</strong> : Aucun.</li>
+<li><strong>Inconvénients</strong> : N'affecte pas le fichier texte par rapport à la commande sans option.</li>
+</ul>
+</li>
+<li>
+<p><code>pdftotext -nopgbrk</code></p>
+<ul>
+<li><strong>Avantages</strong> : Aucun.</li>
+<li><strong>Inconvénients</strong> : N'affecte pas le fichier texte par rapport à la commande sans option.</li>
+</ul>
+</li>
+<li>
+<p><code>pdftotext -r 320 | 460 | 640 | 3 | 72</code></p>
+<ul>
+<li><strong>Avantages</strong> : Aucun.</li>
+<li><strong>Inconvénients</strong> : N'affecte pas le fichier texte par rapport à la commande sans option.</li>
+</ul>
+</li>
+<li>
+<p><code>pdftotext -raw</code></p>
+<ul>
+<li><strong>Avantages</strong> :
+<ul>
+<li>Fonctionne bien pour les structures en colonnes : le texte reste cohérent et l'ordre est respecté.</li>
+<li>Les tableaux conservent une structure cohérente.</li>
+</ul>
+</li>
+<li><strong>Inconvénients</strong> :
+<ul>
+<li>Réduction des espaces, rendant les tableaux illisibles pour les systèmes et peu lisibles pour les humains.</li>
+<li>Les figures deviennent linéaires et incompréhensibles.</li>
+<li>Les mots coupés en deux dans le PDF restent séparés dans le fichier texte.</li>
+<li>Les changements de pages sont visibles et interrompent le texte.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>pdftotext -fixed 5</code></p>
+<ul>
+<li><strong>Avantages</strong> :
+<ul>
+<li>Conserve (en partie) la structure du PDF.</li>
+<li>Paragraphes bien visibles et séparés.</li>
+<li>Certaines expressions mathématiques sont bien retranscrites.</li>
+<li>Les tableaux sont très bien retranscrits.</li>
+<li>Les diagrammes sont reconnaissables (mais illisibles).</li>
+</ul>
+</li>
+<li><strong>Inconvénients</strong> :
+<ul>
+<li>Catastrophique pour les colonnes : le texte est mélangé et illisible.</li>
+<li>Expressions mathématiques complexes mal retranscrites.</li>
+<li>Changements de pages visibles, interrompant le texte.</li>
+<li>Mots coupés à la ligne également coupés dans le fichier texte.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>pdftotext -layout</code></p>
+<ul>
+<li><strong>Avantages</strong> :
+<ul>
+<li>Permet de garder la mise en forme, utile pour les tableaux.</li>
+</ul>
+</li>
+<li><strong>Inconvénients</strong> :
+<ul>
+<li>La mise en forme colonne par colonne est conservée, ce qui peut être indésirable dans certains cas.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Appréciation générale</strong> :<br>
+pdftotext est très simple d'utilisation mais son utilisation sur des articles scientifiques ayant un format assez particulier, avec des graphiques, des tableaux et des colonnes nécessite un énorme travail en post-traitement (script python ou bash) pour récupérer le bon format de texte et bien structurer le document (Parties Auteur, titre...).</p>
+</li>
+<li>
+<p><strong>Note</strong> :<br>
+Nous n'avons pas explorer la bonne piste, car la consigne demande ne demande pas d'avoir une retranscription parfaite du pdf, mais d'avoir un bon résumé, lisible et facile à comprendre.<br>
+Nous devons donc concentrer nos efforts sur la réalisation d'un résumé efficace, et ce peu importe le format du pdf (colonne, tableau, figure, etc.). À voir avec le professeur pour des précisions sur la longueur du résumé.</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p><strong>Colin</strong> : <code>pdf2txt</code></p>
+<ul>
+<li>
+<p><strong>Options de lancement</strong> :</p>
+<ul>
+<li>
+<p><code>pdf2txt -t xml Word2Vec.pdf &gt; output.html</code></p>
+<ul>
+<li><strong>Avantages</strong> :
+<ul>
+<li>Conserve la structure des blocs de texte avec la balise <code>textbox</code>.</li>
+<li>Conserve les espaces, même en fin de ligne avec <code>&lt;text&gt; &lt;/text&gt;</code>.</li>
+</ul>
+</li>
+<li><strong>Inconvénients</strong> :
+<ul>
+<li>Présence de <code>&lt;text&gt;\n&lt;/text&gt;</code> à toutes les fins de lignes.</li>
+<li>Perte de la structure des tableaux.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>pdf2txt -t html Word2Vec.pdf &gt; output.html</code></p>
+<ul>
+<li><strong>Avantages</strong> :
+<ul>
+<li>Affiche un rendu intéressant à observer.</li>
+</ul>
+</li>
+<li><strong>Inconvénients</strong> :
+<ul>
+<li>Structure étrange et incohérente.</li>
+<li>Les tableaux sont difficiles à lire et apparaissent parfois par-dessus le texte.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Python</strong> : <code>PyPDF2</code></p>
+<ul>
+<li>
+<p><strong>Options de lancement</strong> :</p>
+<ul>
+<li>Utilisation de la bibliothèque PyPDF2 avec un script personnalisé pour extraire le texte.</li>
+</ul>
+</li>
+<li>
+<p><strong>Exemple de code</strong> :</p>
+<pre class="hljs"><code><div>html_file = open(<span class="hljs-string">'CORPUS_TRAIN/Word2Vec.html'</span>, <span class="hljs-string">'w'</span>)
+
+<span class="hljs-keyword">from</span> PyPDF2 <span class="hljs-keyword">import</span> PdfReader
+
+parts = []
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">visitor_body</span><span class="hljs-params">(text, cm, tm, fontDict, fontSize)</span>:</span>
+    y = tm[<span class="hljs-number">5</span>]
+    <span class="hljs-keyword">if</span> y &gt; <span class="hljs-number">50</span> <span class="hljs-keyword">and</span> y &lt; <span class="hljs-number">720</span>:
+        parts.append(text)
+
+reader = PdfReader(<span class="hljs-string">'CORPUS_TRAIN/Word2Vec.pdf'</span>)
+page = reader.pages[<span class="hljs-number">0</span>]
+extracted_text = page.extract_text(<span class="hljs-number">0</span>, visitor_text=visitor_body)
+
+html_file.write(extracted_text)
+html_file.close()
+</div></code></pre>
+</li>
+<li>
+<p><strong>Avantages</strong> :</p>
+<ul>
+<li>Extraction du texte basée sur une analyse précise des coordonnées.</li>
+<li>Permet une personnalisation du traitement des données extraites.</li>
+</ul>
+</li>
+<li>
+<p><strong>Inconvénients</strong> :</p>
+<ul>
+<li>Les résultats globaux en termes de structure sont parfois meilleurs avec les commandes bash.</li>
+<li>Nécessite une adaptation et des connaissances en Python pour un traitement optimal.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><strong>Appréciation globale</strong> :
+<code>pdf2txt</code> propose des options intéressantes pour l'extraction de texte, notamment en XML et HTML. L'option en XML est utile pour conserver une structure textuelle précise, tandis que l'option en HTML permet un aperçu unique bien que parfois incohérent. Cependant, la perte de la structure des tableaux est un inconvénient notable. Quant à PyPDF2, son approche personnalisée est prometteuse pour des extractions spécifiques, mais elle demande un investissement en termes de compétences et de traitements supplémentaires. Une combinaison de ces outils pourrait être envisagée selon les besoins spécifiques, en tenant compte de leurs avantages et inconvénients respectifs.</li>
+</ul>
+<hr>
+<ol start="3">
+<li>
+<p><strong>Elvin</strong> : <code>pdf2txt</code></p>
+<ul>
+<li>
+<p><strong>Options de lancement</strong> :</p>
+<ul>
+<li>
+<p><code>pdf2text Torres.pdf</code></p>
+<ul>
+<li><strong>Avantages</strong> :
+<ul>
+<li>Permet d'afficher directement le contenu du fichier dans le terminal.</li>
+</ul>
+</li>
+<li><strong>Inconvénients</strong> :
+<ul>
+<li>Limité à une visualisation terminale sans sauvegarde structurée.</li>
+<li>Les formules mathématiques et les tableaux ne sont pas bien parsés.</li>
+<li>Certains symboles, comme le signe de somme (∑), ne sont pas traités.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>pdf2text Torres.pdf &gt; Torres.txt</code></p>
+<ul>
+<li><strong>Avantages</strong> :
+<ul>
+<li>Création d'un fichier texte lisible.</li>
+</ul>
+</li>
+<li><strong>Inconvénients</strong> :
+<ul>
+<li>Mauvais parsage des formules mathématiques et des tableaux.</li>
+<li>Certains symboles spécifiques ne sont pas reconnus (exemple : somme).</li>
+<li>Manque de précision dans la structure des données.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>pdf2txt -t xml Torres.pdf &gt; Torres.xml</code></p>
+<ul>
+<li><strong>Avantages</strong> :
+<ul>
+<li>Met chaque caractère dans une balise <code>&lt;text&gt;</code>, permettant une granularité fine.</li>
+<li>Chaque ligne est contenue dans une balise <code>textline</code>, utile pour regrouper les données des tableaux.</li>
+<li>Les colonnes sont bien identifiées grâce aux balises <code>textbox</code>, avec des IDs indiquant leur ordre.</li>
+</ul>
+</li>
+<li><strong>Inconvénients</strong> :
+<ul>
+<li>Chaque espace est représenté par une balise vide, rendant le fichier complexe.</li>
+<li>Mauvais regroupement des caractères pour les formules mathématiques.</li>
+<li>Les signes <code>&lt;</code> ne sont pas pris en compte, contrairement au format <code>.txt</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Solution suggérée</strong> :</p>
+<ul>
+<li>Pour les tableaux : transformer le PDF en XML, puis extraire les tableaux via les balises.</li>
+<li>Pour les caractères : utiliser l'option <code>-c</code> et préciser les paramètres nécessaires.</li>
+<li>Pour les formules mathématiques : convertir en XML, puis repérer les symboles particuliers en utilisant un script Python avec <code>pdfminer</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Appréciation globale</strong> :
+<code>pdf2txt</code> offre des outils efficaces pour l'extraction de données, notamment en XML, grâce à ses balises structurées. Cependant, son traitement des formules mathématiques, des tableaux et de certains symboles spécifiques reste limité. Des solutions mixtes, comme l'utilisation de scripts Python pour compléter le travail, sont recommandées pour répondre aux besoins complexes tels que les articles scientifiques. Malgré ses inconvénients, <code>pdf2txt</code> constitue une base intéressante pour un traitement approfondi des PDF avec une approche personnalisée.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>--</p>
+<h2 id="retour-sur-le-travail-effectu%C3%A9-r%C3%A9trospective-sprint--quels-outils-et-options-utiliser"><strong>Retour sur le travail effectué (Rétrospective Sprint)</strong> : Quels outils et options utiliser ?</h2>
+<h3 id="ce-qui-a-bien-fonctionn%C3%A9"><strong>Ce qui a bien fonctionné</strong></h3>
+<ul>
+<li>L'utilisation de <code>pdftotext</code> avec l'option <code>-raw</code> ou <code>-layout</code> a permis d'obtenir une structure globale relativement fidèle, notamment pour les colonnes et les tableaux simples.</li>
+<li>L’option <code>-fixed 5</code> a révélé un bon rendu pour les paragraphes et certaines expressions mathématiques.</li>
+<li>L’export XML via <code>pdf2txt -t xml</code> s’est avéré très utile pour localiser et segmenter les blocs de texte avec précision grâce aux balises <code>textbox</code> et <code>textline</code>.</li>
+<li>L’outil <strong>PyPDF2</strong>, bien que nécessitant un développement personnalisé, a permis une extraction fine basée sur des coordonnées précises, ouvrant la voie à des traitements ciblés.</li>
+<li>La collaboration en binôme a permis un partage efficace des tests et une exploration plus large des possibilités.</li>
+</ul>
+<h3 id="ce-qui-a-pos%C3%A9-probl%C3%A8me"><strong>Ce qui a posé problème</strong></h3>
+<ul>
+<li>De nombreuses options testées avec <code>pdftotext</code> (<code>-x</code>, <code>-y</code>, <code>-r</code>, <code>-eol</code>, <code>-colspacing</code>, etc.) n'ont produit aucun résultat ou un fichier vide, ce qui a ralenti les expérimentations.</li>
+<li><code>pdftotext</code>, bien qu'efficace dans certains cas, exige un post-traitement important pour corriger les erreurs d’alignement, les coupures de mots, et la segmentation des phrases.</li>
+<li><code>pdf2txt</code>, malgré une bonne structuration XML, complique parfois l'analyse à cause de sa granularité excessive (chaque caractère dans une balise).</li>
+<li>La perte de structure des tableaux et la mauvaise gestion des symboles mathématiques restent un obstacle majeur.</li>
+<li>Le travail a initialement été trop centré sur la fidélité à la structure originale, au lieu de se concentrer sur la production d’un résumé clair et lisible, comme l’indiquait l’objectif.</li>
+</ul>
+<h3 id="ce-quon-doit-am%C3%A9liorer"><strong>Ce qu’on doit améliorer</strong></h3>
+<ul>
+<li>Cibler dès le début du second Sprint l'objectif exact, afin d'optimiser le temps de travail.</li>
+<li>Se recentrer sur l’objectif principal : <strong>produire un résumé compréhensible et exploitable</strong>, et non une copie exacte du PDF.</li>
+<li>Utiliser les outils pour <strong>extraire les grandes sections</strong> (titre, auteurs, abstract, introduction, etc.) plutôt que tout le contenu brut.</li>
+<li>Envisager une <strong>combinaison des outils</strong> : par exemple <code>pdf2txt</code> pour structurer et localiser, puis un script Python pour nettoyer et synthétiser.</li>
+<li>Continuer à explorer les <strong>scripts personnalisés en Python</strong>, qui offrent une meilleure souplesse et permettent de s’adapter aux différents types de documents.</li>
+<li>Clarifier avec l’enseignant les <strong>attentes précises sur le niveau de détail du résumé</strong>, afin d’ajuster la granularité de l'extraction.</li>
+</ul>
+<hr>
+<h3 id="conclusion--quel-outil-pour-quel-besoin"><strong>Conclusion</strong> : Quel outil pour quel besoin ?</h3>
+<ul>
+<li>Pour <strong>un rendu brut rapide</strong>, utilisable directement ou à nettoyer ensuite → <strong><code>pdftotext -layout</code> ou <code>-raw</code></strong></li>
+<li>Pour <strong>un traitement structuré, précis et adaptable avec un script Python</strong> → <strong><code>pdf2txt -t xml</code></strong></li>
+<li>Pour <strong>reconnaître les zones de texte</strong> (titre, auteurs, sections) de manière automatique → <strong><code>pdf2txt</code> avec parsing XML</strong></li>
+<li>Pour <strong>résumer un document</strong> (objectif principal du projet) → <strong>combinaison de <code>pdf2txt</code> + script Python</strong> pour structurer + extraire ce qui est pertinent</li>
+</ul>
+<p>Nous allons donc utiliser une combinaison de <code>pdf2txt</code> <code>pdftotext</code> et de <code>python</code>.</p>
+
+</body>
+</html>
