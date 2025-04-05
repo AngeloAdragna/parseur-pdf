@@ -210,4 +210,40 @@ Nous devons donc concentrer nos efforts sur la réalisation d'un résumé effica
 
 --
 
-## Retour sur le travail effectué (Rétrospective Sprint)
+## **Retour sur le travail effectué (Rétrospective Sprint)** : Quels outils et options utiliser ?
+
+### **Ce qui a bien fonctionné**
+
+- L'utilisation de `pdftotext` avec l'option `-raw` ou `-layout` a permis d'obtenir une structure globale relativement fidèle, notamment pour les colonnes et les tableaux simples.  
+- L’option `-fixed 5` a révélé un bon rendu pour les paragraphes et certaines expressions mathématiques.  
+- L’export XML via `pdf2txt -t xml` s’est avéré très utile pour localiser et segmenter les blocs de texte avec précision grâce aux balises `textbox` et `textline`.  
+- L’outil **PyPDF2**, bien que nécessitant un développement personnalisé, a permis une extraction fine basée sur des coordonnées précises, ouvrant la voie à des traitements ciblés.  
+- La collaboration en binôme a permis un partage efficace des tests et une exploration plus large des possibilités.
+
+### **Ce qui a posé problème**
+
+- De nombreuses options testées avec `pdftotext` (`-x`, `-y`, `-r`, `-eol`, `-colspacing`, etc.) n'ont produit aucun résultat ou un fichier vide, ce qui a ralenti les expérimentations.  
+- `pdftotext`, bien qu'efficace dans certains cas, exige un post-traitement important pour corriger les erreurs d’alignement, les coupures de mots, et la segmentation des phrases.  
+- `pdf2txt`, malgré une bonne structuration XML, complique parfois l'analyse à cause de sa granularité excessive (chaque caractère dans une balise).  
+- La perte de structure des tableaux et la mauvaise gestion des symboles mathématiques restent un obstacle majeur.  
+- Le travail a initialement été trop centré sur la fidélité à la structure originale, au lieu de se concentrer sur la production d’un résumé clair et lisible, comme l’indiquait l’objectif.
+
+### **Ce qu’on doit améliorer**
+
+- Cibler dès le début du second Sprint l'objectif exact, afin d'optimiser le temps de travail.
+- Se recentrer sur l’objectif principal : **produire un résumé compréhensible et exploitable**, et non une copie exacte du PDF.  
+- Utiliser les outils pour **extraire les grandes sections** (titre, auteurs, abstract, introduction, etc.) plutôt que tout le contenu brut.  
+- Envisager une **combinaison des outils** : par exemple `pdf2txt` pour structurer et localiser, puis un script Python pour nettoyer et synthétiser.  
+- Continuer à explorer les **scripts personnalisés en Python**, qui offrent une meilleure souplesse et permettent de s’adapter aux différents types de documents.  
+- Clarifier avec l’enseignant les **attentes précises sur le niveau de détail du résumé**, afin d’ajuster la granularité de l'extraction.
+
+---
+
+### **Conclusion** : Quel outil pour quel besoin ?
+
+- Pour **un rendu brut rapide**, utilisable directement ou à nettoyer ensuite → **`pdftotext -layout` ou `-raw`**  
+- Pour **un traitement structuré, précis et adaptable avec un script Python** → **`pdf2txt -t xml`**  
+- Pour **reconnaître les zones de texte** (titre, auteurs, sections) de manière automatique → **`pdf2txt` avec parsing XML**  
+- Pour **résumer un document** (objectif principal du projet) → **combinaison de `pdf2txt` + script Python** pour structurer + extraire ce qui est pertinent
+
+Nous allons donc utiliser une combinaison de `pdf2txt` `pdftotext` et de `python`.
