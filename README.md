@@ -18,8 +18,6 @@
 
 ## **Présentation**
 
-Vous pouvez consulter le [carnet produit du sprint 1](./sprint1_carnet_produit.pdf) pour plus de détails.
-
 ### Étapes à suivre
 
 1. **Préparation des fichiers**
@@ -54,6 +52,10 @@ Vous pouvez consulter le [carnet produit du sprint 1](./sprint1_carnet_produit.p
 - Rapport détaillé des performances des outils.
 - Texte brut structuré pour chaque fichier PDF.
 - Recommandations pour la conversion efficace des fichiers PDF.
+
+## **Sprint 1**
+Vous pouvez consulter le [carnet produit du sprint 1](./sprint1_carnet_produit.pdf) pour plus de détails.
+L'objectif est de rendre un rapport récapitulant les options de lancement des outils, ainsi que leurs avantages et inconvénients afin de determiner lequel est le plus efficace pour chaque tâche.
 
 ## **Consignes pour l'équipe**
 
