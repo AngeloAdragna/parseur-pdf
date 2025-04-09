@@ -73,7 +73,8 @@ Le langage doit être choisi en fonctions des critères :
 
 4. **Colin Palazzetti Rubera** : Le résumé (abstract) de l’auteur.
    - **Appréciation générale** :  
-   - **Note** :  
+   - **Note** :  Lors de la lecture des résumés donnés : 
+      - Certains mots sont coupés par le passage à la ligne, mais dans d'autres cas il s'agit d'un mot composé. Pour l'abstract, il faut savoir dans quel cas nous sommes pour écrire sur une seule ligne
 
 ---
 
