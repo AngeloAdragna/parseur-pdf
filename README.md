@@ -53,18 +53,15 @@
 - Texte brut structuré pour chaque fichier PDF.
 - Recommandations pour la conversion efficace des fichiers PDF.
 
-## **Sprint 1**
-Vous pouvez consulter le [carnet produit du sprint 1](./sprint1_carnet_produit.pdf) pour plus de détails.
-L'objectif est de rendre un rapport récapitulant les options de lancement des outils, ainsi que leurs avantages et inconvénients afin de determiner lequel est le plus efficace pour chaque tâche.
+## **Sprint 2**
+Vous pouvez consulter le [carnet produit du sprint 2](./sprint2_carnet_du_produit.pdf) pour plus de détails.
+L'objectif est de développer un programme dans le langage de notre choix afin de produire un fichier texte qui contient :
+
+- Le nom du fichier d’origine (dans une ligne, espaces convertis à _)
+- Le titre du papier (dans une ligne)
+- Le résumé (abstract) de l’auteur (dans une ligne)
+
+Le système doit prendre comme entrée un dossier contenant les fichiers PDF et créer un sous-dossier pour déposer les sorties en plain texte avec le même noms que les PDF. Si le sous-dossier existe, il faudra l’effacer.
 
 ## **Consignes pour l'équipe**
 
-- Deposer un fichier à votre nom pour chaque branch, de la nature de votre choix avec un listing des paramètres testés, détaillant l'intéret, avantages et inconveniants.
-
-- Deposer un fichier comprenant votre code, à votre nom, pour chaque branch, de la nature de votre choix.
-
-- Fournir à votre maître des screens de certains rendu visuels vous semblant pertinents.
-
-- Le maître doit pour rediger un readme du projet.
-
-- Le maître doit pour rediger un readme pour faire une revue de sprint et une rétrospective du sprint.
