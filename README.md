@@ -12,7 +12,7 @@
 
 ## **Roles**
 
-- Angelo est le maitre de `SCRUB`.
+- Angelo est le maitre de `SCRUM`.
 - Corentin et Elliot travailleront sur la méthode `pdftotext`.
 - Colin et Elvin travailleront sur la méthode `pdf2txt`.
 
