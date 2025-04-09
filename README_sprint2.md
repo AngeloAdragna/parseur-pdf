@@ -39,13 +39,14 @@ Le langage doit être choisi en fonctions des critères :
    2/ Performance en temps d’exécution
 
 
-## **Travail de chaque codeur pendant la mêlée (Revue Sprint)**
 
-_Consignes_ : 
+## _Consignes_ : 
 - Déposez vos comptes rendu au plus tard le 18/04/2025 à 20h sur la branche 2
 - Fournir au moins une image de l'avancement par fonctionnalité.
 - Votre compte rendu doit comporter un analyse de votre développe, les aspects positifs, négatifs, limitations...
 - Vous devez comparer le temps d'exécution de votre fonctionnalité en python et en C++
+
+## **Travail de chaque codeur pendant la mêlée (Revue Sprint)**
 
 ---
 
