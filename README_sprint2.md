@@ -13,8 +13,10 @@
 ## **Rôles**
 
 - Angelo est le maître de `SCRUM`.
-- Corentin et Elliot travailleront sur la méthode `pdftotext`, ensemble dans un seul fichier en Python.
-- Colin et Elvin travailleront sur la méthode `pdf2txt`, chacun de leur côté : Colin dans un fichier `.py` et Elvin dans un autre.
+- Corentin doit creer la structure de l'algorithme en prenant en paramètre un dossier pdf, appelant les différentes méthodes et en renvoyant un dossier de txt.
+- Elliot doit traiter le nom du fichier d'orgine.
+- Colin doit traiter le résumé (abstract) de l’auteur.
+- Elvin doit traiter le titre du papier.
 
 ## **Objectif**
 Dans la séance précédente vous avez choisit le convertisseur le plus adapté PDF→texte. Il s’agit
@@ -40,6 +42,11 @@ Le langage doit être choisi en fonctions des critères :
 
 
 ## **Burndown**
+
+## **Revu réunion 09/04/25**
+
+## **Revu réunion 11/04/25**
+Soucis pour identifier le debut et la fin des différentes zones de titre et de abstract sachant que les zones ne sont pas toujours déclaré de façon précises.
 
 
 ## _Consignes_ : 
