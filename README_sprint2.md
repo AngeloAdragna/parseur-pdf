@@ -50,7 +50,7 @@ Soucis pour identifier le debut et la fin des différentes zones de titre et de 
 
 
 ## _Consignes_ : 
-- Déposez vos comptes rendu au plus tard le 18/04/2025 à 20h sur la branche 2
+- Déposez vos comptes rendu au plus tard le 18/04/2025 à 14h sur la branche 2
 - Fournir au moins une image de l'avancement par fonctionnalité.
 - Votre compte rendu doit comporter un analyse de votre développe, les aspects positifs, négatifs, limitations...
 - Vous devez comparer le temps d'exécution de votre fonctionnalité en python et en C++
