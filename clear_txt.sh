@@ -7,6 +7,7 @@ read -p "Are you sure you want to remove all .txt files in the current directory
 if [ -z "$confirm" ] || [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
     # Remove all local .txt files in the current directory
     rm -f ./CORPUS_TRAIN/*.txt
+    rm -f ./CORPUS_TXT/*.txt
     echo "All .txt files have been removed."
 else
     echo "Operation canceled."
