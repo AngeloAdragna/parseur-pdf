@@ -42,7 +42,13 @@ def get(text: str):
         i+=1 
         
     if not begin_found:
-        pass
+        # On essaie de trouver un début de façon heuristique
+        abstract = abstract[3:] if len(abstract)>3 else abstract # On retire les 3 premières lignes - généralement le titre de l'article, pour éviter des faux positifs
+        for i, line in enumerate(abstract):
+            # regex : Commence par un mot significatif d'un abstract, potentiellement précédé d'espace.s
+            if re.match(r"^.*(paper|article|presents?|examines?)", line, re.IGNORECASE):
+                abstract = abstract[i:]
+                break
         # TODO: find the start
         
         
@@ -109,9 +115,10 @@ if __name__ == "__main__":
 
             
             if os.path.isfile(input_path):
-                abstract = " ".join(abstract_file(input_path)).strip()
+                abstract = abstract_file(input_path)
                 with open(output_path, 'w') as output_file:
-                    output_file.write(abstract)
+                    output_file.write("\n".join(abstract))
                     
-                mdf.write(f"\n## {filename}\n```\n{abstract}\n```\n")
+                a2 = " ".join(abstract).strip()
+                mdf.write(f"\n## {filename}\n```\n{a2}\n```\n")
 
