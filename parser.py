@@ -6,7 +6,7 @@ import shutil
 from pathlib import Path
 import time
 
-from getTitle import extraire_titre_intelligent
+from getTitle import extraire_titre
 import abstract as abstract_extractor
 
 # ----------------------------------------------------------------------------
@@ -100,7 +100,7 @@ def add_infos_to_file(fichier_txt: Path) -> None:
             fichier_txt (Path): le chemin du fichier texte
     """
     filename = get_file_name(fichier_txt)
-    title = extraire_titre_intelligent(fichier_txt)
+    title = extraire_titre(fichier_txt)
     
     with open(fichier_txt, "r", encoding="utf-8") as f:
         content = f.read()
