@@ -49,7 +49,6 @@ def get(text: str):
             if re.match(r"^.*(paper|article|presents?|examines?)", line, re.IGNORECASE):
                 abstract = abstract[i:]
                 break
-        # TODO: find the start
         
         
     return abstract
