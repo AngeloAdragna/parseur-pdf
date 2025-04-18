@@ -81,7 +81,8 @@ Soucis pour identifier le debut et la fin des différentes zones de titre et de 
 4. **Colin Palazzetti Rubera** : Le résumé (abstract) de l’auteur.
    - **Appréciation générale** :  
    - **Note** :  Lors de la lecture des résumés donnés : 
-      - Certains mots sont coupés par le passage à la ligne, mais dans d'autres cas il s'agit d'un mot composé. Pour l'abstract, il faut savoir dans quel cas nous sommes pour écrire sur une seule ligne
+      - Certains mots sont coupés par le passage à la ligne, mais dans d'autres cas il s'agit d'un mot composé. Pour l'abstract, il faut savoir dans quel cas nous sommes pour écrire sur une seule ligne (Ceci est toujours à faire)
+      - Dans la majorité des cas, l'abstract est entouré des mots "ABSTRACT" et "INTRODUCTION", dans un des articles fournis, le mot abstract est absent, alors une partie pour ce cas particulier a été ajoutée
 
 ---
 
