@@ -15,10 +15,10 @@ def get(text: str):
     Returns the abstract in the raw parsed 
 
     Args:
-        text (str): _description_
+        text (str): input file
 
     Returns:
-        str: _description_
+        list(str): list of the parsed abstract
     """
     abstract = text.split("\n")
     begin_found = end_found = False
