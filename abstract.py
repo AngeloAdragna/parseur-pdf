@@ -63,18 +63,18 @@ def get_string(text: str):
     abstract_lst = get(text)
     for i, line in enumerate(abstract_lst):
         # Traitement spécial si la ligne précédente fini par "-"
-        if abstract[-1] == '-':
+        if abstract[-1] == '-' if len(abstract) > 0 else False:
             p_index = len(abstract)-1 # Index du "-"
             
-            # Extraction du mot qui a le tiret (regex équivalent : "\w+-")
-            p_word = abstract[:p_index].split()[-1] if p_index >= 0 else ""
+            # Extraction du mot qui a le tiret (regex équivalent : "\w+-"), sans le "-"
+            p_word = abstract[:p_index].split()[-1][:-1] if p_index >= 0 else ""
             # Extraction du premier mot de la ligne suivante
             n_word = line.strip().split()[0] if line.strip() else ""
             
             # Si les deux mots ont une valeur (sinon pas de traitement à faire - prévention des erreurs)
             if p_word and n_word:
                 # Création du mot sans tiret par concaténation des deux mots
-                word = p_word[:-1] + n_word
+                word = p_word + n_word
                 
                 if False: # TODO: Remplacer par un vérificateur de mot (vérifier si le mot existe)
                     abstract = abstract[:-1] + line.strip() # On ajoute la ligne, mais en retirant le "-"
@@ -88,6 +88,7 @@ def get_string(text: str):
         abstract += " "
         abstract += line.strip()
         
+    return abstract.strip()
         
         
         
