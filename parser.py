@@ -7,7 +7,7 @@ from pathlib import Path
 
 import re
 from getTitle import extraire_titre_intelligent
-from abstract import get
+import abstract as abstract_extractor
 
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
@@ -104,7 +104,7 @@ def add_infos_to_file(fichier_txt: Path) -> None:
     
     with open(fichier_txt, "r", encoding="utf-8") as f:
         content = f.read()
-    abstract = "\n".join(get(content))
+    abstract = abstract_extractor.get_string(content)
 
     # Overwrite le fichier texte avec les nouvelles informations
     with open(fichier_txt, "w", encoding="utf-8") as f:
