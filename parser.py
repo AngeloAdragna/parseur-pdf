@@ -4,8 +4,8 @@ import subprocess
 import sys
 import shutil
 from pathlib import Path
+import time
 
-import re
 from getTitle import extraire_titre_intelligent
 import abstract as abstract_extractor
 
@@ -112,6 +112,39 @@ def add_infos_to_file(fichier_txt: Path) -> None:
         f.write(f"Titre : {title}\n")
         f.write(f"Abstract : {abstract}\n")
 
+def log_execution_time(duration: float, log_file: Path = Path("exec_time.log")) -> None:
+    """
+    Enregistre le temps d'exécution dans un fichier de log et affiche la moyenne des temps.
+
+    Args:
+        duration (float): Le temps d'exécution en secondes.
+        log_file (Path): Le chemin du fichier de log.
+    """
+    try:
+        # Ajouter le temps d'exécution au fichier de log
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(f"{duration:.2f}\n")
+
+        # Lire tous les temps d'exécution du fichier de log
+        with open(log_file, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+
+        # Calculer la moyenne des temps d'exécution
+        times = []
+        for line in lines:
+            try:
+                times.append(float(line.strip()))
+            except ValueError:
+                print(f"Ligne ignorée dans le fichier de log : {line.strip()}")
+
+        if times:
+            average_time = sum(times) / len(times)
+            print(f"Moyenne des temps d'exécution : {average_time:.2f} secondes")
+        else:
+            print("Aucune donnée valide dans le fichier de log.")
+
+    except Exception as e:
+        print(f"Erreur lors de la gestion du fichier de log : {e}")
 
 def main():
 
@@ -121,6 +154,9 @@ def main():
     # Résultat attendu:
     # Le répértoire CORPUS_TXT/ contiendra les fichiers texte
     # avec uniquement le nom du fichier, le titre et l'abstract
+
+    # Début de la mesure du temps
+    start_time = time.time()
 
     if len(sys.argv) < 3:
         print("Erreur : Veuillez fournir les chemins du répertoire d’entrée et de sortie.")
@@ -147,6 +183,11 @@ def main():
 
     # Convertir les fichiers PDF en texte
     pdfs_to_plain_texts(chemin_entree, dossier_sortie)
+
+    # Fin de la mesure du temps
+    end_time = time.time()
+    # Log de la durée d'exécution
+    log_execution_time(end_time - start_time)
 
 if __name__ == "__main__":
     main()

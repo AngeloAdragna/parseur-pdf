@@ -38,6 +38,8 @@ Le script gère les erreurs de type "fichier introuvable" et "répertoire introu
 Le script intègre maintenant les fichiers pyhton en charge de récupérer le titre et l'abstract des articles.
 Les fonctionnalités principales sont donc terminées.
 
+Ajout d'une mesure du temps d'éxécution du script (`log_execution_time`). Le temps d'éxécution est stocké dans un fichier log (qui est ignoré par git pour éviter les conflits).
+
 ## Analyse du code
 
  - Le script n'arrive pas à récupérer correctement le titre du fichier `mikheev.pdf` : il ne récupère que la lettre 'c'
@@ -47,6 +49,6 @@ Les fonctionnalités principales sont donc terminées.
 
 - Au lieu d'écrire l'avancement du script directement dans la console, écrire dans un fichier log.
 - Récupérer le nom de l'auteur
-- Mieux commenter le code (surtout pour `abstract.py`)
-- Ajouter une fonctionnalité qui permet de mesurer le temps d'éxecution et de le stocker dans les logs
+- Mieux commenter le code (surtout pour `abstract.py`) <span style="color:blue"> [FAIT]</span>
+- Ajouter une fonctionnalité qui permet de mesurer le temps d'éxecution et de le stocker dans les logs <span style="color:blue"> [FAIT]</span>
 - Faire un programme équivalent en C++ afin de comparer les performances
