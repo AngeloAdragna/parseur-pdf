@@ -20,13 +20,13 @@ Exemple de lancement du script :
 python3 script.py CORPUS_TRAIN/ CORPUS_TXT/
 ```
 
-Le répertoire de sortie (dans cet exemple **CORPUS_TXT/**) contiendra les fichiers .txt avec le nom du fichier, le titre et l'abstract.
+Le répertoire de sortie (dans cet exemple `CORPUS_TXT/`) contiendra les fichiers .txt avec le nom du fichier, le titre et l'abstract.
 
-## Historique du spint 2
+## Historique du sprint 2
 
 ### 09/04/2025
 
-Le script est capable de récupérer le nom du fichier. Le script converti les fichiers .pdf en .txt et les met dans le répertoire de sortie.
+Le script est capable de récupérer le nom du fichier. Le script converti les fichiers `.pdf` en `.txt` et les met dans le répertoire de sortie.
 
 ### 11/04/2025
 
@@ -35,15 +35,40 @@ Le script gère les erreurs de type "fichier introuvable" et "répertoire introu
 
 ## 18/04/2025
 
+### Intégration du travail de l'équipe
+
 Le script intègre maintenant les fichiers pyhton en charge de récupérer le titre et l'abstract des articles.
 Les fonctionnalités principales sont donc terminées.
 
+### Ajout d'une mesure de temps d'éxécution
+
 Ajout d'une mesure du temps d'éxécution du script (`log_execution_time`). Le temps d'éxécution est stocké dans un fichier log (qui est ignoré par git pour éviter les conflits).
+
+### Version C++
+
+Ajout d'une version du programme en C++ afin de comparer les performances (voir [`parser.cpp`](./parser.cpp)). Les deux versions sont équivalentes en terme de fonctionnalité, sauf pour l'extraction de l'abstract qui est bancale sous C++.
+
+En terme de temps d'éxécution, les deux versions semblent être similaire au dixième de seconde près (sur une machine identique).
+
+Compiler le programme :
+```bash
+make parser.exe
+```
+Lancer le programme :
+```bash
+./parser.exe CORPUS_TRAIN/ CORPUS_TXT/
+```
+Supprimer l'exécutable :
+```bash
+make clean
+```
+
 
 ## Analyse du code
 
  - Le script n'arrive pas à récupérer correctement le titre du fichier `mikheev.pdf` : il ne récupère que la lettre 'c'
- - Pour les autres, le script à l'air de fonctionner correctement.
+ - Pour les autres, le script python à l'air de fonctionner correctement.
+ - Le script C++ ne récupère pas le début de l'abstract.
 
 ## Pistes d'amélioration
 
@@ -51,4 +76,4 @@ Ajout d'une mesure du temps d'éxécution du script (`log_execution_time`). Le t
 - Récupérer le nom de l'auteur
 - Mieux commenter le code (surtout pour `abstract.py`) <span style="color:blue"> [FAIT]</span>
 - Ajouter une fonctionnalité qui permet de mesurer le temps d'éxecution et de le stocker dans les logs <span style="color:blue"> [FAIT]</span>
-- Faire un programme équivalent en C++ afin de comparer les performances
+- Faire un programme équivalent en C++ afin de comparer les performances <span style="color:blue"> [FAIT]</span>
