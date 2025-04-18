@@ -112,7 +112,7 @@ def add_infos_to_file(fichier_txt: Path) -> None:
         f.write(f"Titre : {title}\n")
         f.write(f"Abstract : {abstract}\n")
 
-def log_execution_time(duration: float, log_file: Path = Path("exec_time.log")) -> None:
+def log_execution_time(duration: float, log_file: Path = Path("exec_time_py.log")) -> None:
     """
     Enregistre le temps d'exécution dans un fichier de log et affiche la moyenne des temps.
 
