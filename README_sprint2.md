@@ -42,6 +42,7 @@ Le langage doit être choisi en fonctions des critères :
    2/ Performance en temps d’exécution
 
 ## **Burndown**
+![Exemple sortie](images/exemple_sortie.png)  
 
 ## **Revu réunion 09/04/25**
  - Répartition des tâches selon les affinités de chacun. Bonne communication et cohésion d'équipe.
