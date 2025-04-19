@@ -38,7 +38,12 @@ Le script gère les erreurs de type "fichier introuvable" et "répertoire introu
 ### Intégration du travail de l'équipe
 
 Le script intègre maintenant les fichiers pyhton en charge de récupérer le titre et l'abstract des articles.
-Les fonctionnalités principales sont donc terminées.
+Les fonctionnalités principales sont donc terminées.  
+
+Un exemple de fichier .txt en sortie :
+![Exemple sortie](images/exemple_sortie.png)  
+
+**Remarque** : Chaque section est écrite sur une seule ligne à la fois, comme demandé dans le sujet (sur la capture d'écran, les retours à la ligne sont causés par l'affichage dans la console).
 
 ### Ajout d'une mesure de temps d'éxécution
 
@@ -77,3 +82,13 @@ make clean
 - Mieux commenter le code (surtout pour `abstract.py`) <span style="color:blue"> [FAIT]</span>
 - Ajouter une fonctionnalité qui permet de mesurer le temps d'éxecution et de le stocker dans les logs <span style="color:blue"> [FAIT]</span>
 - Faire un programme équivalent en C++ afin de comparer les performances <span style="color:blue"> [FAIT]</span>
+
+## Analyse de performances
+
+Sur un unique lancement de programme, nous constatons que la version C++ est environ 1 seconde plus rapide que la version Python.    
+![Comparatif Python/C++](images/comparatif_execution.png)  
+
+En lançant plusieurs exécutions de chaque version, nous obtenons des fichiers de logs remplis, desquels nous pouvons tirer de l'information.  
+![Comparatif Python/C++ sur 10 lancements](images/comparatif_logs.png)    
+Et nous pouvons constater que le Python est majoritairement plus lent que le C++.  
+Cependant, comme précisé plus haut, la version C++ est moins fiable que la version Python. Il faut donc privilégier la version Python, un peu plus lente, pour ne pas sacrifier l'efficacité.
