@@ -42,7 +42,7 @@ Le langage doit être choisi en fonctions des critères :
    2/ Performance en temps d’exécution
 
 ## **Burndown**
-![Exemple sortie](images/exemple_sortie.png)  
+![Exemple sortie](images/burndown-1.png)  
 
 ## **Revu réunion 09/04/25**
  - Répartition des tâches selon les affinités de chacun. Bonne communication et cohésion d'équipe.
@@ -57,21 +57,26 @@ Le langage doit être choisi en fonctions des critères :
  - Soucis pour identifier le debut et la fin des différentes zones de titre et de abstract sachant, que les zones ne sont pas toujours déclarées de façon précises.
 
 
-## _Consignes_ : 
+## _Consignes pour le compte rendu des développeurs_ : 
 - Déposez vos comptes rendu au plus tard le 18/04/2025 à 20h sur la branche 2
 - Fournir au moins une image de l'avancement par fonctionnalité.
 - Votre compte rendu doit comporter un analyse de votre développe, les aspects positifs, négatifs, limitations...
-- Vous devez comparer le temps d'exécution de votre fonctionnalité en python et en C++
-- Indiquer quel jour vous avez fini votre fonctionnalité
+- Vous devez comparer le temps d'exécution de votre fonctionnalité en python et en C++.
+- Indiquer quel jour vous avez fini votre fonctionnalité.
 
 ## **Travail de chaque codeur pendant la mêlée (Revue Sprint)**
 
 ---
 
-1. **Angelo Adragna** : documenter les événements/artefacts Scrum (réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint)
-   - **Appréciation générale** :  
-   - **Note** :
-   
+1. **Angelo Adragna** : documenter les événements/artefacts Scrum (réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint) :
+   - Les backlogs doivent être réalisés en premier lieu, lors de la première réunion, afin de répartir les tâches entre chaque personne.
+   - Chaque réunion a bien permis d'éclaircir les zones d'ombre sur le projet et le travail de chacun. Cela a également permis d'établir une liste de questions pour le client, afin d'obtenir davantage de détails et de spécifications.
+   - Le Burndown est facile à réaliser à la toute fin du sprint.
+   - La rédaction doit cependant se faire au fur et à mesure de l'avancement de chacun.
+   - La mise en commun du travail de chacun peut parfois s'avérer ardue, en raison du manque de détails dans le fonctionnement des productions personnelles des développeurs.
+   - Attention à ne pas mettre une deadline trop proche de la fin du sprint, même si l'idée était de laisser un maximum de temps aux développeurs. Cela les a poussés à rush à la fin, car certaines tâches dépendaient de la finalisation d'autres tâches.
+
+
 ---
 
 2. **Corentin Saccoman** et **Elliot Pozucek** : Structure de l'algorithme de prenant en paramètre un dossier de pdf et appelant les différentes fonctions des autres menbres de l'équipe, traitement du nom du fichier d'orgine.
@@ -196,19 +201,27 @@ Ces informations seront également exclues du traitement final.
 
 ## **Retour sur le travail effectué (Rétrospective Sprint)**
 
-### **Ce qui nous avons déterminé**
-- Nous choisisons le langage python de façon unanime par pur préférence et expérience des utilisateurs.
+### **Ce que nous avons déterminé**
+Après avoir comparé les temps d'exécution entre une version Python et une version C++ du parseur, nous avons néanmoins choisi de continuer en Python.  
+En effet, comme nous pouvons le voir dans le travail d'Elliot et Corentin, Python peut s'avérer légèrement plus lent, cependant, la différence est négligeable.  
+Nous avons opté pour une base en Python de manière unanime, tant par préférence des développeurs que pour le large choix de bibliothèques Python pour le traitement des données, mais aussi pour la fiabilité de Python.  
+Ce choix s'inscrit dans une démarche de projection sur les futures tâches à réaliser.
 
 ### **Ce qui a bien fonctionné**
-
+Nous avons réussi à remplir toutes les demandes présentes dans le backlog.
 
 ### **Ce qui a posé problème**
-
+Au niveau du développement, le principal problème a été d'identifier le début et la fin des différentes zones de titre et d'abstract, sachant que ces zones ne sont pas toujours déclarées de façon précise. Notamment pour le fichier `mikheev.pdf`, où le titre récupère uniquement la lettre 'c'.  
+Au niveau organisationnel, la deadline imposée par le Scrum Master pour la finition du code et du compte rendu par les développeurs était trop proche de la date de rendu au client.  
+Cela a poussé toute l'équipe à effectuer un rush final.
 
 ### **Ce qu’on doit améliorer**
-
+Les comptes rendus de certains développeurs ne répondent pas entièrement aux attentes détaillées dans les consignes.
 
 ---
 
 ### **Conclusion** :
+Le travail global effectué par l'équipe est satisfaisant.  
+Le travail des personnes impliquées est efficace et très satisfaisant.  
+La communication est bonne, et l'on distingue une réelle amélioration dans le travail de chacun, tant au niveau de la qualité que de la quantité.
 
