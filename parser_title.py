@@ -1,8 +1,10 @@
-"""Docstring for the .py module.
+"""Docstring for the parser_title.py module.
 
-a
+Extraction du titre d'un article à partir de son texte brut.
 
-b
+Permet de récupérer le titre d'un article à partir des premières lignes de son texte brut. 
+Au besoin, des potentielles information avant le titre (auteurs, date, ville) sont supprimées. 
+Le titre est ensuite validé pour s'assurer qu'il respecte certaines conditions de longueur et de contenu.
 
 """
 
