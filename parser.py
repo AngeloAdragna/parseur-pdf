@@ -2,12 +2,13 @@
 
 import subprocess
 import sys
+import argparse
 import shutil
 from pathlib import Path
 import time
 
 from getTitle import extraire_titre
-import abstract as abstract_extractor
+import parser_abstract as abstract_extractor
 
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
@@ -25,7 +26,7 @@ def list_pdfs(repertoire: Path) -> list:
     return list(chemin.glob("*.pdf"))
 
 
-def pdfs_to_plain_texts(repertoire_entree: Path, repertoire_sortie: str):
+def pdfs_to_texts(repertoire_entree: Path, repertoire_sortie: str, args):
     '''
         Crée le répertoire de sortie contenant les plaintext correspondant
         au parsing des pdf du répertoire
@@ -49,21 +50,24 @@ def pdfs_to_plain_texts(repertoire_entree: Path, repertoire_sortie: str):
 
     # Pour chaque pdf, on le convertit en texte
     for pdf in pdfs:
-        convert_pdf_file_to_plain_text(pdf, repertoire_sortie)
+        convert_pdf_file_to_text(pdf, repertoire_sortie, args)
 
-def convert_pdf_file_to_plain_text(fichier_pdf: Path, repertoire_sortie: Path):
+def convert_pdf_file_to_text(fichier_pdf: Path, repertoire_sortie: Path, args):
     ''' 
-        Transforme un fichier pdf en plain text en l'intégrant au répertoire de sortie.
-        Une fois transformé, le fichier texte est modifié pour ne contenir que le nom du fichier,
-        le titre et l'abstract.
+        Transforme un fichier pdf en plain text ou xml en l'intégrant au répertoire de sortie.
+        Une fois transformé, le fichier texte (ou xml) est modifié pour ne contenir que les éléments demandés par le client.
 
         Args:
             fichier_pdf (Path): le chemin du fichier pdf
             repertoire_sortie (Path): le chemin du répertoire de sortie
     '''
-
-    # Génèrer le chemin du fichier de sortie .txt
-    fichier_sortie = Path(repertoire_sortie) / (fichier_pdf.stem + ".txt")
+    fichier_sortie = None
+    if args.t :
+        # Génèrer le chemin du fichier de sortie .txt
+        fichier_sortie = Path(repertoire_sortie) / (fichier_pdf.stem + ".txt")
+    else :
+        # Génèrer le chemin du fichier de sortie .xml
+        fichier_sortie = Path(repertoire_sortie) / (fichier_pdf.stem + ".xml")
 
     try:
         subprocess.run(
@@ -75,23 +79,23 @@ def convert_pdf_file_to_plain_text(fichier_pdf: Path, repertoire_sortie: Path):
         print(f"Erreur lors de la conversion de {fichier_pdf.name} : {e}")
 
     # Overwrite le fichier texte avec les nouvelles informations
-    add_infos_to_file(fichier_sortie)
+    add_infos_to_file(fichier_sortie, args)
 
 
-def get_file_name(fichier_txt : Path) -> str:
+def get_file_name(fichier : Path) -> str:
     '''
-        Ajoute le nom du fichier à la première ligne du fichier texte.
+        Ajoute le nom du fichier à la première ligne du fichier texte (ou xml).
 
         Args:
-            fichier_txt (Path): le chemin du fichier texte
+            fichier (Path): le chemin du fichier texte (ou xml)
         Returns:
-            str: le nom du fichier texte sans l'extension
+            str: le nom du fichier texte (ou xml) sans l'extension
         
     '''
-    return fichier_txt.stem
+    return fichier.stem
     
 
-def add_infos_to_file(fichier_txt: Path) -> None:
+def add_infos_to_file(fichier_txt: Path, args) -> None:
     """"
         Ajoute les informations dans fichier texte. Le fichier ne contiendra
         que le nom du fichier, le titre et l'abstract.
@@ -100,17 +104,32 @@ def add_infos_to_file(fichier_txt: Path) -> None:
             fichier_txt (Path): le chemin du fichier texte
     """
     filename = get_file_name(fichier_txt)
-    title = extraire_titre(fichier_txt)
-    
+    title = extraire_titre(fichier_txt)   
     with open(fichier_txt, "r", encoding="utf-8") as f:
         content = f.read()
     abstract = abstract_extractor.get_string(content)
 
+    
+
     # Overwrite le fichier texte avec les nouvelles informations
     with open(fichier_txt, "w", encoding="utf-8") as f:
-        f.write(f"Nom du fichier : {filename}\n")
-        f.write(f"Titre : {title}\n")
-        f.write(f"Abstract : {abstract}\n")
+        if args.t :
+            f.write(f"Nom du fichier : {filename}\n")
+            f.write(f"Titre : {title}\n")
+            f.write(f"Abstract : {abstract}\n")
+        else :
+            # TODO : Récupérer les auteurs
+            auteur = ""
+            # TODO : Récupérer la bibliographie
+            biblio = ""
+
+            f.write("<article>\n")
+            f.write(f"\t<preamble>\n\t\t{filename}\n\t</preamble>\n")
+            f.write(f"\t<titre>\n\t\t{title}\n\t</titre>\n")
+            f.write(f"\t<auteur>\n\t\t{auteur}\n\t</auteur>\n")
+            f.write(f"\t<abstract>\n\t\t{abstract}\n\t</abstract>\n")
+            f.write(f"\t<biblio>\n\t\t{biblio}\n\t</biblio>\n")
+            f.write("</article>")
 
 def log_execution_time(duration: float, log_file: Path = Path("exec_time_py.log")) -> None:
     """
@@ -146,6 +165,28 @@ def log_execution_time(duration: float, log_file: Path = Path("exec_time_py.log"
     except Exception as e:
         print(f"Erreur lors de la gestion du fichier de log : {e}")
 
+def parse_arguments():
+    """
+    Parse les arguments de la ligne de commande pour inclure les options -t et -x.
+    Assure que les options -t et -x ne sont pas cumulables, et que -t est sélectionné par défaut si aucun n'est passé.
+
+    Returns:
+        Namespace: Les arguments parsés.
+    """
+    parser = argparse.ArgumentParser(description="Script de conversion de PDF en texte avec options.")
+    parser.add_argument("dossier_entree", type=str, help="Chemin du répertoire d'entrée contenant les fichiers PDF.")
+    parser.add_argument("dossier_sortie", type=str, help="Chemin du répertoire de sortie pour les fichiers parsés.")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-t", action="store_true", help="Parser en plain text (par défaut).")
+    group.add_argument("-x", action="store_true", help="Parser en XML.")
+    args = parser.parse_args()
+
+    # Si aucune option n'est spécifiée, -t est sélectionné par défaut
+    if not args.t and not args.x:
+        args.t = True
+
+    return args
+
 def main():
 
     # Exemple d'utilisation:
@@ -158,13 +199,10 @@ def main():
     # Début de la mesure du temps
     start_time = time.time()
 
-    if len(sys.argv) < 3:
-        print("Erreur : Veuillez fournir les chemins du répertoire d’entrée et de sortie.")
-        print("Exemple : python script.py dossier_entree/ dossier_sortie/")
-        sys.exit(1)
+    args = parse_arguments()
 
-    dossier_entree = sys.argv[1]
-    dossier_sortie = sys.argv[2]
+    dossier_entree = args.dossier_entree
+    dossier_sortie = args.dossier_sortie
     chemin_entree = Path(dossier_entree)
 
     # Génère une erreur si le répertoire d'entrée n'existe pas ou n'est pas un répertoire
@@ -182,7 +220,7 @@ def main():
             print(" -", pdf.name)
 
     # Convertir les fichiers PDF en texte
-    pdfs_to_plain_texts(chemin_entree, dossier_sortie)
+    pdfs_to_texts(chemin_entree, dossier_sortie, args)
 
     # Fin de la mesure du temps
     end_time = time.time()
