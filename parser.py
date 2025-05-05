@@ -143,14 +143,14 @@ def add_infos_to_file(fichier: Path, args) -> None:
 
             f.write(f"\t<titre>\n\t\t{title}\n\t</titre>\n")
             
-            f.write(f"\t<auteur>\n")
+            f.write("\t<auteur>\n")
             for a in auteur:
                 f.write(f"\t\t{a}\n")
             f.write("\t</auteur>\n")
 
             f.write(f"\t<abstract>\n\t\t{abstract}\n\t</abstract>\n")
 
-            f.write(f"\t<biblio>\n")
+            f.write("\t<biblio>\n")
             for b in biblio:
                 f.write(f"\t\t{b}\n")
             f.write("\t</biblio>\n")
