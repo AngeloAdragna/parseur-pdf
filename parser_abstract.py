@@ -1,24 +1,52 @@
+"""Docstring for the parser_abstract.py module.
+
+Cette partie du parser se concentre sur l'extraction et le traitement de l'abstradct.
+
+Elle permet d'extraire l'abstract dd'un fichier, et au besoin, de faire en sorte de le mettre sur une seule ligne
+
+"""
+
 import re
 import os
 
-def abstract_file(filepath: str):
+def test_gettxt(filepath: str):
     """
-        Parse the content of the file
-        @param filepath: path to the file
-        @return: Abstract
+    Fonction de test :
+        Ouvrir le fichier
+
+    Parameters
+    ----------
+    filepath: string
+        chemin vers le fichier
+    
+    Returns
+    -------
+    array
+        Abstract extrait du fichier passé en argument       
+    
+    Raises
+    ------
+    FileNotFoundError
+        Quand l'ouverture du fichier n'a pas réussi
     """
     with open(filepath, 'r') as file:
-        return get(file.read())
+        return get_list(file.read())
+    raise FileNotFoundError(filepath)
 
-def get(text: str):
+def get_list(text: str):
     """
-    Returns the abstract in the raw parsed 
+    Retourne l'abstract dans le texte brut de l'article, en une liste de lignes
+    ⚠️ Ne doit pas être utilisé en même temps que get_string 
 
-    Args:
-        text (str): input file
+    Parameters
+    ----------
+    text: string
+        Article ou partie de l'article en texte brut
 
-    Returns:
-        list(str): list of the parsed abstract
+    Returns
+    -------
+    list(string)
+        Liste de lignes contenant l'abstract
     """
     abstract = text.split("\n")
     begin_found = end_found = False
@@ -56,16 +84,21 @@ def get(text: str):
 
 def get_string(text: str):
     """
-    As the get(str) function, but returns a one-line string instead of a list
+    Retourne l'abstract dans le texte brut de l'article, en une seule ligne, en enlevant les retours à la ligne
+    ⚠️ Ne doit pas être utilisé en même temps que get_list 
 
-    Args:
-        text (str): input file
+    Parameters
+    ----------
+    text: string
+        Article ou partie de l'article en texte brut
 
-    Returns:
-        str: returns a one-line string of the abstract
+    Returns
+    -------
+    list(string)
+        Texte en une ligne contenant l'abstract
     """
     abstract = ""
-    abstract_lst = get(text)
+    abstract_lst = get_list(text)
     for i, line in enumerate(abstract_lst):
         # Traitement spécial si la ligne précédente fini par "-"
         if abstract[-1] == '-' if len(abstract) > 0 else False:
@@ -99,7 +132,7 @@ def get_string(text: str):
         
         
 
-
+# Fonction de test locale
 if __name__ == "__main__":
     input_folder = "CORPUS_TXT"
     output_folder = "CORPUS_ABSTRACTS"
@@ -114,7 +147,7 @@ if __name__ == "__main__":
 
             
             if os.path.isfile(input_path):
-                abstract = abstract_file(input_path)
+                abstract = test_gettxt(input_path +"a")
                 with open(output_path, 'w') as output_file:
                     output_file.write("\n".join(abstract))
                     
