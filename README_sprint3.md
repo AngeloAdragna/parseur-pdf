@@ -40,10 +40,14 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ## **Execution du programme**
 
-## **Réunion**
+
+  ## **Revu réunion 05/05/25**
 - Debrief sur le produit du premier sprint assez positif, malgré une légère dissipation due à des zones d'ombres sur la consigne.
 - Répartition des tâches.
 - Liste de questions à donner au Scrum Master pour qu'il échange avec le client sur les besoins.
+- Répartition des tâches selon les affinités de chacun. Bonne communication et cohésion d'équipe.
+- Les artéfacts ne semblent ne plus poser de problèmes, bien qu'un léger doute plane encore. Cependant la méthode SCRUM est volontairement peu détaillé donc cela semble naturel.
+
 
 ## **Backlog**
  - Option xml au lancement (plain texte par défaut) et tranduction texte xml.
@@ -56,10 +60,6 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ## **Burndown**
 ![Exemple sortie](images/burndown-2.png)  
-
-## **Revu réunion 05/05/25**
- - Répartition des tâches selon les affinités de chacun. Bonne communication et cohésion d'équipe.
- - Les artéfacts ne semblent ne plus poser de problèmes, bien qu'un léger doute plane encore. Cependant la méthode SCRUM est volontairement peu détaillé donc cela semble naturel.
 
 
 ## _Consignes pour le compte rendu des développeurs_ : 
