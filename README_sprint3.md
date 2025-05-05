@@ -1,4 +1,4 @@
-# Sprint 2
+# Sprint 3
 
 **Auteurs : L3 CMI Informatique**
 
@@ -11,7 +11,8 @@
 <!--pandoc README_sprint1.md -o README_sprint1.pdf --pdf-engine=xelatex-->
 
 ## **Rôles**
-- Angelo est le maître de `SCRUM` et le produit `Product Owner` et le product owner.
+- Angelo est le maître de `SCRUM` et le `Product Owner`.
+- Corentin, Elliot, Colin et Elvin sont développers.
 - Corentin doit s'occuper de l'intégration du fonctionnement xml depuis l'option de lancement jusqu'à l'écriture des balises.
 - Elliot doit récupérer la section bibliographique t renvoyer un plain texte.
 - Colin doit traiter le résumé (abstract) de l’auteur.
@@ -51,26 +52,17 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 
 ## **Burndown**
-![Exemple sortie](images/burndown-1.png)  
+![Exemple sortie](images/burndown-2.png)  
 
-## **Revu réunion 09/04/25**
+## **Revu réunion 05/05/25**
  - Répartition des tâches selon les affinités de chacun. Bonne communication et cohésion d'équipe.
- - Discussion et explication des différents artéfacts :
-    - Le carnet du produit (Product Backlog) : liste priorisée de toutes les fonctionnalités à développer pour le produit.
-    - Le carnet du sprint (Sprint Backlog) : ensemble des tâches sélectionnées pour être réalisées pendant un sprint.
-    - L’incrément : version du produit incluant toutes les fonctionnalités terminées à la fin d’un sprint.
-    - Les fonctionnalités (User Story) : descriptions simples des besoins utilisateurs, exprimées du point de vue de l’utilisateur.
-    - Le diagramme de progression (Sprint Burndown Chart) : graphique montrant l’évolution du travail restant à faire pendant le sprint. 
-
-## **Revu réunion 11/04/25**
- - Soucis pour identifier le debut et la fin des différentes zones de titre et de abstract sachant, que les zones ne sont pas toujours déclarées de façon précises.
+ - Les artéfacts ne semblent ne plus poser de problèmes, bien qu'un léger doute plane encore. Cependant la méthode SCRUM est volontairement peu détaillé donc cela semble naturel.
 
 
 ## _Consignes pour le compte rendu des développeurs_ : 
-- Déposez vos comptes rendu au plus tard le 18/04/2025 à 20h sur la branche 2
-- Fournir au moins une image de l'avancement par fonctionnalité.
-- Votre compte rendu doit comporter un analyse de votre développe, les aspects positifs, négatifs, limitations...
-- Vous devez comparer le temps d'exécution de votre fonctionnalité en python et en C++.
+- Déposez vos comptes rendu au plus tard le 09/05/2025 à 18h sur la branche 3
+- Fournir au moins 1 image de l'avancement par fonctionnalité par développer.
+- Votre compte rendu doit comporter un analyse de votre développement, les aspects positifs, négatifs, limitations...
 - Indiquer quel jour vous avez fini votre fonctionnalité.
 
 ## **Travail de chaque codeur pendant la mêlée (Revue Sprint)**
