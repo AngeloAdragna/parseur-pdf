@@ -7,7 +7,7 @@ import shutil
 from pathlib import Path
 import time
 
-from getTitle import extraire_titre
+import parser_title as title_extractor
 import parser_abstract as abstract_extractor
 from ref_biblio import get_references
 
@@ -27,9 +27,9 @@ def list_pdfs(repertoire: Path) -> list:
     return list(chemin.glob("*.pdf"))
 
 
-def pdfs_to_texts(repertoire_entree: Path, repertoire_sortie: str, args):
+def pdfs_to_format(repertoire_entree: Path, repertoire_sortie: str, args):
     '''
-        Crée le répertoire de sortie contenant les plaintext correspondant
+        Crée le répertoire de sortie contenant les plaintext (ou xml) correspondant
         au parsing des pdf du répertoire
 
         Args:
@@ -51,11 +51,12 @@ def pdfs_to_texts(repertoire_entree: Path, repertoire_sortie: str, args):
 
     # Pour chaque pdf, on le convertit en texte
     for pdf in pdfs:
-        convert_pdf_file_to_text(pdf, repertoire_sortie, args)
+        convert_pdf_file(pdf, repertoire_sortie, args)
 
-def convert_pdf_file_to_text(fichier_pdf: Path, repertoire_sortie: Path, args):
+
+def convert_pdf_file(fichier_pdf: Path, repertoire_sortie: Path, args):
     ''' 
-        Transforme un fichier pdf en plain text ou xml en l'intégrant au répertoire de sortie.
+        Transforme un fichier pdf en plain text (ou xml) en l'intégrant au répertoire de sortie.
         Une fois transformé, le fichier texte (ou xml) est modifié pour ne contenir que les éléments demandés par le client.
 
         Args:
@@ -79,7 +80,7 @@ def convert_pdf_file_to_text(fichier_pdf: Path, repertoire_sortie: Path, args):
     except subprocess.CalledProcessError as e:
         print(f"Erreur lors de la conversion de {fichier_pdf.name} : {e}")
 
-    # Overwrite le fichier texte avec les nouvelles informations
+    # Overwrite le fichier de sortie avec les nouvelles informations
     add_infos_to_file(fichier_sortie, args)
 
 
@@ -96,30 +97,42 @@ def get_file_name(fichier : Path) -> str:
     return fichier.stem
     
 
-def add_infos_to_file(fichier_txt: Path, args) -> None:
+def add_infos_to_file(fichier: Path, args) -> None:
     """"
-        Ajoute les informations dans fichier texte. Le fichier ne contiendra
-        que le nom du fichier, le titre et l'abstract.
+        Ajoute les informations dans fichier texte (ou xml).
+
+        Le fichier contiendra :
+        - Fichier texte :
+            . nom du fichier
+            . titre
+            . abstract
+
+        - Fichier xml :
+            . nom du fichier
+            . titre
+            . auteurs
+            . abstract
+            . références
 
         Args:
-            fichier_txt (Path): le chemin du fichier texte
+            fichier (Path): le chemin du fichier texte
     """
-    filename = get_file_name(fichier_txt)
-    title = extraire_titre(fichier_txt)   
-    with open(fichier_txt, "r", encoding="utf-8") as f:
+    filename = get_file_name(fichier)
+    with open(fichier, "r", encoding="utf-8") as f:
         content = f.read()
+    title = title_extractor.get_string(content)   
     abstract = abstract_extractor.get_string(content)
 
-    
-
     # Overwrite le fichier texte avec les nouvelles informations
-    with open(fichier_txt, "w", encoding="utf-8") as f:
+    with open(fichier, "w", encoding="utf-8") as f:
         if args.t :
+            # CAS DU PARSING AU FORMAT PLAIN TEXT
             f.write(f"Nom du fichier : {filename}\n")
             f.write(f"Titre : {title}\n")
             f.write(f"Abstract : {abstract}\n")
         else :
-            # TODO : Récupérer les auteurs
+            # CAS DU PARSING AU FORMAT XML
+            # TODO : Récupérer le tableau d'auteurs
             auteur = []
             # Récupérer la bibliographie
             biblio = get_references(content)
@@ -202,12 +215,14 @@ def parse_arguments():
 
 def main():
 
-    # Exemple d'utilisation:
-    # python script.py CORPUS_TRAIN/ CORPUS_TXT/
+    # Exemples d'utilisation:
+    #  Format txt sans option  : python script.py CORPUS_TRAIN/ CORPUS_TXT/
+    #  Format txt avec option  : python script.py -t CORPUS_TRAIN/ CORPUS_TXT/
+    #  Format xml              : python script.py -x CORPUS_TRAIN/ CORPUS_XML/
     
-    # Résultat attendu:
-    # Le répértoire CORPUS_TXT/ contiendra les fichiers texte
-    # avec uniquement le nom du fichier, le titre et l'abstract
+    # Résultats attendus:
+    # Le répértoire CORPUS_TXT/ contiendra les fichiers texte avec uniquement le nom du fichier, le titre et l'abstract
+    # Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos demandées pour le xml
 
     # Début de la mesure du temps
     start_time = time.time()
@@ -233,7 +248,7 @@ def main():
             print(" -", pdf.name)
 
     # Convertir les fichiers PDF en texte
-    pdfs_to_texts(chemin_entree, dossier_sortie, args)
+    pdfs_to_format(chemin_entree, dossier_sortie, args)
 
     # Fin de la mesure du temps
     end_time = time.time()
