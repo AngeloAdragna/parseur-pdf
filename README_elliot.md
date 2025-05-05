@@ -49,13 +49,17 @@ Pour notre corpus, cette méthode fonctionne très bien. J'ai intégré mon trav
 
 ---
 
-#### Ajout d'un
+#### Ajout d'un paramètre `-r` pour le script `parser.py`
+
+Ce paramètre permet de parser les fichiers `pdf` dans leur version `txt` sans les transformer. Ils contiennent donc le résultat brut de la commande `pdftotext -raw`. J'ai ajouté ce paramètre afin de pouvoir effectuer des tests.
 
 ### Pistes d'amélioration
 
 Les méthodes de recherche de pattern sont très simples et sont adaptées à notre corpus. Elles manquent donc de robustesse.
 
 Je commence à voir les limitations de notre méthode de base pour extraire le texte brut. En effet, ne pas pouvoir utiliser les retours/sauts de ligne pour séparer les différentes sections du texte est très contraignant, car ces sauts/retours de ligne ont souvent une valeur sémantique significative.
+
+**IMPORTANT** : le fichier ACL2004 pose problème (pas d'intiale et pas de numérotation). Il faut donc le traiter à part.
 
 ---
 
