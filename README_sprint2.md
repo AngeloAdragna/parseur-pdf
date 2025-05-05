@@ -11,19 +11,31 @@
 <!--pandoc README_sprint1.md -o README_sprint1.pdf --pdf-engine=xelatex-->
 
 ## **Rôles**
-
-- Angelo est le maître de `SCRUM`.
-- Corentin doit créer la structure de l'algorithme en prenant en paramètre un dossier pdf, appelant les différentes méthodes et en renvoyant un dossier de txt.
-- Elliot doit traiter le nom du fichier d'orgine.
+- Angelo est le maître de `SCRUM` et le produit `Product Owner` et le product owner.
+- Corentin doit s'occuper de l'intégration du fonctionnement xml depuis l'option de lancement jusqu'à l'écriture des balises.
+- Elliot doit récupérer la section bibliographique t renvoyer un plain texte.
 - Colin doit traiter le résumé (abstract) de l’auteur.
-- Elvin doit traiter le titre du papier.
+- Elvin doit récupérer la section de l'auteur et renvoyer un plain texte.
 
 ## **Objectif**
-Dans la séance précédente vous avez choisit le convertisseur le plus adapté PDF→texte. Il s’agit
-maintenant d’analyser les articles plain texte par le parseur. Il sera développé dans un langage adéquat,
-et analysera les sorties textuelles du convertisseur.
-Nous voulons comme sortie un fichier .txt par fichier ayant les sections et la structure suivante.
-Les détailles sont dans le [readme](sprint2_carnet_du_produit.pdf).
+Suite à une discussion au LIA, nous avons décidé que les fichiers parsés plein texte ne suffisent plus à
+nos besoins. Nous avons entendu parler que les fichiers structurés XML possèdent plusieurs avantages
+et qu’ils sont largement utilisés en TAL. Nous préférons donc comme sortie un fichier XML utf8 avec
+la structure suivante:
+```xml
+<article>
+ <preamble> Le nom du fichier d’origine </preamble>
+ <titre> Le titre du papier </titre>
+ <auteur> La section auteurs et leur adresse </auteur>
+ <abstract> Le résumé de l’article </abstract>
+ <biblio> Les références bibliographiques du papier</biblio>
+</article>
+```
+Cependant quelques chercheurs veulent garder la sortie texte aussi… Cette nouvelle sortie .xml
+complète la sortie texte .txt du sprint précédent.
+Ainsi, au moment de lancer votre parseur, il faudra ajouter un argument ( -t | -x ) pour bien choisir le
+type de sortie : soit générer des fichiers dans une version texte (-t) , soit au format XML (-x)
+Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ## **Réunion**
 - Debrief sur le produit du premier sprint assez positif, malgré une légère dissipation due à des zones d'ombres sur la consigne.
@@ -31,15 +43,12 @@ Les détailles sont dans le [readme](sprint2_carnet_du_produit.pdf).
 - Liste de questions à donner au Scrum Master pour qu'il échange avec le client sur les besoins.
 
 ## **Backlog**
- - Le système doit traiter un dossier contenant des fichiers PDF, créer un sous-dossier pour stocker les sorties en texte brut avec les mêmes noms que les fichiers PDF, et supprimer le       sous-dossier s’il existe déjà.
- - Générer un fichier en texte brut en sortie.
- - Afficher le nom du fichier d’origine sur une ligne, avec les espaces remplacés par des underscores (“_”).
- - Afficher le titre de l’article sur une ligne.
- - Afficher le résumé (abstract) de l’auteur sur une ligne.
+ - Option xml au lancement (plain texte par défaut) et tranduction texte xml.
+ - Récuperer section auteur.
+ - Récuperer section bibliographique.
+ - Harmoniser fichiers de codes.
+ - Améliorer fonctionnalités du code.  
 
-Le langage doit être choisi en fonctions des critères :
-   1/ Maîtrisé par les membres de l’équipe
-   2/ Performance en temps d’exécution
 
 ## **Burndown**
 ![Exemple sortie](images/burndown-1.png)  
