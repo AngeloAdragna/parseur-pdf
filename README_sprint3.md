@@ -8,6 +8,9 @@
 - Colin Palazzetti Rubera
 - Elvin Fichot-Corgeron
 
+**lien vers Github**
+[README Sprint 3](https://github.com/conception-logicielle-CERI/parseur-pdf/blob/sprint-3/README_sprint3.md)
+
 <!--pandoc README_sprint1.md -o README_sprint1.pdf --pdf-engine=xelatex-->
 
 ## **Rôles**
