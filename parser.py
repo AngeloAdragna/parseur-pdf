@@ -9,6 +9,7 @@ import time
 
 from getTitle import extraire_titre
 import parser_abstract as abstract_extractor
+from ref_biblio import get_references
 
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
@@ -121,14 +122,17 @@ def add_infos_to_file(fichier_txt: Path, args) -> None:
             # TODO : Récupérer les auteurs
             auteur = ""
             # TODO : Récupérer la bibliographie
-            biblio = ""
+            biblio = get_references(content)
 
             f.write("<article>\n")
             f.write(f"\t<preamble>\n\t\t{filename}\n\t</preamble>\n")
             f.write(f"\t<titre>\n\t\t{title}\n\t</titre>\n")
             f.write(f"\t<auteur>\n\t\t{auteur}\n\t</auteur>\n")
             f.write(f"\t<abstract>\n\t\t{abstract}\n\t</abstract>\n")
-            f.write(f"\t<biblio>\n\t\t{biblio}\n\t</biblio>\n")
+            f.write(f"\t<biblio>\n")
+            for b in biblio:
+                f.write(f"\t\t{b}\n")
+            f.write("\t</biblio>\n")
             f.write("</article>")
 
 def log_execution_time(duration: float, log_file: Path = Path("exec_time_py.log")) -> None:
