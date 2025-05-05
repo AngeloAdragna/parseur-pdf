@@ -224,9 +224,11 @@ def main():
     #  Format txt sans option  : python script.py CORPUS_TRAIN/ CORPUS_TXT/
     #  Format txt avec option  : python script.py -t CORPUS_TRAIN/ CORPUS_TXT/
     #  Format xml              : python script.py -x CORPUS_TRAIN/ CORPUS_XML/
+    #  Format txt non formaté  : python script.py -r CORPUS_TRAIN/ CORPUS_TXT/
     
     # Résultats attendus:
     # Le répértoire CORPUS_TXT/ contiendra les fichiers texte avec uniquement le nom du fichier, le titre et l'abstract
+    # (ou le texte brut si -r est spécifié)
     # Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos demandées pour le xml
 
     # Début de la mesure du temps
