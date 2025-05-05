@@ -40,10 +40,24 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ## **Execution du programme**
 
+## **Revu Sprint 2**
+- Debrief sur le produit du second sprint assez positif. Le travail a été complexe mais correctement effectué par chaque membre de la `SCRUM Team`.
+- Liste de questions à donner au Scrum Master pour qu'il échange avec le client sur les besoins.
+- Répartition des tâches selon les affinités de chacun. Bonne communication et cohésion d'équipe.
+- Questionnement refactor et harmonisation des fichiers pour une meilleur lisibilité et compréhension.
+- Les artéfacts ne semblent ne plus poser de problèmes, bien qu'un léger doute plane encore. Cependant la méthode SCRUM est volontairement peu détaillé donc cela semble naturel.
+- Les différents rendus des devs etaient trop proche du rendu du produit du sprint 2.
+- Très bonne cohésion d'equipe. Elliot à réalisé un acte d'entraide remarquable. En effet Corentin à eu un imprevu ce qui fait qu'il aurait été en retard sur la réalisation de son compte rendu, c'est donc Elliot qui s'est volontairement proposé pour réalisé le susdit compte rendu.
 
-## **Revu réunion, planification Sprint 05/05/25**
-   
 
+## **Réunion planification Sprint 05/05/25**
+![notes sur papier](images/reunion.png)  
+ - Echange avec le client pour connaitre son besoin par rapport à l'extraction des auteurs. Le client souhaite-t-il d'avoir une balise auteur par auteur ? La réponse est oui.
+ - S'assurer que le parsage est réalisé sur tout le document pdf et pas uniquement la première page. Sinon le système devra être modifié afin de récupérer le champ bibliographique souvent à la fin du pdf.
+ - Améliorer les différents fonctions, notamment le parsage d'abstract.
+ - Réalisation du Backlog en priorité puis des autres artéfacts.
+ - Détermination de la docstring par Colin et Angelo.
+ - Discussion de team afin de confirmer le choix de continuer en python.
 
 
 ## **Backlog**
@@ -144,25 +158,15 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ---
 
-## **Retour sur le travail effectué (Rétrospective Sprint 2)**
-- Debrief sur le produit du second sprint assez positif. Le travail a été complexe mais correctement effectué par chaque membre de la `SCRUM Team`.
-- Liste de questions à donner au Scrum Master pour qu'il échange avec le client sur les besoins.
-- Répartition des tâches selon les affinités de chacun. Bonne communication et cohésion d'équipe.
-- Questionnement refactor et harmonisation des fichiers pour une meilleur lisibilité et compréhension.
-- Les artéfacts ne semblent ne plus poser de problèmes, bien qu'un léger doute plane encore. Cependant la méthode SCRUM est volontairement peu détaillé donc cela semble naturel.
-- Les différents rendus des devs etaient trop proche du rendu du produit du sprint 2.
-- Très bonne cohésion d'equipe. Elliot à réalisé un acte d'entraide remarquable. En effet Corentin à eu un imprevu ce qui fait qu'il aurait été en retard sur la réalisation de son compte rendu, c'est donc Elliot qui s'est volontairement proposé pour réalisé le susdit compte rendu.
+## **Retour sur le travail effectué (Rétrospective Sprint 3)**
+
   
 ### **Ce que nous avons déterminé**
-Après avoir comparé les temps d'exécution entre une version Python et une version C++ du parseur, nous avons néanmoins choisi de continuer en Python.  
-En effet, comme nous pouvons le voir dans le travail d'Elliot et Corentin, Python peut s'avérer légèrement plus lent, cependant, la différence est négligeable.  
-Nous avons opté pour une base en Python de manière unanime, tant par préférence des développeurs que pour le large choix de bibliothèques Python pour le traitement des données, mais aussi pour la fiabilité de Python.  
-Ce choix s'inscrit dans une démarche de projection sur les futures tâches à réaliser.
 
 ### **Ce qui a bien fonctionné**
-Nous avons réussi à remplir toutes les demandes présentes dans le backlog.
 
 ### **Ce qui a posé problème**
+PATCH
 Au niveau du développement, le principal problème a été d'identifier le début et la fin des différentes zones de titre et d'abstract, sachant que ces zones ne sont pas toujours déclarées de façon précise. Notamment pour le fichier `mikheev.pdf`, où le titre récupère uniquement la lettre 'c'.  
 Au niveau organisationnel, la deadline imposée par le Scrum Master pour la finition du code et du compte rendu par les développeurs était trop proche de la date de rendu au client.  
 Cela a poussé toute l'équipe à effectuer un rush final.
