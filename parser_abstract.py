@@ -7,31 +7,6 @@ Elle permet d'extraire l'abstract dd'un fichier, et au besoin, de faire en sorte
 """
 
 import re
-import os
-
-def test_gettxt(filepath: str):
-    """
-    Fonction de test :
-        Ouvrir le fichier
-
-    Parameters
-    ----------
-    filepath: string
-        chemin vers le fichier
-    
-    Returns
-    -------
-    array
-        Abstract extrait du fichier passé en argument       
-    
-    Raises
-    ------
-    FileNotFoundError
-        Quand l'ouverture du fichier n'a pas réussi
-    """
-    with open(filepath, 'r') as file:
-        return get_list(file.read())
-    raise FileNotFoundError(filepath)
 
 def get_list(text: str):
     """
@@ -134,21 +109,48 @@ def get_string(text: str):
 
 # Fonction de test locale
 if __name__ == "__main__":
+    import os
+    
+    def test_gettxt(filepath: str):
+        """
+        Fonction de test :
+            Ouvrir le fichier
+
+        Parameters
+        ----------
+        filepath: string
+            chemin vers le fichier
+        
+        Returns
+        -------
+        array
+            Abstract extrait du fichier passé en argument       
+        
+        Raises
+        ------
+        FileNotFoundError
+            Quand l'ouverture du fichier n'a pas réussi
+        """
+        with open(filepath, 'r', encoding="utf-8") as file:
+            print(f"Ouverture du fichier {filepath}")
+            return get_list(file.read())
+        raise FileNotFoundError(filepath)
+    
     input_folder = "CORPUS_TXT"
     output_folder = "CORPUS_ABSTRACTS"
 
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
-    with open("abstracts.md", 'w') as mdf:
+    with open("abstracts.md", 'w', encoding="utf-8") as mdf:
         for filename in os.listdir(input_folder):
             input_path = os.path.join(input_folder, filename)
             output_path = os.path.join(output_folder, filename)
 
             
             if os.path.isfile(input_path):
-                abstract = test_gettxt(input_path +"a")
-                with open(output_path, 'w') as output_file:
+                abstract = test_gettxt(input_path)
+                with open(output_path, 'w', encoding="utf-8") as output_file:
                     output_file.write("\n".join(abstract))
                     
                 a2 = " ".join(abstract).strip()
