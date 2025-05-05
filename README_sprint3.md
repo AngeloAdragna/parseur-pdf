@@ -11,12 +11,12 @@
 <!--pandoc README_sprint1.md -o README_sprint1.pdf --pdf-engine=xelatex-->
 
 ## **Rôles**
-- Angelo est le maître de `SCRUM` et le `Product Owner`, il doit réaliser la rédaction du rapport avec les différents artéfacts.
-- Corentin, Elliot, Colin et Elvin sont développers.
-- Corentin doit s'occuper de l'intégration du fonctionnement xml depuis l'option de lancement jusqu'à l'écriture des balises.
-- Elliot doit récupérer la section bibliographique t renvoyer un plain texte.
+- Angelo est `SCRUM Master` et `Product Owner`, il doit rédiger le rapport avec les différents artefacts.
+- Corentin, Elliot, Colin et Elvin sont développeurs.
+- Corentin doit s’occuper de l’intégration du fonctionnement XML, depuis l’option de lancement jusqu’à l’écriture des balises.
+- Elliot doit récupérer la section bibliographique et renvoyer un texte brut.
 - Colin doit harmoniser les différents fichiers.
-- Elvin doit récupérer la section de l'auteur et renvoyer un plain texte.
+- Elvin doit récupérer la section de l’auteur et renvoyer un texte brut.
 
 ## **Objectif**
 Suite à une discussion au LIA, nous avons décidé que les fichiers parsés plein texte ne suffisent plus à
@@ -41,43 +41,43 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 ## **Execution du programme**
 
 ## **Revu Sprint 2**
-- Debrief sur le produit du second sprint assez positif. Le travail a été complexe mais correctement effectué par chaque membre de la `SCRUM Team`.
+- Debrief sur le produit du second sprint positif. Le travail a été complexe mais correctement effectué par chaque membre de la `SCRUM Team`.
 - Liste de questions à donner au Scrum Master pour qu'il échange avec le client sur les besoins.
 - Répartition des tâches selon les affinités de chacun. Bonne communication et cohésion d'équipe.
-- Questionnement refactor et harmonisation des fichiers pour une meilleur lisibilité et compréhension.
-- Les artéfacts ne semblent ne plus poser de problèmes, bien qu'un léger doute plane encore. Cependant la méthode SCRUM est volontairement peu détaillé donc cela semble naturel.
-- Les différents rendus des devs etaient trop proche du rendu du produit du sprint 2.
-- Très bonne cohésion d'equipe. Elliot à réalisé un acte d'entraide remarquable. En effet Corentin à eu un imprevu ce qui fait qu'il aurait été en retard sur la réalisation de son compte rendu, c'est donc Elliot qui s'est volontairement proposé pour réalisé le susdit compte rendu.
+- Questionnement, refactor et harmonisation des fichiers pour une meilleure lisibilité et compréhension.
+- Les artefacts ne semblent plus poser de problèmes, bien qu'un léger doute plane encore. Cependant, la méthode SCRUM est volontairement peu détaillée, donc cela semble naturel.
+- Les différents rendus des devs étaient trop proches du rendu du produit du sprint 2.
+- Très bonne cohésion d'équipe. Elliot a réalisé un acte d'entraide remarquable. En effet, Corentin a eu un imprévu, ce qui fait qu'il aurait été en retard sur la réalisation de son compte rendu. C'est donc Elliot qui s'est volontairement proposé pour réaliser le susdit compte rendu.
+
 
 
 ## **Réunion planification Sprint 05/05/25**
 ![notes sur papier](images/reunion.png)  
- - Echange avec le client pour connaitre son besoin par rapport à l'extraction des auteurs. Le client souhaite-t-il d'avoir une balise auteur par auteur ? La réponse est oui.
- - S'assurer que le parsage est réalisé sur tout le document pdf et pas uniquement la première page. Sinon le système devra être modifié afin de récupérer le champ bibliographique souvent à la fin du pdf.
- - Améliorer les différents fonctions, notamment le parsage d'abstract.
- - Réalisation du Backlog en priorité puis des autres artéfacts.
- - Détermination de la docstring par Colin et Angelo.
- - Discussion de team afin de confirmer le choix de continuer en python.
+- Échange avec le client pour connaître son besoin par rapport à l'extraction des auteurs. Le client souhaite-t-il avoir une balise auteur par auteur ? La réponse est oui.
+- S'assurer que le parsage est réalisé sur tout le document PDF et pas uniquement la première page. Sinon, le système devra être modifié afin de récupérer le champ bibliographique, souvent à la fin du PDF.
+- Améliorer les différentes fonctions, notamment le parsage d'abstract.
+- Réalisation du backlog en priorité, puis des autres artefacts.
+- Détermination de la docstring par Colin et Angelo.
+- Discussion de l'équipe afin de confirmer le choix de continuer en Python.
 
 
 ## **Backlog**
- - Option xml au lancement (plain texte par défaut) et tranduction texte xml.
- - Récuperer section auteur.
- - Récuperer section bibliographique.
- - Harmoniser fichiers de codes.
- - Améliorer fonctionnalités du code.
- - Réaliser artefacts compris dans le conteneur de ce Sprint 3.
-
+- Option XML au lancement (texte brut par défaut) et traduction texte XML.
+- Récupérer la section auteur.
+- Récupérer la section bibliographique.
+- Harmoniser les fichiers de code.
+- Améliorer les fonctionnalités du code.
+- Réaliser les artefacts compris dans le conteneur de ce sprint 3.
 
 ## **Burndown**
 ![Exemple sortie](images/burndown-2.png)  
 
 
 ## _Consignes pour le compte rendu des développeurs_ : 
-- Déposez vos comptes rendu au plus tard le 09/05/2025 à 18h sur la branche 3.
-- Fournir au moins 1 image de l'avancement par fonctionnalité par développer.
-- Votre compte rendu doit comporter un analyse de votre développement, les aspects positifs, négatifs, limitations...
-- Indiquer quel jour vous avez fini vos fonctionnalités.
+- Déposez votre compte rendu au plus tard le 09/05/2025 à 18h sur la branche 3.
+- Fournir AU MOINS une image de l’avancement par fonctionnalité par développeur.
+- Votre compte rendu doit comporter une analyse de votre développement, les aspects positifs, négatifs, limitations…
+- Indiquer quel jour vous avez fini chaque fonctionnalité.
 
 ## **Travail de chaque codeur pendant la mêlée (Revue Sprint)**
 
