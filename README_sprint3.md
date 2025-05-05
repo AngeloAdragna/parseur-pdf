@@ -53,6 +53,7 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ## **Réunion planification Sprint 05/05/25**
 ![notes sur papier](images/reunion.png)  
+Retranscription :
 - Échange avec le client pour connaître son besoin par rapport à l'extraction des auteurs. Le client souhaite-t-il avoir une balise auteur par auteur ? La réponse est oui.
 - S'assurer que le parsage est réalisé sur tout le document PDF et pas uniquement la première page. Sinon, le système devra être modifié afin de récupérer le champ bibliographique, souvent à la fin du PDF.
 - Améliorer les différentes fonctions, notamment le parsage d'abstract.
@@ -83,18 +84,19 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ---
 
-1. **Angelo Adragna** : documenter les événements/artefacts Scrum (réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint) :
-   - Les backlogs doivent être réalisés en premier lieu, lors de la première réunion, afin de répartir les tâches entre chaque personne.
-   - Chaque réunion a bien permis d'éclaircir les zones d'ombre sur le projet et le travail de chacun. Cela a également permis d'établir une liste de questions pour le client, afin d'obtenir davantage de détails et de spécifications.
-   - Le Burndown est facile à réaliser à la toute fin du sprint.
-   - La rédaction doit cependant se faire au fur et à mesure de l'avancement de chacun.
-   - La mise en commun du travail de chacun peut parfois s'avérer ardue, en raison du manque de détails dans le fonctionnement des productions personnelles des développeurs.
-   - Attention à ne pas mettre une deadline trop proche de la fin du sprint, même si l'idée était de laisser un maximum de temps aux développeurs. Cela les a poussés à rush à la fin, car certaines tâches dépendaient de la finalisation d'autres tâches.
+1. **Angelo Adragna** : Documentation des événements/artefacts Scrum (réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint).
+- Les backlogs doivent être réalisés en premier lieu, lors de la première réunion, afin de répartir les tâches entre chaque personne.
+- La réunion a permis d'établir la liste de questions pour le client, afin d'obtenir davantage de détails et de spécifications.
+- Le Burndown est facile à réaliser à la toute fin du sprint.
+- La rédaction doit cependant se faire au fur et à mesure de l'avancement de chacun.
+- La mise en commun du travail de chacun peut parfois s'avérer ardue, en raison du manque de détails dans le fonctionnement des productions personnelles des développeurs.
+- J'ai pris en compte la deadline trop proche de la fin du sprint, afin d'éviter un rush final.
+- Médiation et conseils aux développeurs.
 
 
 ---
 
-2. **Corentin Saccoman** :  L'intégration du fonctionnement xml depuis l'option de lancement jusqu'à l'écriture des balises.
+2. **Corentin Saccoman** : L'intégration du fonctionnement XML depuis l'option de lancement jusqu'à l'écriture des balises XML.
 
    
 ### Analyse du code
@@ -110,7 +112,8 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
    
  ---
 
-3. **Elliot Pozucek** : Récupération de la section bibliographique et renvoit dans un plain texte.
+3. **Elliot Pozucek** : Récupération de la section bibliographique et renvoi dans un fichier texte brut.
+
 
 ### Analyse du code
 
@@ -126,7 +129,7 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ---
 
-4. **Colin Palazzetti Rubera** : Harmonisation des différents fichiers de code avec notamment la docstring Numpydoc.
+4. **Colin Palazzetti Rubera** : Harmonisation des différents fichiers de code, avec notamment la docstring NumPyDoc.
 
 ### Analyse du code
 
@@ -142,7 +145,8 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ---
 
-5. **Elvin Fichot-Corgeron** : Récupération de la section de l'auteur et renvoit dans un plain texte.
+5. **Elvin Fichot-Corgeron** : Récupération de la section de l’auteur et renvoi dans un fichier texte brut.
+
 
 ### Analyse du code
 
@@ -157,7 +161,7 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 
 ---
-
+A faire à la fin
 ## **Retour sur le travail effectué (Rétrospective Sprint 3)**
 
   
