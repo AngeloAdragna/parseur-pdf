@@ -1,14 +1,15 @@
 #!/bin/bash
 
 # Ask the user for confirmation
-read -p "Are you sure you want to remove all .txt files in the current directory? (y/n): " confirm
+read -p "Are you sure you want to remove all .txt and .xml files in the current directory? (y/n): " confirm
 
 # Treat Enter (empty input) or 'y'/'Y' as confirmation
 if [ -z "$confirm" ] || [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
     # Remove all local .txt files in the current directory
     rm -f ./CORPUS_TRAIN/*.txt
     rm -f ./CORPUS_TXT/*.txt
-    echo "All .txt files have been removed."
+    rm -f ./CORPUS_XML/*.xml
+    echo "All .txt and .xml files have been removed."
 else
     echo "Operation canceled."
 fi

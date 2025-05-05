@@ -64,10 +64,10 @@ def convert_pdf_file(fichier_pdf: Path, repertoire_sortie: Path, args):
             repertoire_sortie (Path): le chemin du répertoire de sortie
     '''
     fichier_sortie = None
-    if args.t :
+    if args.t or args.r :
         # Génèrer le chemin du fichier de sortie .txt
         fichier_sortie = Path(repertoire_sortie) / (fichier_pdf.stem + ".txt")
-    else :
+    elif args.x :
         # Génèrer le chemin du fichier de sortie .xml
         fichier_sortie = Path(repertoire_sortie) / (fichier_pdf.stem + ".xml")
 
@@ -123,39 +123,43 @@ def add_infos_to_file(fichier: Path, args) -> None:
     title = title_extractor.get_string(content)   
     abstract = abstract_extractor.get_string(content)
 
-    # Overwrite le fichier texte avec les nouvelles informations
-    with open(fichier, "w", encoding="utf-8") as f:
-        if args.t :
-            # CAS DU PARSING AU FORMAT PLAIN TEXT
-            f.write(f"Nom du fichier : {filename}\n")
-            f.write(f"Titre : {title}\n")
-            f.write(f"Abstract : {abstract}\n")
-        else :
-            # CAS DU PARSING AU FORMAT XML
-            # TODO : Récupérer le tableau d'auteurs
-            auteur = []
-            # Récupérer la bibliographie
-            biblio = get_references(content)
+    # si r en argument, on veut laisser la sortie de pdftotext -raw dans les fichiers de sortie
+    if not args.r :
 
-            f.write("<article>\n")
+        # Overwrite le fichier texte avec les nouvelles informations
+        with open(fichier, "w", encoding="utf-8") as f:
+            if args.t :
+                # CAS DU PARSING AU FORMAT PLAIN TEXT
+                f.write(f"Nom du fichier : {filename}\n")
+                f.write(f"Titre : {title}\n")
+                f.write(f"Abstract : {abstract}\n")
+            elif args.x :
+                # CAS DU PARSING AU FORMAT XML
+                # TODO : Récupérer le tableau d'auteurs
+                auteur = []
+                # Récupérer la bibliographie
+                biblio = get_references(content)
 
-            f.write(f"\t<preamble>\n\t\t{filename}\n\t</preamble>\n")
+                f.write("<article>\n")
 
-            f.write(f"\t<titre>\n\t\t{title}\n\t</titre>\n")
-            
-            f.write("\t<auteur>\n")
-            for a in auteur:
-                f.write(f"\t\t{a}\n")
-            f.write("\t</auteur>\n")
+                f.write(f"\t<preamble>\n\t\t{filename}\n\t</preamble>\n")
 
-            f.write(f"\t<abstract>\n\t\t{abstract}\n\t</abstract>\n")
+                f.write(f"\t<titre>\n\t\t{title}\n\t</titre>\n")
+                
+                f.write("\t<auteur>\n")
+                for a in auteur:
+                    f.write(f"\t\t{a}\n")
+                f.write("\t</auteur>\n")
 
-            f.write("\t<biblio>\n")
-            for b in biblio:
-                f.write(f"\t\t{b}\n")
-            f.write("\t</biblio>\n")
+                f.write(f"\t<abstract>\n\t\t{abstract}\n\t</abstract>\n")
 
-            f.write("</article>")
+                f.write("\t<biblio>\n")
+                for b in biblio:
+                    f.write(f"\t\t{b}\n")
+                f.write("\t</biblio>\n")
+
+                f.write("</article>")
+
 
 def log_execution_time(duration: float, log_file: Path = Path("exec_time_py.log")) -> None:
     """
@@ -205,10 +209,11 @@ def parse_arguments():
     group = parser.add_mutually_exclusive_group()
     group.add_argument("-t", action="store_true", help="Parser en plain text (par défaut).")
     group.add_argument("-x", action="store_true", help="Parser en XML.")
+    group.add_argument("-r", action="store_true", help="Les fichiers texte contiennent la sortie de pdftotext -raw (pour tests)" )
     args = parser.parse_args()
 
     # Si aucune option n'est spécifiée, -t est sélectionné par défaut
-    if not args.t and not args.x:
+    if not args.t and not args.x and not args.r:
         args.t = True
 
     return args
