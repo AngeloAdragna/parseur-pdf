@@ -15,7 +15,7 @@
 - Corentin, Elliot, Colin et Elvin sont développers.
 - Corentin doit s'occuper de l'intégration du fonctionnement xml depuis l'option de lancement jusqu'à l'écriture des balises.
 - Elliot doit récupérer la section bibliographique t renvoyer un plain texte.
-- Colin doit traiter le résumé (abstract) de l’auteur.
+- Colin doit harmoniser les différents fichiers.
 - Elvin doit récupérer la section de l'auteur et renvoyer un plain texte.
 
 ## **Objectif**
@@ -41,12 +41,9 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 ## **Execution du programme**
 
 
-  ## **Revu réunion 05/05/25**
-- Debrief sur le produit du premier sprint assez positif, malgré une légère dissipation due à des zones d'ombres sur la consigne.
-- Répartition des tâches.
-- Liste de questions à donner au Scrum Master pour qu'il échange avec le client sur les besoins.
-- Répartition des tâches selon les affinités de chacun. Bonne communication et cohésion d'équipe.
-- Les artéfacts ne semblent ne plus poser de problèmes, bien qu'un léger doute plane encore. Cependant la méthode SCRUM est volontairement peu détaillé donc cela semble naturel.
+## **Revu réunion, planification Sprint 05/05/25**
+   
+
 
 
 ## **Backlog**
@@ -83,16 +80,23 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ---
 
-2. **Corentin Saccoman** :
+2. **Corentin Saccoman** :  L'intégration du fonctionnement xml depuis l'option de lancement jusqu'à l'écriture des balises.
+
    
-**Remarque** 
+### Analyse du code
+
+
+### Pistes d'amélioration
+
+
+### Analyse de performances
+
+   
+### **Remarque** 
    
  ---
 
-3. **Elliot Pozucek** :
-
-**Remarque** 
-
+3. **Elliot Pozucek** : Récupération de la section bibliographique et renvoit dans un plain texte.
 
 ### Analyse du code
 
@@ -102,13 +106,13 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ### Analyse de performances
 
+   
+### **Remarque** 
+
 
 ---
 
-4. **Colin Palazzetti Rubera** : Le résumé (abstract) de l’auteur.
-
-**Remarque** 
-
+4. **Colin Palazzetti Rubera** : Harmonisation des différents fichiers de code avec notamment la docstring Numpydoc.
 
 ### Analyse du code
 
@@ -118,13 +122,13 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ### Analyse de performances
 
+   
+### **Remarque** 
+
 
 ---
 
-5. **Elvin Fichot-Corgeron** : Le titre du papier.
-
-**Remarque** 
-
+5. **Elvin Fichot-Corgeron** : Récupération de la section de l'auteur et renvoit dans un plain texte.
 
 ### Analyse du code
 
@@ -134,11 +138,21 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 ### Analyse de performances
 
+   
+### **Remarque** 
+
 
 ---
 
-## **Retour sur le travail effectué (Rétrospective Sprint)**
-
+## **Retour sur le travail effectué (Rétrospective Sprint 2)**
+- Debrief sur le produit du second sprint assez positif. Le travail a été complexe mais correctement effectué par chaque membre de la `SCRUM Team`.
+- Liste de questions à donner au Scrum Master pour qu'il échange avec le client sur les besoins.
+- Répartition des tâches selon les affinités de chacun. Bonne communication et cohésion d'équipe.
+- Questionnement refactor et harmonisation des fichiers pour une meilleur lisibilité et compréhension.
+- Les artéfacts ne semblent ne plus poser de problèmes, bien qu'un léger doute plane encore. Cependant la méthode SCRUM est volontairement peu détaillé donc cela semble naturel.
+- Les différents rendus des devs etaient trop proche du rendu du produit du sprint 2.
+- Très bonne cohésion d'equipe. Elliot à réalisé un acte d'entraide remarquable. En effet Corentin à eu un imprevu ce qui fait qu'il aurait été en retard sur la réalisation de son compte rendu, c'est donc Elliot qui s'est volontairement proposé pour réalisé le susdit compte rendu.
+  
 ### **Ce que nous avons déterminé**
 Après avoir comparé les temps d'exécution entre une version Python et une version C++ du parseur, nous avons néanmoins choisi de continuer en Python.  
 En effet, comme nous pouvons le voir dans le travail d'Elliot et Corentin, Python peut s'avérer légèrement plus lent, cependant, la différence est négligeable.  
