@@ -137,7 +137,7 @@ def add_infos_to_file(fichier: Path, args) -> None:
                 # TODO : Récupérer le tableau d'auteurs
                 auteur = []
                 # Récupérer la bibliographie
-                biblio = parser_biblio.get_references(content)
+                biblio = parser_biblio.get_list(content)
 
                 f.write("<article>\n")
 

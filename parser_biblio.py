@@ -8,7 +8,25 @@ Elle permet de récupérer les références bibliographiques à partir de la der
 
 import re
 
-def get_references(content: str) -> str:
+def get_string(content: str) -> str:
+    """
+    Extrait automatiquement les références bibliographiques à partir de la dernière section
+    'References' ou 'Bibliography'.
+
+    Parameters
+    ----------
+    content : str
+        Texte brut du document.
+
+    Returns
+    -------
+    str
+        Références extraites, nettoyées et séparées par ligne.
+    """
+    return "\n".join(get_list(content))
+
+
+def get_list(content: str) -> str:
     """
     Extrait automatiquement les références bibliographiques à partir de la dernière section
     'References' ou 'Bibliography'.
