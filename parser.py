@@ -7,9 +7,9 @@ import shutil
 from pathlib import Path
 import time
 
-import parser_title as title_extractor
-import parser_abstract as abstract_extractor
-import parser_biblio as biblio_extractor
+import parser_title
+import parser_abstract
+import parser_biblio
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
 
@@ -119,8 +119,8 @@ def add_infos_to_file(fichier: Path, args) -> None:
     filename = get_file_name(fichier)
     with open(fichier, "r", encoding="utf-8") as f:
         content = f.read()
-    title = title_extractor.get_string(content)   
-    abstract = abstract_extractor.get_string(content)
+    title = parser_title.get_string(content)   
+    abstract = parser_abstract.get_string(content)
 
     # si r en argument, on veut laisser la sortie de pdftotext -raw dans les fichiers de sortie
     if not args.r :
@@ -137,7 +137,7 @@ def add_infos_to_file(fichier: Path, args) -> None:
                 # TODO : Récupérer le tableau d'auteurs
                 auteur = []
                 # Récupérer la bibliographie
-                biblio = biblio_extractor.get_references(content)
+                biblio = parser_biblio.get_references(content)
 
                 f.write("<article>\n")
 
