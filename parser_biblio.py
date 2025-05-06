@@ -1,3 +1,11 @@
+"""Docstring for the paser_biblio.py module.
+
+Cette partie du parser se charge de l'extraction des références bibliographiques à partir du texte brut d'un document.
+
+Elle permet de récupérer les références bibliographiques à partir de la dernière section 'References' ou 'Bibliography'.
+
+"""
+
 import re
 
 def get_references(content: str) -> str:
@@ -5,11 +13,15 @@ def get_references(content: str) -> str:
     Extrait automatiquement les références bibliographiques à partir de la dernière section
     'References' ou 'Bibliography'.
 
-    Args:
-        content (str): Texte brut du document.
+    Parameters
+    ----------
+    content : str
+        Texte brut du document.
 
-    Returns:
-        str: Références extraites, nettoyées et séparées par ligne.
+    Returns
+    -------
+    list
+        Références extraites, nettoyées et séparées par ligne.
     """
     # on trouve la dernière section "References" ou "Bibliography"
     section_match = None
@@ -43,11 +55,15 @@ def extract_references_bracket(text: str) -> list:
     """
     Extrait les références de type [n].
 
-    Args:
-        text (str): Texte nettoyé après la section "References".
+    Parameters
+    ----------
+    text : str
+        Texte brut de la section références.
 
-    Returns:
-        list: Liste des références extraites sans le préfixe [n].
+    Returns
+    -------
+    list
+        Liste des références extraites.
     """
     references = []
     pattern = re.compile(r"\[\d+\]\s*(.*?)(?=\[\d+\]|$)", re.DOTALL)
@@ -60,11 +76,15 @@ def extract_references_dot(text: str) -> list:
     """
     Extrait les références de type n.
 
-    Args:
-        text (str): Texte nettoyé après la section "References".
+    Parameters
+    ----------
+    text : str
+        Texte nettoyé après la section "References".
 
-    Returns:
-        list: Liste des références extraites sans le numéro.
+    Returns
+    -------
+    list
+        Liste des références extraites sans le numéro.$
     """
     references = []
     pattern = re.compile(r"\b(\d{1,3})\.\s+(.*?)(?=\b\d{1,3}\.\s+|$)", re.DOTALL)
@@ -77,11 +97,16 @@ def extract_initial_based_references(text: str) -> list:
     """
     Extrait les références non numérotées à partir de motifs d'initiales de prénom (ex: 'E. Brill').
 
-    Args:
-        text (str): Le texte brut de la section références.
+    Parameters
+    ----------
+    text : str
+        Texte brut de la section références.
 
-    Returns:
-        list: Liste des références extraites.
+
+    Returns
+    -------
+    list
+        Liste des références extraites.
     """
     # Liste pour stocker les débuts de référence
     starts = [m.start() for m in re.finditer(r"\b[A-Z]\.\s+[A-Z][a-z]", text)]
