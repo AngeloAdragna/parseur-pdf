@@ -9,6 +9,7 @@ import time
 
 import parser_title as title_extractor
 import parser_abstract as abstract_extractor
+import parser_biblio as biblio_extractor
 from ref_biblio import get_references
 
 # ----------------------------------------------------------------------------
@@ -138,7 +139,7 @@ def add_infos_to_file(fichier: Path, args) -> None:
                 # TODO : Récupérer le tableau d'auteurs
                 auteur = []
                 # Récupérer la bibliographie
-                biblio = get_references(content)
+                biblio = biblio_extractor.get_references(content)
 
                 f.write("<article>\n")
 
