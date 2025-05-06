@@ -80,7 +80,7 @@ def extract_references_bracket(text: str) -> list:
 
     Returns
     -------
-    list
+    list[str]
         Liste des références extraites.
     """
     references = []
@@ -90,7 +90,7 @@ def extract_references_bracket(text: str) -> list:
         references.append(body.strip())
     return references
 
-def extract_references_dot(text: str) -> list:
+def extract_references_dot(text: str) -> list[str]:
     """
     Extrait les références de type n.
 
@@ -101,8 +101,8 @@ def extract_references_dot(text: str) -> list:
 
     Returns
     -------
-    list
-        Liste des références extraites sans le numéro.$
+    list[str]
+        Liste des références extraites sans le numéro.
     """
     references = []
     pattern = re.compile(r"\b(\d{1,3})\.\s+(.*?)(?=\b\d{1,3}\.\s+|$)", re.DOTALL)
@@ -111,7 +111,7 @@ def extract_references_dot(text: str) -> list:
         references.append(body.strip())
     return references
 
-def extract_initial_based_references(text: str) -> list:
+def extract_initial_based_references(text: str) -> list[str]:
     """
     Extrait les références non numérotées à partir de motifs d'initiales de prénom (ex: 'E. Brill').
 
@@ -120,10 +120,9 @@ def extract_initial_based_references(text: str) -> list:
     text : str
         Texte brut de la section références.
 
-
     Returns
     -------
-    list
+    list[str]
         Liste des références extraites.
     """
     # Liste pour stocker les débuts de référence
