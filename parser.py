@@ -10,8 +10,6 @@ import time
 import parser_title as title_extractor
 import parser_abstract as abstract_extractor
 import parser_biblio as biblio_extractor
-from ref_biblio import get_references
-
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
 
