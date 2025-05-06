@@ -137,3 +137,53 @@ def extract_initial_based_references(text: str) -> list:
             references.append(ref)
 
     return references
+
+# Fonction de test locale
+if __name__ == "__main__":
+    import os
+    
+    def test_gettxt(filepath: str):
+        """
+        Fonction de test :
+            Ouvrir le fichier
+
+        Parameters
+        ----------
+        filepath: string
+            chemin vers le fichier
+        
+        Returns
+        -------
+        array
+            Bibliographie extraite du fichier passé en argument       
+        
+        Raises
+        ------
+        FileNotFoundError
+            Quand l'ouverture du fichier n'a pas réussi
+        """
+        with open(filepath, 'r', encoding="utf-8") as file:
+            print(f"Ouverture du fichier {filepath}")
+            return get_list(file.read())
+        raise FileNotFoundError(filepath)
+    
+    input_folder = "CORPUS_TXT"
+    output_folder = "CORPUS_BIBLIOS"
+
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    with open("biblios.md", 'w', encoding="utf-8") as mdf:
+        for filename in os.listdir(input_folder):
+            input_path = os.path.join(input_folder, filename)
+            output_path = os.path.join(output_folder, filename)
+
+            
+            if os.path.isfile(input_path):
+                abstract = test_gettxt(input_path)
+                with open(output_path, 'w', encoding="utf-8") as output_file:
+                    output_file.write("\n".join(abstract))
+                    
+                a2 = " ".join(abstract).strip()
+                mdf.write(f"\n## {filename}\n```\n{a2}\n```\n")
+
