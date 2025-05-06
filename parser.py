@@ -220,10 +220,10 @@ def parse_arguments():
 def main():
 
     # Exemples d'utilisation:
-    #  Format txt sans option  : python script.py CORPUS_TRAIN/ CORPUS_TXT/
-    #  Format txt avec option  : python script.py -t CORPUS_TRAIN/ CORPUS_TXT/
-    #  Format xml              : python script.py -x CORPUS_TRAIN/ CORPUS_XML/
-    #  Format txt non formaté  : python script.py -r CORPUS_TRAIN/ CORPUS_TXT/
+    #  Format txt sans option  : python parser.py CORPUS_TRAIN/ CORPUS_TXT/
+    #  Format txt avec option  : python parser.py -t CORPUS_TRAIN/ CORPUS_TXT/
+    #  Format xml              : python parser.py -x CORPUS_TRAIN/ CORPUS_XML/
+    #  Format txt non formaté  : python parser.py -r CORPUS_TRAIN/ CORPUS_TXT/
     
     # Résultats attendus:
     # Le répértoire CORPUS_TXT/ contiendra les fichiers texte avec uniquement le nom du fichier, le titre et l'abstract

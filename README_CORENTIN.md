@@ -22,9 +22,9 @@ def add_infos_to_file(fichier: Path, args)
 ```
 
 ### Exemples d'utilisation:
-    Format txt sans option  : python script.py CORPUS_TRAIN/ CORPUS_TXT/
-    Format txt avec option  : python script.py -t CORPUS_TRAIN/ CORPUS_TXT/
-    Format xml              : python script.py -x CORPUS_TRAIN/ CORPUS_XML/
+    Format txt sans option  : python parser.py CORPUS_TRAIN/ CORPUS_TXT/
+    Format txt avec option  : python parser.py -t CORPUS_TRAIN/ CORPUS_TXT/
+    Format xml              : python parser.py -x CORPUS_TRAIN/ CORPUS_XML/
 
     Résultats attendus:  
     Le répértoire CORPUS_TXT/ contiendra les fichiers texte avec uniquement le nom du fichier, le titre et l'abstract  
