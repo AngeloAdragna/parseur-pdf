@@ -94,7 +94,7 @@ Retranscription :
 
 ---
 
-1. **Angelo Adragna** : Documentation des événements/artefacts Scrum (réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint).
+### 1. **Angelo Adragna** : Documentation des événements/artefacts Scrum (réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint).
 - Les backlogs doivent être réalisés en premier lieu, lors de la première réunion, afin de répartir les tâches entre chaque personne.
 - La réunion a permis d'établir la liste de questions pour le client, afin d'obtenir davantage de détails et de spécifications.
 - Le Burndown est facile à réaliser à la toute fin du sprint.
@@ -106,9 +106,9 @@ Retranscription :
 
 ---
 
-2. **Corentin Saccoman** :  L'intégration du fonctionnement XML depuis l'option de lancement jusqu'à l'écriture des balises XML.
+### 2. **Corentin Saccoman** :  L'intégration du fonctionnement XML depuis l'option de lancement jusqu'à l'écriture des balises XML.
    
-### Analyse du code
+#### Analyse du code
 L'intégration du mode XML repose sur la fonction parse_arguments, écrite pour gérer les arguments passés en ligne de commande. Deux options sont proposées :
 
 - **-t** (par défaut) pour une sortie en plain text
@@ -128,7 +128,7 @@ def convert_pdf_file(fichier_pdf: Path, repertoire_sortie: Path, args)
 def add_infos_to_file(fichier: Path, args)
 ```
 
-### Exemples d'utilisation:
+#### Exemples d'utilisation:
     Format txt sans option  : python parser.py CORPUS_TRAIN/ CORPUS_TXT/
     Format txt avec option  : python parser.py -t CORPUS_TRAIN/ CORPUS_TXT/
     Format xml              : python parser.py -x CORPUS_TRAIN/ CORPUS_XML/
@@ -137,7 +137,7 @@ def add_infos_to_file(fichier: Path, args)
     Le répértoire CORPUS_TXT/ contiendra les fichiers texte avec uniquement le nom du fichier, le titre et l'abstract  
     Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos demandées pour le xml  
 
-### Comparaison des formats
+#### Comparaison des formats
 **FORMAT TXT**  
 ![Format TXT](images/txt_example.png)  
 **FORMAT XML**  
@@ -149,35 +149,90 @@ Chaque fonction adapte son comportement en fonction du mode choisi, que ce soit 
 
 - Tests unitaires pour parse_arguments afin d'assurer une robustesse en cas d'ajout d'options futures.
 
-### Analyse de performances
+#### Analyse de performances
 
 Le mode XML n’introduit pas de surcharge notable dans le traitement des fichiers.  
 La principale différence réside dans la structure de sortie, légèrement plus coûteuse en termes de taille mais négligeable sur des volumes faibles à moyens.  
 L'appel conditionnel aux traitements en fonction du mode sélectionné évite des branches inutiles dans le pipeline de traitement.
 
-### **Remarque** 
+#### **Remarque** 
 La demande du client est bien respectée avec l'ajout de différentes balises (caractéristiques) qui n'étaient pas présentes dans le format txt.  
 Justement, ces parties n'ont pas été ajoutée au format txt, pour la simple et bonne raison que le client ne nous l'a pas demandé. De plus, dans le format txt, il est demandé que chaque partie soit sur une seule ligne à chaque fois, impossible avec les auteurs et les références bibliographiques.
 
-### Dates clés :
+#### Dates clés :
 - 05/05/2025 : Fin de ma partie et intégration du travail de Colin et d'Elliot. En attente du travail d'Elvin qu'il pourra intégrer lui même (En attente d'ajout d'images).
 - 09/05/2025 : Ajout de captures d'écran au readme suite à l'intégration de la partie d'Elvin
    
  ---
 
-3. **Elliot Pozucek** : Récupération de la section bibliographique et renvoi dans un fichier texte brut.
+### 3. **Elliot Pozucek** : Récupération de la section bibliographique et renvoi dans un fichier texte brut.
+
+#### Analyse du code
+
+#### Général
+
+Ajout du fichier `ref_bibblio.py` qui permet de récupérer la section des références bibliographiques d'un corpus textuel (`txt`).
+
+Modification du script `clear_txt.sh` pour ajouter la suppression des xml générés.
+
+Ajout d'un paramètre `-r` pour le script `parser.py` qui permet de parser les fichiers `pdf` dans leur version `txt` sans les transformer. Ils contiennent donc le résultat brut de la commande `pdftotext -raw`. J'ai ajouté ce paramètre afin de pouvoir effectuer des tests.
+
+#### Fonction `get_references`
+
+Cette fonction permet de récupérer la section des références bibliographiques d'un texte. Voici les étapes de la fonction :
+
+- récupérer la section des références bibliographiques d'un texte (cherche la dernière occurence des mots-clés "References" ou "Bibliography", en ignorant la casse)
+- nettoyer le texte brute de la section récupérée (enlève les espaces superflus, les sauts de ligne, etc.)
+- chercher un pattern de référence bibliographique : dans les trois cas, on cherche une occurence du pattern, puis on récupère le texte compris entre chaque occurence du pattern
+    - numérotation '[n]'
+    - numérotation 'n.'
+    - pas de numérotation -> cherche une initiale (ex: J. Smith), puis saute 30 caractères et cherche à nouveau une initiale
+- renvoyer la liste des références bibliographiques trouvées
+
+#### Exemple
+
+Dans le pdf, on a :
+
+![](images/pdf_version.png)
+
+Après avoir parsé le pdf, on a :
+
+![](images/txt_version.png)
+
+Puis dans le xml, on a :
+
+![](images/xml_version.png)
+
+#### Explication pour le pattern sans numérotation
+
+Le pattern sans numérotation est le plus complexe à mettre en place. En effet, je n'ai pas trouvé de solution robuste à tous les cas de figure. J'ai donc décidé de faire un compromis entre la robustesse et la simplicité.
+
+J'ai d'abord remarqué que seul deux textes de `CORPUS_TRAIN` contiennent des références bibliographiques sans numérotation. J'ai ensuite remarqué que dans ces deux textes, les références commencent toutes par une initiale en majuscules puis d'un point (ex: J. Smith).  
+Cependant, la plupart des références contiennent plusieurs initiales (ex: J. Smith et A. Doe). J'ai donc décidé de chercher une initiale en majuscule suivie d'un point, puis de sauter 30 caractères (toujours moins que la longueur d'une référence) et de chercher à nouveau une initiale en majuscule.
+
+Pour notre corpus, cette méthode fonctionne très bien. J'ai intégré mon travail dans le fichier `parser.py`. Mon travail est utilisé pour générer les fichiers xml.
 
 
-### Analyse du code
 
+#### Ajout d'un paramètre `-r` pour le script `parser.py`
+
+Ce paramètre permet de parser les fichiers `pdf` dans leur version `txt` sans les transformer. Ils contiennent donc le résultat brut de la commande `pdftotext -raw`. J'ai ajouté ce paramètre afin de pouvoir effectuer des tests.
 
 ### Pistes d'amélioration
+
+Les méthodes de recherche de pattern sont très simples et sont adaptées à notre corpus. Elles manquent donc de robustesse.
+
+Je commence à voir les limitations de notre méthode de base pour extraire le texte brut. En effet, ne pas pouvoir utiliser les retours/sauts de ligne pour séparer les différentes sections du texte est très contraignant, car ces sauts/retours de ligne ont souvent une valeur sémantique significative.
+
+**IMPORTANT** : le fichier ACL2004 pose problème (pas d'intiale et pas de numérotation). Il faut donc le traiter à part.
 
 
 ### Analyse de performances
 
-   
-### **Remarque** 
+En terme de performance, la méthode que j'ai mise en place dans le sprint 2 (`log_execution_time`) nous est très utile. En effet, la moyenne des temps d'exécution de l'ensemble de notre programme est passé de 0.5 secondes à 1.25 secondes sur ma machine. 
+
+On peut donc dire que la méthode de recherche de pattern est très gourmande en temps d'exécution.
+
 
 
 ---
