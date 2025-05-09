@@ -179,7 +179,7 @@ def add_infos_to_file(fichier: Path, args) -> None:
             elif args.x :
                 # CAS DU PARSING AU FORMAT XML
                 # TODO : Récupérer le tableau d'auteurs
-                auteur = parser_auteur.get_list(content,title,abstract)
+                auteur = parser_auteur.get_string(content,title,abstract)
                 # Récupérer la bibliographie
                 biblio = parser_biblio.get_list(content)
 
