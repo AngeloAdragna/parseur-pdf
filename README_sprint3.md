@@ -258,7 +258,7 @@ Ayant relu l’ensemble du projet, j’ai pu détecter des pistes particulières
 - Beaucoup de regex, parfois combinables — non optimisé.
 
 Le fichier (non commit) local utilisé pour garder de la cohérence dans les docstrings :  
-![Fichier de structure pour les docstrings](images\docstring.png)
+![Fichier de structure pour les docstrings](images/docstring.png)
 
 
 ### Amélioration Sprint 2
