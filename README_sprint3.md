@@ -351,27 +351,90 @@ Mes axes d’amélioration pourraient être :
 
 
 ---
-A faire à la fin
+
 ## **Retour sur le travail effectué (Rétrospective Sprint 3)**
 
-  
 ### **Ce que nous avons déterminé**
+- Les backlogs doivent être réalisés en premier lieu, lors de la première réunion, afin de répartir les tâches entre chaque personne.
+
+- La réunion a permis d'établir la liste de questions pour le client, afin d'obtenir davantage de détails et de spécifications.
+
+- Le Burndown est facile à réaliser à la toute fin du sprint.
+
+-La rédaction doit cependant se faire au fur et à mesure de l'avancement de chacun.
+
+-La mise en commun du travail de chacun peut parfois s'avérer ardue, en raison du manque de détails dans le fonctionnement des productions personnelles des développeurs.
+
+-Il faut prendre en compte la deadline trop proche de la fin du sprint, afin d'éviter un rush final.
+
+-Médiation et conseils apportés aux développeurs.
 
 ### **Ce qui a bien fonctionné**
+- Bonne répartition des tâches entre les membres, chacun a pu avancer sur sa partie sans trop d'interférences.
 
+- L’intégration progressive des travaux (Colin, Elliot, Corentin) a permis une mise en commun fluide.
+
+- Les réunions Scrum ont été efficaces pour identifier les points bloquants et ajuster les priorités.
+
+- La génération des fichiers XML et TXT selon les besoins du client a été bien maîtrisée.
+
+- L’outil de mesure des performances a aidé à identifier les parties gourmandes du code.
+
+- Les comptes rendus sont de meilleure qualité.
+- 
 ### **Ce qui a posé problème**
-PATCH
-Au niveau du développement, le principal problème a été d'identifier le début et la fin des différentes zones de titre et d'abstract, sachant que ces zones ne sont pas toujours déclarées de façon précise. Notamment pour le fichier `mikheev.pdf`, où le titre récupère uniquement la lettre 'c'.  
-Au niveau organisationnel, la deadline imposée par le Scrum Master pour la finition du code et du compte rendu par les développeurs était trop proche de la date de rendu au client.  
-Cela a poussé toute l'équipe à effectuer un rush final.
+- Le fichier ACL2004 pose toujours problème car il ne suit aucun des patterns définis.
+
+- Les méthodes de recherche de pattern pour les références bibliographiques restent trop simples et spécifiques à notre corpus.
+
+- Certaines optimisations de regex et de factorisation n’ont pas pu être intégrées à temps.
+
+- L’absence de gestion multiplateforme (ex. : Windows) n’a pas été traitée, alors qu’elle pourrait causer des erreurs.
+
+- La rédaction des documentations (docstrings, README) est parfois restée en retrait face à l’avancée du code.
 
 ### **Ce qu’on doit améliorer**
-Les comptes rendus de certains développeurs ne répondent pas entièrement aux attentes détaillées dans les consignes.
+- Mettre en place des tests unitaires, notamment pour parse_arguments afin de préparer l’ajout d’options futures.
+
+- Rendre le code plus robuste en prévoyant les cas particuliers comme ACL2004, avec une gestion dédiée.
+
+- Améliorer la robustesse des méthodes de détection des sections (abstract, références) dans les textes.
+
+- Factoriser certaines parties du code et optimiser les regex pour réduire les coûts de performance.
+
+- Penser à une compatibilité multiplateforme (Windows/Linux) et prévoir la gestion d’erreurs liées à l’environnement.
+
 
 ---
 
-### **Conclusion** :
+## **Conclusion** :
+### Selon Angelo Adragna  
+- La méthodologie Scrum (planification, mêlée quotidienne, revue, rétrospective) a structuré efficacement le travail.  
+- Rôle clé en médiation, coordination des deadlines et rédaction progressive des artefacts.  
+- Préparation des backlogs dès la première réunion et liste précise de questions pour cadrer les objectifs.  
+- Mise en commun parfois difficile à cause d’un manque de détails sur les productions personnelles.  
+- La prise en compte d’une deadline avancée a permis d’éviter un rush final.
+
+### Selon Corentin Saccoman  
+- Intégration du mode XML, structuration des fonctions pour gérer `-t` et `-x`.  
+- Respect des attentes client en limitant certaines informations au mode XML.  
+- Proposition d’ajouter des tests unitaires sur les arguments pour anticiper les évolutions.  
+- Performances satisfaisantes, mais vigilance sur l’impact de la structure XML sur la taille des fichiers.
+
+### Selon Elliot Pozucek  
+- Développement de la récupération automatisée des références bibliographiques (méthodes adaptées au corpus mais encore peu robustes).  
+- Ajout du mode `-r` pour les tests internes ; certaines méthodes sont gourmandes en temps d’exécution.  
+- Limites identifiées liées à l’absence de structure sémantique (retours à la ligne) ; proposition d’y réfléchir pour les prochains sprints.  
+- Cas particuliers (ex. ACL2004) nécessitant un traitement spécifique.
+
+### Selon Colin Palazzetti Rubera  
+- Harmonisation des docstrings au format Numpydoc pour améliorer la lisibilité et la documentation.  
+- Détection d’améliorations potentielles : optimisation des regex, factorisation du code.  
+- Problème de compatibilité (dépendance à `pdftotext` sous Linux), proposition de renforcer la portabilité.  
+- Correction d’un petit bug dans la recherche d’abstracts.
+
+### Global
 Le travail global effectué par l'équipe est satisfaisant.  
 Le travail des personnes impliquées est efficace et très satisfaisant.  
-La communication est bonne, et l'on distingue une réelle amélioration dans le travail de chacun, tant au niveau de la qualité que de la quantité.
+La communication est bonne, et l'on distingue une réelle amélioration qualitative dans le travail de chacun.
 
