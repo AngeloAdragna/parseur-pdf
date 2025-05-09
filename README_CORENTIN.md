@@ -32,9 +32,9 @@ def add_infos_to_file(fichier: Path, args)
 
 ### Comparaison des formats
 **FORMAT TXT**  
-***image***  
+![Format TXT](images/txt_example.png)  
 **FORMAT XML**  
-***image***  
+![Format XML](images/xml_example.png)  
 
 Chaque fonction adapte son comportement en fonction du mode choisi, que ce soit pour le traitement du contenu ou la génération de fichiers avec la bonne extension (.txt ou .xml) et la bonne structure de données.
 ### Pistes d'amélioration
@@ -54,3 +54,4 @@ Justement, ces parties n'ont pas été ajoutée au format txt, pour la simple et
 
 ### Dates clés :
 - 05/05/2025 : Fin de ma partie et intégration du travail de Colin et d'Elliot. En attente du travail d'Elvin qu'il pourra intégrer lui même (En attente d'ajout d'images).
+- 09/05/2025 : Ajout de captures d'écran au readme suite à l'intégration de la partie d'Elvin
