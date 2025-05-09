@@ -57,6 +57,7 @@ def get_list(text: str):
     return abstract
     pass
 
+import json
 def get_string(text: str):
     """
     Retourne l'abstract dans le texte brut de l'article, en une seule ligne, en enlevant les retours à la ligne
@@ -72,12 +73,13 @@ def get_string(text: str):
     list(string)
         Texte en une ligne contenant l'abstract
     """
+    txt_lower = text.lower()
     abstract = ""
     abstract_lst = get_list(text)
     for i, line in enumerate(abstract_lst):
         # Traitement spécial si la ligne précédente fini par "-"
         if abstract[-1] == '-' if len(abstract) > 0 else False:
-            p_index = len(abstract)-1 # Index du "-"
+            p_index = len(abstract) # Index du "-"
             
             # Extraction du mot qui a le tiret (regex équivalent : "\w+-"), sans le "-"
             p_word = abstract[:p_index].split()[-1][:-1] if p_index >= 0 else ""
@@ -89,7 +91,7 @@ def get_string(text: str):
                 # Création du mot sans tiret par concaténation des deux mots
                 word = p_word + n_word
                 
-                if False: # TODO: Remplacer par un vérificateur de mot (vérifier si le mot existe)
+                if word.lower() in txt_lower:
                     abstract = abstract[:-1] + line.strip() # On ajoute la ligne, mais en retirant le "-"
                     continue # Passer à la ligne suivante
                 
