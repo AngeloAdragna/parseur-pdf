@@ -62,7 +62,7 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 
 
 ## **Réunion planification Sprint 05/05/25**
-![notes sur papier](images/reunion.png)  
+![notes sur papier](images/reunion.jpg)  
 Retranscription :
 - Échange avec le client pour connaître son besoin par rapport à l'extraction des auteurs. Le client souhaite-t-il avoir une balise auteur par auteur ? La réponse est oui.
 - S'assurer que le parsage est réalisé sur tout le document PDF et pas uniquement la première page. Sinon, le système devra être modifié afin de récupérer le champ bibliographique, souvent à la fin du PDF.
@@ -81,7 +81,7 @@ Retranscription :
 - Réaliser les artefacts compris dans le conteneur de ce sprint 3.
 
 ## **Burndown**
-![Exemple sortie](images/burndown-2.png)  
+![Exemple sortie](images/burndown2.jpg)  
 
 
 ## _Consignes pour le compte rendu des développeurs_ : 
