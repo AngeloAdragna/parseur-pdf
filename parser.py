@@ -15,27 +15,48 @@ import parser_auteur
 # ----------------------------------------------------------------------------
 
 def list_pdfs(repertoire: Path) -> list:
-    '''
-        Liste les documents pdf contenus dans un répertoire, SUPPOSE VALIDE.
+    """
+    Liste les documents pdf contenus dans un répertoire, SUPPOSE VALIDE.
 
-        Args:
-            repertoire (Path): le chemin du répertoire à lister (DOIT ETRE VALIDE)
-        Returns: 
-            list: la liste des fichiers pdf contenus dans le répertoire
-    '''
+    Parameters
+    ----------
+    repertoire : Path
+        le chemin du répertoire à lister (DOIT ETRE VALIDE)
+
+    Returns
+    -------
+    list
+        la liste des fichiers pdf contenus dans le répertoire
+
+    """
     chemin = Path(repertoire)
     return list(chemin.glob("*.pdf"))
 
 
 def pdfs_to_format(repertoire_entree: Path, repertoire_sortie: str, args):
-    '''
-        Crée le répertoire de sortie contenant les plaintext (ou xml) correspondant
-        au parsing des pdf du répertoire
+    """
+    Crée le répertoire de sortie contenant les plaintext (ou xml) correspondant
+    au parsing des pdf du répertoire
 
-        Args:
-            repertoire_entree (Path): le chemin du répertoire d'entrée
-            repertoire_sortie (str): le chemin du répertoire de sortie
-    '''
+
+    Parameters
+    ----------
+    repertoire_entree : Path
+        le chemin du répertoire d'entrée
+    repertoire_sortie : str
+        le chemin du répertoire de sortie
+    args : Namespace
+        les arguments de la ligne de commande
+
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    ValueError
+        Si les deux répertoires sont identiques (entrée et sortie)
+    """
     # D'abord vérifier que le répertoire d'entrée est bien différent de celui de sortie (il ne faut pas écraser l'entrée)
     if str(repertoire_entree) == repertoire_sortie:
         raise ValueError("Le repertoire d'entree et celui de sortie doivent etre differents")
@@ -55,14 +76,23 @@ def pdfs_to_format(repertoire_entree: Path, repertoire_sortie: str, args):
 
 
 def convert_pdf_file(fichier_pdf: Path, repertoire_sortie: Path, args):
-    ''' 
-        Transforme un fichier pdf en plain text (ou xml) en l'intégrant au répertoire de sortie.
-        Une fois transformé, le fichier texte (ou xml) est modifié pour ne contenir que les éléments demandés par le client.
-
-        Args:
-            fichier_pdf (Path): le chemin du fichier pdf
-            repertoire_sortie (Path): le chemin du répertoire de sortie
-    '''
+    """
+    Transforme un fichier pdf en plain text (ou xml) en l'intégrant au répertoire de sortie.
+    Une fois transformé, le fichier texte (ou xml) est modifié pour ne contenir que les éléments demandés par le client.
+    
+    Parameters
+    ----------
+    fichier_pdf : Path
+        le chemin du fichier pdf à convertir
+    repertoire_sortie : str
+        le chemin du répertoire de sortie
+    args : Namespace
+        les arguments de la ligne de commande
+    
+    Returns
+    -------
+    None
+    """
     fichier_sortie = None
     if args.t or args.r :
         # Génèrer le chemin du fichier de sortie .txt
@@ -85,20 +115,24 @@ def convert_pdf_file(fichier_pdf: Path, repertoire_sortie: Path, args):
 
 
 def get_file_name(fichier : Path) -> str:
-    '''
-        Ajoute le nom du fichier à la première ligne du fichier texte (ou xml).
+    """
+    Ajoute le nom du fichier à la première ligne du fichier texte (ou xml).
 
-        Args:
-            fichier (Path): le chemin du fichier texte (ou xml)
-        Returns:
-            str: le nom du fichier texte (ou xml) sans l'extension
-        
-    '''
+    Parameters
+    ----------
+    fichier : Path
+        le chemin du fichier texte (ou xml)
+
+    Returns
+    -------
+    string
+        le nom du fichier texte (ou xml) sans l'extension
+    """
     return fichier.stem
     
 
 def add_infos_to_file(fichier: Path, args) -> None:
-    """"
+    """
         Ajoute les informations dans fichier texte (ou xml).
 
         Le fichier contiendra :
@@ -114,8 +148,17 @@ def add_infos_to_file(fichier: Path, args) -> None:
             . abstract
             . références
 
-        Args:
-            fichier (Path): le chemin du fichier texte
+    Parameters
+    ----------
+    fichier : Path
+        le chemin du fichier texte (ou xml)
+    args : Namespace
+        les arguments de la ligne de commande
+
+    Returns
+    -------
+    string
+        desc
     """
     filename = get_file_name(fichier)
     with open(fichier, "r", encoding="utf-8") as f:
@@ -165,9 +208,16 @@ def log_execution_time(duration: float, log_file: Path = Path("exec_time_py.log"
     """
     Enregistre le temps d'exécution dans un fichier de log et affiche la moyenne des temps.
 
-    Args:
-        duration (float): Le temps d'exécution en secondes.
-        log_file (Path): Le chemin du fichier de log.
+    Parameters
+    ----------
+    duration : float
+        Le temps d'exécution en secondes.
+    log_file : Path, optionnel
+        Le chemin du fichier de log (par défaut "exec_time_py.log").
+
+    Returns
+    -------
+    None
     """
     try:
         # Ajouter le temps d'exécution au fichier de log
@@ -200,8 +250,14 @@ def parse_arguments():
     Parse les arguments de la ligne de commande pour inclure les options -t et -x.
     Assure que les options -t et -x ne sont pas cumulables, et que -t est sélectionné par défaut si aucun n'est passé.
 
-    Returns:
-        Namespace: Les arguments parsés.
+    Parameters
+    ----------
+    None
+
+    Returns
+    -------
+    Namespace
+        Les arguments parsés.
     """
     parser = argparse.ArgumentParser(description="Script de conversion de PDF en texte avec options.")
     parser.add_argument("dossier_entree", type=str, help="Chemin du répertoire d'entrée contenant les fichiers PDF.")
