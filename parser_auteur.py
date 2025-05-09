@@ -83,26 +83,52 @@ def mapAuteurs(auteurs):
         return []
 
     auteurs = auteurs.replace('\\', '').replace('\x01', '')
+    auteurs = re.sub(r'\[|\]', '', auteurs) 
     lignes = [line.strip() for line in auteurs.split('\n') if line.strip()]
     profils = []
     email_regex = r'[\w\.-]+@[\w\.-]+\.\w+'
 
-    #{a,b}@domaine
+    # Cas nom avec *
+    asterisk_nom = None
+    asterisk_affil = []
+    asterisk_email = None
+
+    for i, line in enumerate(lignes):
+        if re.search(r'[∗\*]$', line.strip()):
+            asterisk_nom = re.sub(r'[∗\*]$', '', line.strip())
+        
+        # Trouver la ligne commençant par ∗ ou *
+        if re.match(r'^[∗\*]\s', line.strip()) or line.strip().startswith('∗') or line.strip().startswith('*'):
+            # On récupère les lignes suivantes jusqu’à trouver un email
+            for j in range(i, len(lignes)):
+                l = lignes[j].strip()
+                if re.search(email_regex, l):
+                    asterisk_email = re.search(email_regex, l).group()
+                    reste = re.sub(email_regex, '', l).strip().replace('E-mail:', '')
+                    if reste:
+                        asterisk_affil.append(reste)
+                    break
+                else:
+                    asterisk_affil.append(l.replace('∗', '').replace('*', '').strip())
+            break
+
+    if asterisk_nom and asterisk_email:
+        profil = f"{asterisk_nom} {' '.join(asterisk_affil).strip()} {asterisk_email}"
+        profils.append(profil)
+        return profils
+
+    # Cas {a,b}@domaine
     for idx, line in enumerate(lignes):
         match = re.search(r'\{(.+?)\}@([\w\.-]+\.\w+)', line)
         if match:
-            ids = [ident.strip() for ident in match.group(1).split(',')]
+            ids = [ident.strip() for ident in re.split(r'[;,]', match.group(1))]
             domaine = match.group(2)
             emails = [f"{ident}@{domaine}" for ident in ids]
 
-            noms = []
+            noms_final = []
             for i in range(idx):
                 if not re.search(email_regex, lignes[i]) and not lignes[i].isdigit():
-                    noms.append(lignes[i])
-
-            noms_final = []
-            for nom_line in noms:
-                noms_final.extend(re.split(r'\s*[,;]?\s*(?:and|&)\s*|,', nom_line))
+                    noms_final.extend(re.split(r'\s*[,;]?\s*(?:and|&)\s*|,', lignes[i]))
 
             affil_lines = []
             for i in range(idx + 1, len(lignes)):
@@ -111,66 +137,92 @@ def mapAuteurs(auteurs):
                 else:
                     break
 
-            full_affil = "\n".join(affil_lines)
+            full_affil = " ".join(affil_lines).strip()
             for k, nom in enumerate(noms_final):
                 if k < len(emails):
-                    profils.append(f"{nom.strip()}\n{full_affil.strip()}\n{emails[k]}")
+                    entry = f"{nom.strip()}"
+                    if full_affil:
+                        entry += f" {full_affil}"
+                    entry += f" {emails[k]}"
+                    profils.append(entry)
             return profils
 
-    # indiv
-    email_positions = [(i, re.findall(email_regex, lignes[i])) for i in range(len(lignes)) if re.search(email_regex, lignes[i])]
-    
-    for i, emails in email_positions:
+    # Cas numérotées avec les noms
+    num_affils = {}
+    nom_ligne_idx = []
+    for i, line in enumerate(lignes):
+        if re.search(r'\d$', line):  # ex: David Zajic1
+            nom_ligne_idx.append(i)
+            match = re.findall(r'([^\d]+?)(\d)', line)
+            if match:
+                for nom, id_ in match:
+                    id_ = id_.strip()
+                    num_affils.setdefault(id_, []).append(nom.strip())
+
+    affils = {}
+    current_id = None
+    for i, line in enumerate(lignes):
+        if re.match(r'^\d$', line):
+            current_id = line.strip()
+            affils[current_id] = []
+        elif current_id and not re.search(email_regex, line):
+            affils[current_id].append(line.strip())
+
+    # Emails individuels
+    email_lines = [i for i, line in enumerate(lignes) if re.search(email_regex, line)]
+    for i in email_lines:
+        emails = re.findall(email_regex, lignes[i])
         bloc = []
         for j in range(i - 1, -1, -1):
             if re.search(email_regex, lignes[j]):
                 break
             bloc.insert(0, lignes[j])
-        
-        nom = bloc[0] if bloc else f"Auteur{i+1}"
-        affil = "\n".join(bloc[1:]) if len(bloc) > 1 else ""
+        affil = " ".join([line for line in bloc if not re.search(r'\d$', line)]).strip()
+        noms_raw = [line for line in bloc if line and (re.search(r'\d$', line) or not re.search(email_regex, line))]
+        noms_clean = []
+        for l in noms_raw:
+            noms_clean.extend(re.split(r'\s*[,;]?\s*(?:and|&)\s*|,', l))
+        noms_clean = [n.strip() for n in noms_clean if n.strip()]
 
-        for email in emails:
-            profils.append(f"{nom.strip()}\n{affil.strip()}\n{email.strip()}")
+        for k, email in enumerate(emails):
+            nom = noms_clean[k] if k < len(noms_clean) else f"Auteur{k+1}"
+            profils.append(f"{nom} {affil} {email}")
 
     if profils:
         return profils
 
-    # Numéros
-    if any(re.match(r'^\d$', line) for line in lignes):
-        affiliations = {}
-        current_id = None
-        auteurs_data = []
+    # Cas noms seuls avec emails en dessous
+    temp_bloc = []
+    current_noms = []
+    current_affil = []
+    for i, line in enumerate(lignes):
+        if re.search(email_regex, line):
+            emails = re.findall(email_regex, line)
+            for idx, email in enumerate(emails):
+                nom = current_noms[idx] if idx < len(current_noms) else f"Auteur{idx+1}"
+                affil = " ".join(current_affil).strip()
+                profil = f"{nom}"
+                if affil:
+                    profil += f" {affil}"
+                profil += f" {email}"
+                profils.append(profil)
+            current_noms = []
+            current_affil = []
+        elif not current_noms:
+            current_noms.extend(re.split(r'\s*[,;]?\s*(?:and|&)\s*|,', line))
+            current_noms = [n.strip() for n in current_noms if n.strip()]
+        else:
+            current_affil.append(line)
 
-        for line in lignes:
-            if re.match(r'^\d$', line):
-                current_id = line
-                affiliations[current_id] = []
-            elif current_id and not re.search(email_regex, line):
-                affiliations[current_id].append(line)
-            elif re.search(email_regex, line):
-                for email in re.findall(email_regex, line):
-                    auteurs_data.append({'affil': current_id, 'email': email})
+    if not profils and len(lignes) == 1 and ',' in lignes[0]:
+        raw_line = lignes[0].replace(' and ', ',')
+        noms = [nom.strip().strip(',') for nom in raw_line.split(',')]
+        profils = [nom for nom in noms if nom]
 
-        for i, auteur in enumerate(auteurs_data):
-            nom = f"Auteur{i+1}"
-            affil = "\n".join(affiliations.get(auteur['affil'], []))
-            profils.append(f"{nom}\n{affil}\n{auteur['email']}")
-
+    if profils:
         return profils
 
-    #Nom seuls
-    noms = []
-    for line in lignes:
-        if not re.search(email_regex, line):
-            noms.append(line)
-
-    if noms:
-        if len(noms) == 1:
-            return [n.strip() for n in re.split(r'\s*[,;]?\s*(?:and|&)\s*|,', noms[0])]
-        return noms
-
-    return profils if profils else ["\n".join(lignes)]
+    return [" ".join(lignes)]
 
 def get_string(content, titre, abstract="Abstract"):
     """
@@ -189,7 +241,9 @@ def get_string(content, titre, abstract="Abstract"):
     string
         Section auteurs extraite, nettoyée et séparée par ligne.
     """
-    return '\n'.join(get_list(content, titre, abstract))
+    auteursSection = get_list(titre,abstract)
+    auteurs = mapAuteurs(auteursSection)
+    return auteurs
 
 
 # Fonction de test locale
