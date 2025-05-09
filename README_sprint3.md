@@ -90,11 +90,11 @@ Retranscription :
 - Votre compte rendu doit comporter une analyse de votre développement, les aspects positifs, négatifs, limitations…
 - Indiquer quel jour vous avez fini chaque fonctionnalité.
 
-## **Travail de chaque codeur pendant la mêlée (Revue Sprint)**
+## **Travail de chaque menebre de la `SCRUM Team` pendant la mêlée (Revue Sprint)**
 
 ---
 
-### 1. **Angelo Adragna** : Documentation des événements/artefacts Scrum (réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint).
+## 1. **Angelo Adragna** : Documentation des événements/artefacts Scrum (réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint).
 - Les backlogs doivent être réalisés en premier lieu, lors de la première réunion, afin de répartir les tâches entre chaque personne.
 - La réunion a permis d'établir la liste de questions pour le client, afin d'obtenir davantage de détails et de spécifications.
 - Le Burndown est facile à réaliser à la toute fin du sprint.
@@ -106,9 +106,9 @@ Retranscription :
 
 ---
 
-### 2. **Corentin Saccoman** :  L'intégration du fonctionnement XML depuis l'option de lancement jusqu'à l'écriture des balises XML.
+## 2. **Corentin Saccoman** :  L'intégration du fonctionnement XML depuis l'option de lancement jusqu'à l'écriture des balises XML.
    
-#### Analyse du code
+### Analyse du code
 L'intégration du mode XML repose sur la fonction parse_arguments, écrite pour gérer les arguments passés en ligne de commande. Deux options sont proposées :
 
 - **-t** (par défaut) pour une sortie en plain text
@@ -128,7 +128,7 @@ def convert_pdf_file(fichier_pdf: Path, repertoire_sortie: Path, args)
 def add_infos_to_file(fichier: Path, args)
 ```
 
-#### Exemples d'utilisation:
+### Exemples d'utilisation:
     Format txt sans option  : python parser.py CORPUS_TRAIN/ CORPUS_TXT/
     Format txt avec option  : python parser.py -t CORPUS_TRAIN/ CORPUS_TXT/
     Format xml              : python parser.py -x CORPUS_TRAIN/ CORPUS_XML/
@@ -137,7 +137,7 @@ def add_infos_to_file(fichier: Path, args)
     Le répértoire CORPUS_TXT/ contiendra les fichiers texte avec uniquement le nom du fichier, le titre et l'abstract  
     Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos demandées pour le xml  
 
-#### Comparaison des formats
+### Comparaison des formats
 **FORMAT TXT**  
 ![Format TXT](images/txt_example.png)  
 **FORMAT XML**  
@@ -149,25 +149,25 @@ Chaque fonction adapte son comportement en fonction du mode choisi, que ce soit 
 
 - Tests unitaires pour parse_arguments afin d'assurer une robustesse en cas d'ajout d'options futures.
 
-#### Analyse de performances
+### Analyse de performances
 
 Le mode XML n’introduit pas de surcharge notable dans le traitement des fichiers.  
 La principale différence réside dans la structure de sortie, légèrement plus coûteuse en termes de taille mais négligeable sur des volumes faibles à moyens.  
 L'appel conditionnel aux traitements en fonction du mode sélectionné évite des branches inutiles dans le pipeline de traitement.
 
-#### **Remarque** 
+### **Remarque** 
 La demande du client est bien respectée avec l'ajout de différentes balises (caractéristiques) qui n'étaient pas présentes dans le format txt.  
 Justement, ces parties n'ont pas été ajoutée au format txt, pour la simple et bonne raison que le client ne nous l'a pas demandé. De plus, dans le format txt, il est demandé que chaque partie soit sur une seule ligne à chaque fois, impossible avec les auteurs et les références bibliographiques.
 
-#### Dates clés :
+### Dates clés :
 - 05/05/2025 : Fin de ma partie et intégration du travail de Colin et d'Elliot. En attente du travail d'Elvin qu'il pourra intégrer lui même (En attente d'ajout d'images).
 - 09/05/2025 : Ajout de captures d'écran au readme suite à l'intégration de la partie d'Elvin
    
  ---
 
-### 3. **Elliot Pozucek** : Récupération de la section bibliographique et renvoi dans un fichier texte brut.
+## 3. **Elliot Pozucek** : Récupération de la section bibliographique et renvoi dans un fichier texte brut.
 
-#### Analyse du code
+### Analyse du code
 
 #### Général
 
@@ -237,20 +237,47 @@ On peut donc dire que la méthode de recherche de pattern est très gourmande en
 
 ---
 
-4. **Colin Palazzetti Rubera** : Harmonisation des différents fichiers de code, avec notamment la docstring NumPyDoc.
+## 4. **Colin Palazzetti Rubera** : Harmonisation des différents fichiers de code, notamment avec les docstrings au format Numpydoc.
 
 ### Analyse du code
+- La docstring est globalement déjà complète, mais rédigée dans différents formats selon les développeurs.
+- Mes modifications étant transparentes, j’ai pu les faire sans problème.
+- La seule partie « visible » pour les développeurs a été l’harmonisation des noms de fichiers.
+
+### Pistes d’amélioration
+- Optimisations possibles des regex.
+- Le code est assez complexe, et je pense qu’une factorisation serait possible.
+- Une réflexion autour du cache pour l’étape intermédiaire serait intéressante.
+- Ce code fonctionne uniquement sous Linux (avec `pdftotext` installé) :
+    - Aucune gestion de l’absence du programme.
+    - `FileNotFoundError: [WinError 2] Le fichier spécifié est introuvable` sous Windows 11 (hors cadre, mais testé).
+
+### Analyse des performances
+Ayant relu l’ensemble du projet, j’ai pu détecter des pistes particulières d’amélioration :
+- Ouvertures multiples du fichier `.txt` détectées — cette partie a été réduite au minimum.
+- Beaucoup de regex, parfois combinables — non optimisé.
+
+Le fichier (non commit) local utilisé pour garder de la cohérence dans les docstrings :  
+![Fichier de structure pour les docstrings](images\docstring.png)
 
 
-### Pistes d'amélioration
+### Amélioration Sprint 2
 
+#### Récupération de l’abstract
+Sachant qu’on a maintenant le `.txt` de tout l’article, il est possible de rechercher des mots dans l’article pour essayer de trouver ceux qui existent déjà.
 
-### Analyse de performances
+Ajout dans le code :
+```diff
+- if False:
++ if word.lower() in txt_lower:
+```
+J'ai du corriger un petit bug : en retirant le `-` pour préparer la recherche de mot dans le sprint 2, je retirait une lettre en plus `compre-{\n}ssion` ⇒ `comprssion`, ce sui rendait la recherche impossible.
 
-   
-### **Remarque** 
+Détection du bug à l'aide de la fonction `json.dumps` :
+![alt text](images/dump_error.png)
+![alt text](images/dump_ok.png)
 
-
+Cette partie s'ajoute aussi au txt.
 ---
 
 5. **Elvin Fichot-Corgeron** : Récupération de la section de l’auteur et renvoi dans un fichier texte brut.
