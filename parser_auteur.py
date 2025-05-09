@@ -26,55 +26,54 @@ def get_list(text, titre, abstract="Abstract"):
     list
         Section auteurs extraite, nettoyée et séparée par ligne.
     """
-    with open(text, 'r', encoding='utf-8') as file:
-            content = file.read()
-            # Normalisation pour recherche insensible à la casse
-            content_lower = content.lower()
-            titre_lower = titre.lower()
-            abstract_lower = abstract.lower()
+    content = text
+    # Normalisation pour recherche insensible à la casse
+    content_lower = content.lower()
+    titre_lower = titre.lower()
+    abstract_lower = abstract.lower()
 
-            # Recherche du titre (essai exact)
-            titre_pos = content_lower.find(titre_lower)
+    # Recherche du titre (essai exact)
+    titre_pos = content_lower.find(titre_lower)
 
-            # Si titre exact non trouvé, essaie de le retrouver approximativement sur les premières lignes
-            if titre_pos == -1:
-                lines = content.split('\n')
-                # Génère des blocs de 1 à 3 lignes pour matcher des titres sur plusieurs lignes
-                candidates = ["\n".join(lines[i:i+n]) for i in range(20) for n in range(1, 4) if i + n <= len(lines)]
-                # Recherche approximative du titre dans ces blocs
-                matched = difflib.get_close_matches(titre.strip(), candidates, n=1, cutoff=0.6)
-                if matched:
-                    titre_pos = content.find(matched[0])
-                else:
-                    return f"Erreur: Titre approché '{titre[:20]}...' non trouvé"
+    # Si titre exact non trouvé, essaie de le retrouver approximativement sur les premières lignes
+    if titre_pos == -1:
+        lines = content.split('\n')
+        # Génère des blocs de 1 à 3 lignes pour matcher des titres sur plusieurs lignes
+        candidates = ["\n".join(lines[i:i+n]) for i in range(20) for n in range(1, 4) if i + n <= len(lines)]
+        # Recherche approximative du titre dans ces blocs
+        matched = difflib.get_close_matches(titre.strip(), candidates, n=1, cutoff=0.6)
+        if matched:
+            titre_pos = content.find(matched[0])
+        else:
+            return f"Erreur: Titre approché '{titre[:20]}...' non trouvé"
 
-            # Position de départ après le titre
-            start_pos = titre_pos + len(titre)
+    # Position de départ après le titre
+    start_pos = titre_pos + len(titre)
 
-            # Recherche de l'abstract
-            abstract_pos = content_lower.find(abstract_lower, start_pos)
-            if abstract_pos == -1:
-                abstract_pos = content_lower.find(abstract_lower[:5], start_pos)
-            if abstract_pos == -1:
-                abstract_pos = content.find("\n\n", start_pos)
-            if abstract_pos == -1:
-                abstract_pos = len(content)
+    # Recherche de l'abstract
+    abstract_pos = content_lower.find(abstract_lower, start_pos)
+    if abstract_pos == -1:
+        abstract_pos = content_lower.find(abstract_lower[:5], start_pos)
+    if abstract_pos == -1:
+        abstract_pos = content.find("\n\n", start_pos)
+    if abstract_pos == -1:
+        abstract_pos = len(content)
 
-            # Extraction de la section entre le titre et l'abstract
-            auteurs_section = content[start_pos:abstract_pos].strip()
+    # Extraction de la section entre le titre et l'abstract
+    auteurs_section = content[start_pos:abstract_pos].strip()
 
-            # Nettoyage des lignes, sans supprimer les emails
-            cleaned_lines = []
-            for line in auteurs_section.split('\n'):
-                line = line.strip()
-                if not line:
-                    continue
-                # Supprimer uniquement les mots "abstract" résiduels
-                line = ' '.join(word for word in line.split() if word.lower() != abstract_lower)
-                if line:
-                    cleaned_lines.append(line)
+    # Nettoyage des lignes, sans supprimer les emails
+    cleaned_lines = []
+    for line in auteurs_section.split('\n'):
+        line = line.strip()
+        if not line:
+            continue
+        # Supprimer uniquement les mots "abstract" résiduels
+        line = ' '.join(word for word in line.split() if word.lower() != abstract_lower)
+        if line:
+            cleaned_lines.append(line)
 
-            return '\n'.join(cleaned_lines) if cleaned_lines else "Aucun auteur trouvé"
+    return '\n'.join(cleaned_lines) if cleaned_lines else "Aucun auteur trouvé"
 
 def mapAuteurs(auteurs):
     if not auteurs.strip():
