@@ -26,7 +26,7 @@ def get_list(text, titre, abstract="Abstract"):
     list
         Section auteurs extraite, nettoyée et séparée par ligne.
     """
-    content = text
+    content = '\n'.join(text.split('\n')[:50])
     # Normalisation pour recherche insensible à la casse
     content_lower = content.lower()
     titre_lower = titre.lower()
