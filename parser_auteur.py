@@ -5,6 +5,7 @@ Cette partie du parser se charge de l'extraction des auteurs à partir du texte 
 Elle requiert le titre de l'article pour identifier la section des auteurs, qui se trouve entre le titre et l'abstract.
 
 """
+import re
 
 
 def get_list(text, titre, abstract="Abstract"):
@@ -76,6 +77,100 @@ def get_list(text, titre, abstract="Abstract"):
             cleaned_lines.append(line)
 
     return cleaned_lines if cleaned_lines else ["Aucun auteur trouvé"]
+
+def mapAuteurs(auteurs):
+    if not auteurs.strip():
+        return []
+
+    auteurs = auteurs.replace('\\', '').replace('\x01', '')
+    lignes = [line.strip() for line in auteurs.split('\n') if line.strip()]
+    profils = []
+    email_regex = r'[\w\.-]+@[\w\.-]+\.\w+'
+
+    #{a,b}@domaine
+    for idx, line in enumerate(lignes):
+        match = re.search(r'\{(.+?)\}@([\w\.-]+\.\w+)', line)
+        if match:
+            ids = [ident.strip() for ident in match.group(1).split(',')]
+            domaine = match.group(2)
+            emails = [f"{ident}@{domaine}" for ident in ids]
+
+            noms = []
+            for i in range(idx):
+                if not re.search(email_regex, lignes[i]) and not lignes[i].isdigit():
+                    noms.append(lignes[i])
+
+            noms_final = []
+            for nom_line in noms:
+                noms_final.extend(re.split(r'\s*[,;]?\s*(?:and|&)\s*|,', nom_line))
+
+            affil_lines = []
+            for i in range(idx + 1, len(lignes)):
+                if not re.search(email_regex, lignes[i]):
+                    affil_lines.append(lignes[i])
+                else:
+                    break
+
+            full_affil = "\n".join(affil_lines)
+            for k, nom in enumerate(noms_final):
+                if k < len(emails):
+                    profils.append(f"{nom.strip()}\n{full_affil.strip()}\n{emails[k]}")
+            return profils
+
+    # indiv
+    email_positions = [(i, re.findall(email_regex, lignes[i])) for i in range(len(lignes)) if re.search(email_regex, lignes[i])]
+    
+    for i, emails in email_positions:
+        bloc = []
+        for j in range(i - 1, -1, -1):
+            if re.search(email_regex, lignes[j]):
+                break
+            bloc.insert(0, lignes[j])
+        
+        nom = bloc[0] if bloc else f"Auteur{i+1}"
+        affil = "\n".join(bloc[1:]) if len(bloc) > 1 else ""
+
+        for email in emails:
+            profils.append(f"{nom.strip()}\n{affil.strip()}\n{email.strip()}")
+
+    if profils:
+        return profils
+
+    # Numéros
+    if any(re.match(r'^\d$', line) for line in lignes):
+        affiliations = {}
+        current_id = None
+        auteurs_data = []
+
+        for line in lignes:
+            if re.match(r'^\d$', line):
+                current_id = line
+                affiliations[current_id] = []
+            elif current_id and not re.search(email_regex, line):
+                affiliations[current_id].append(line)
+            elif re.search(email_regex, line):
+                for email in re.findall(email_regex, line):
+                    auteurs_data.append({'affil': current_id, 'email': email})
+
+        for i, auteur in enumerate(auteurs_data):
+            nom = f"Auteur{i+1}"
+            affil = "\n".join(affiliations.get(auteur['affil'], []))
+            profils.append(f"{nom}\n{affil}\n{auteur['email']}")
+
+        return profils
+
+    #Nom seuls
+    noms = []
+    for line in lignes:
+        if not re.search(email_regex, line):
+            noms.append(line)
+
+    if noms:
+        if len(noms) == 1:
+            return [n.strip() for n in re.split(r'\s*[,;]?\s*(?:and|&)\s*|,', noms[0])]
+        return noms
+
+    return profils if profils else ["\n".join(lignes)]
 
 def get_string(content, titre, abstract="Abstract"):
     """
