@@ -241,7 +241,7 @@ def get_string(content, titre, abstract="Abstract"):
     string
         Section auteurs extraite, nettoyée et séparée par ligne.
     """
-    auteursSection = get_list(titre,abstract)
+    auteursSection = get_list(content,titre,abstract)
     auteurs = mapAuteurs(auteursSection)
     return auteurs
 
