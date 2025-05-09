@@ -280,19 +280,74 @@ Détection du bug à l'aide de la fonction `json.dumps` :
 Cette partie s'ajoute aussi au txt.
 ---
 
-5. **Elvin Fichot-Corgeron** : Récupération de la section de l’auteur et renvoi dans un fichier texte brut.
+## 5. **Elvin Fichot-Corgeron** : Récupération de la section de l’auteur et renvoi dans un fichier texte brut.
 
+### Approche du travail
 
-### Analyse du code
+Pour réaliser cette tâche, plusieurs solutions étaient possibles :
 
+- Renvoyer la section entière des auteurs dans une seule chaîne.
+- Renvoyer un tableau de chaînes de caractères contenant le nom des auteurs et, si elles sont présentes, les adresses associées.
 
-### Pistes d'amélioration
+Après concertation, cette deuxième solution s’est avérée être la meilleure.
 
+### Développement
 
-### Analyse de performances
+Le travail a été réalisé dans le fichier `parser_auteur`.
 
-   
-### **Remarque** 
+J’ai divisé cette étape en trois méthodes distinctes :
+
+#### `get_list`
+
+Dans cette méthode, je m’occupe d’extraire la section contenant les auteurs.
+
+Cette section se trouve toujours entre la section du titre et l’abstract.
+
+Je me suis donc servi des méthodes `parser_title.get_string` et `parser_abstract.get_string` pour les récupérer.
+
+Ensuite, je récupère la section située entre les deux.
+
+#### `mapAuteurs`
+
+C’est dans cette méthode que je décortique la chaîne passée en paramètre pour obtenir l’association entre les auteurs et leurs adresses.
+
+Le plus difficile dans ce travail a été qu’il existe beaucoup de cas potentiels à traiter :
+
+- Un `*` à la fin du titre avec la référence qui ne se trouve pas dans la section des auteurs.
+- Les adresses mail notées sous cette forme : `{a,b}@domaine`.
+- Des numéros pour les auteurs.
+- Des noms seuls.
+- Une notation de type nom, adresse de l’université, adresse mail.
+
+Il a donc été très difficile d’avoir un résultat optimisé compte tenu de toutes ces possibilités.
+
+#### `get_string`
+
+Cette méthode joue un peu le rôle de **main** du fichier.
+
+J’y fais l’extraction de la section des auteurs, je l’envoie dans le mapper, puis je retourne le tableau contenant les auteurs.
+
+Pour le résultat en XML, on obtient ceci :  
+![](images/AuteursXML.png)
+
+Pour ce PDF :  
+![](images/AuteursPDF.png)
+
+### Difficultés rencontrées
+
+Comme dit plus haut, le plus difficile a été de traiter les nombreux cas différents. Chaque fois que je résolvais un cas, il y en avait fréquemment un autre qui posait problème.  
+J’ai donc une version qui n’est pas la plus optimisée, mais qui renvoie les informations essentielles.
+
+Au moment de merger mon code, je ne l’avais pas correctement adapté à la nouvelle norme de code mise en place, ce qui a causé des erreurs.
+
+De plus, pour certains fichiers, j’avais fait les tests uniquement sur le début des fichiers, comme au sprint précédent. Or, pour récupérer la bibliographie, nous utilisons maintenant le fichier en entier.  
+J’ai donc limité la recherche à 50 lignes pour localiser la section des auteurs.
+
+### Rétrospective
+
+Mes axes d’amélioration pourraient être :
+- Avoir un code plus optimisé, capable de donner des informations encore plus précises.
+- Mieux me coordonner avec l’équipe pour éviter les problèmes liés aux nouvelles normes mises en place.
 
 
 ---
