@@ -238,7 +238,20 @@ def get_string(content, titre, abstract="Abstract"):
     string
         Section auteurs extraite, nettoyée et séparée par ligne.
     """
-    auteursSection = get_list(content,titre,abstract)
+    auteursSection = get_list(content, titre, abstract)
+    filtered_lines = []
+    for line in auteursSection.split('\n'):
+        remove = False
+        for word in line.split():
+            word_clean = word.strip("—-_:,.").lower()
+            if difflib.SequenceMatcher(None, word_clean, "abstract").ratio() > 0.9:
+                remove = True
+                break
+        if not remove:
+            filtered_lines.append(line)
+
+    auteursSection = '\n'.join(filtered_lines)
+
     auteurs = mapAuteurs(auteursSection)
     return auteurs
 
