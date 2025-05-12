@@ -9,7 +9,7 @@
 - Elvin Fichot-Corgeron
 
 **lien vers Github**
-[README Sprint 3](https://github.com/conception-logicielle-CERI/parseur-pdf/blob/sprint-3/README_sprint3.md)
+[README Sprint 4](https://github.com/conception-logicielle-CERI/parseur-pdf/edit/sprint-4/README_sprint4.md)
 
 <!--pandoc README_sprint1.md -o README_sprint1.pdf --pdf-engine=xelatex-->
 
@@ -17,9 +17,10 @@
 
 - Angelo est `SCRUM Master` et `Product Owner`, il doit rédiger le rapport avec les différents artefacts.
 - Corentin, Elliot, Colin et Elvin sont développeurs.
-- Corentin doit s’occuper de l’intégration du fonctionnement XML, depuis l’option de lancement jusqu’à l’écriture des balises.
-- Elliot doit récupérer la section bibliographique et renvoyer un texte brut.
-- Colin doit harmoniser les différents fichiers.
+- Les développeurs s’occupent de l’enrichissement du xml avec de nouvelles balises : introduction ,corps, conclusion, discussion.
+- Corentin doit s’occuper de l’enrichissement du xml avec de nouvelles balises : introduction ,corps, conclusion, discussion.
+- Elliot doit récupérer la section corps.
+- Colin doit récupérer la section discussion et s'occupe de la redondance de certains codes.
 - Elvin doit récupérer la section de l’auteur et renvoyer un texte brut.
 
 ## **Objectif**
