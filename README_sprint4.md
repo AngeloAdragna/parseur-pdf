@@ -62,7 +62,7 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 Le répértoire CORPUS_TXT/ contient les fichiers texte avec uniquement le nom du fichier, titre et abstract.
 Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos demandées pour le xml.
 
-## **Revu Sprint 3**
+## **Revu Sprint 4**
 
 - Debrief sur le produit du troisième sprint mitigé. Le travail a été complexe mais effectué par chaque membre de la `SCRUM Team`.
 - Liste de questions à donner au Scrum Master pour qu'il échange avec le client sur les besoins.
@@ -70,18 +70,17 @@ Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos 
 - Le code à correctement été refactor, ce qui permet aux développeurs de partir sur une base harmonisée.
 - Les différents rendus des devs étaient très satisfaisant hormis pour Elvin qui à rendu un travail moyennement satisfaisant et en retard.
 - Un problème commun aux développeurs semble être le manque de robustesses du aux différements formats possibles au seins des PDF.
--  
-## **Réunion planification Sprint 13/05/25**
+  
+## **Réunion planification Sprint 13/05/25** A faire images
 
 ![notes sur papier](images/reunion.jpg)  
 Retranscription :
 
-- Échange avec le client pour connaître son besoin par rapport à l'extraction des auteurs. Le client souhaite-t-il avoir une balise auteur par auteur ? La réponse est oui.
-- S'assurer que le parsage est réalisé sur tout le document PDF et pas uniquement la première page. Sinon, le système devra être modifié afin de récupérer le champ bibliographique, souvent à la fin du PDF.
-- Améliorer les différentes fonctions, notamment le parsage d'abstract.
+- Échange avec le client pour connaître ses besoins par rapport à l'extraction des auteurs :
+   - Le client souhaite-t-il que `discussion` et `evaluation` soient fusionnées ? La réponse est oui.
+   - Que souhaite le client si une section est manquante dans le PDF originel ? La balise xml sera vide.
+   - Que souhaite le client par rapport à une potentielle section de `remerciements` ? On l'ignore.
 - Réalisation du backlog en priorité, puis des autres artefacts.
-- Détermination de la docstring par Colin et Angelo.
-- Discussion de l'équipe afin de confirmer le choix de continuer en Python.
 
 ## **Backlog**
 
