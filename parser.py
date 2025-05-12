@@ -231,9 +231,9 @@ def add_infos_to_file(fichier: Path, args) -> None:
 
                 f.write(f"\t<abstract>\n\t\t{abstract}\n\t</abstract>\n")
 
-                f.write("\t<intro>\n")
+                f.write("\t<introduction>\n")
                 f.write(f"\t\t{intro}\n")
-                f.write("\t</intro>\n")
+                f.write("\t</introduction>\n")
 
                 f.write(f"\t<corps>\n\t\t{corps}\n\t</corps>\n")
 
