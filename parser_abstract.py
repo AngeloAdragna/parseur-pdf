@@ -129,6 +129,7 @@ if __name__ == "__main__":
         """
         with open(filepath, 'r', encoding="utf-8") as file:
             print(f"Ouverture du fichier {filepath}")
+            parser_utils.set_content(file.read())
             return get_list(file.read())
         raise FileNotFoundError(filepath)
     
