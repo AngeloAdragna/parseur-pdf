@@ -6,7 +6,7 @@
 
 #### Général
 
-Ajout du fichier `ref_bibblio.py` qui permet de récupérer la section des références bibliographiques d'un corpus textuel (`txt`).
+Ajout du fichier `ref_biblio.py` qui permet de récupérer la section des références bibliographiques d'un corpus textuel (`txt`).
 
 Modification du script `clear_txt.sh` pour ajouter la suppression des xml générés.
 
