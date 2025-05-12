@@ -18,33 +18,38 @@
 - Angelo est `SCRUM Master` et `Product Owner`, il doit rédiger le rapport avec les différents artefacts.
 - Corentin, Elliot, Colin et Elvin sont développeurs.
 - Les développeurs s’occupent de l’enrichissement du xml avec de nouvelles balises : introduction ,corps, conclusion, discussion.
-- Corentin doit s’occuper de l’enrichissement du xml avec de nouvelles balises : introduction ,corps, conclusion, discussion.
-- Elliot doit récupérer la section corps.
-- Colin doit récupérer la section discussion et s'occupe de la redondance de certains codes.
-- Elvin doit récupérer la section de l’auteur et renvoyer un texte brut.
+- Corentin doit récupérer la section `intro` et le menu de lancement.
+- Elliot doit récupérer la section `corps`.
+- Colin doit récupérer la section `discussion` (`evaluation`) et s'occupe de la redondance de certains codes.
+- Elvin doit récupérer la section `conclusion` comprenant également  par exemple  `Travaux à venir` ou `Perspectives`.
 
 ## **Objectif**
 
-Suite à une discussion au LIA, nous avons décidé que les fichiers parsés plein texte ne suffisent plus à
-nos besoins. Nous avons entendu parler que les fichiers structurés XML possèdent plusieurs avantages
-et qu’ils sont largement utilisés en TAL. Nous préférons donc comme sortie un fichier XML utf8 avec
-la structure suivante:
-
+Suite à d’autres études de marché, nous avons conclu que la structure XML doit être enrichie avec les
+sections suivantes:
 ```xml
 <article>
  <preamble> Le nom du fichier d’origine </preamble>
  <titre> Le titre du papier </titre>
- <auteur> La section auteurs et leur adresse </auteur>
- <abstract> Le résumé de l’article </abstract>
+ <auteur> La section auteurs et leur adresse</auteur>
+ <abstract> Le résumé de l’article</abstract>
+ <introduction> La introduction</introduction>
+ <corps> Le développement du papier</corps>
+ <conclusion> La conclusion du papier</conclusion>
+ <discussion> La discussion du papier</discussion>
  <biblio> Les références bibliographiques du papier</biblio>
 </article>
 ```
 
-Cependant quelques chercheurs veulent garder la sortie texte aussi… Cette nouvelle sortie .xml
-complète la sortie texte .txt du sprint précédent.
-Ainsi, au moment de lancer votre parseur, il faudra ajouter un argument ( -t | -x ) pour bien choisir le
-type de sortie : soit générer des fichiers dans une version texte (-t) , soit au format XML (-x)
-Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
+Également, une nouvelle exigence du département de production, demande d'ajouter un menu au début
+de l’exécution du système afin de choisir certains PDFs à parser (pas le répertoire complet).  
+Rendu : Avant sprint final  
+Le système final, et les versions intermédiaires doivent être placés sur Github ; chaque version dans
+une branche différente. Le fichier README.md doit contenir une explication générale du système et la
+procédure nécessaire pour lancer les programmes.  
+Ainsi il faut documenter tout les différents événements de la méthode Scrum en ajoutant sur l’ENT des photos de votre travail
+(réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint). 
+Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf). 
 
 ## **Execution du programme**
 
