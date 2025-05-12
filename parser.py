@@ -7,11 +7,11 @@ import shutil
 from pathlib import Path
 import time
 
-import parser_utils
-import parser_title
-import parser_abstract
-import parser_biblio
-import parser_auteur
+from parser_utils import set_content as utils_set
+from parser_title import get_string as get_title
+from parser_abstract import get_string as get_abstract
+from parser_biblio import get_list as get_biblio
+from parser_auteur import get_string as get_auteur
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
 
@@ -190,9 +190,9 @@ def add_infos_to_file(fichier: Path, args) -> None:
     filename = get_file_name(fichier)
     with open(fichier, "r", encoding="utf-8") as f:
         content = f.read()
-        parser_utils.set_content(content)
-    title = parser_title.get_string(content)   
-    abstract = parser_abstract.get_string(content)
+        utils_set(content)
+    title = get_title(content)   
+    abstract = get_abstract(content)
 
     # si r en argument, on veut laisser la sortie de pdftotext -raw dans les fichiers de sortie
     if not args.r :
@@ -207,9 +207,9 @@ def add_infos_to_file(fichier: Path, args) -> None:
             elif args.x :
                 # CAS DU PARSING AU FORMAT XML
                 # Récupérer le tableau d'auteurs
-                auteur = parser_auteur.get_string(content,title,abstract)
+                auteur = get_auteur(content,title,abstract)
                 # Récupérer la bibliographie
-                biblio = parser_biblio.get_list(content)
+                biblio = get_biblio(content)
 
                 intro = []
                 corps = []
