@@ -42,14 +42,14 @@ sections suivantes:
 ```
 
 Également, une nouvelle exigence du département de production, demande d'ajouter un menu au début
-de l’exécution du système afin de choisir certains PDFs à parser (pas le répertoire complet).
-Rendu : Avant sprint final
+de l’exécution du système afin de choisir certains PDFs à parser (pas le répertoire complet).  
+Rendu : Avant sprint final  
 Le système final, et les versions intermédiaires doivent être placés sur Github ; chaque version dans
 une branche différente. Le fichier README.md doit contenir une explication générale du système et la
-procédure nécessaire pour lancer les programmes. Ainsi il faut documenter tout les différents
-événements de la méthode Scrum en ajoutant sur l’ENT des photos de votre travail (réunions de
-planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint).
-Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
+procédure nécessaire pour lancer les programmes.  
+Ainsi il faut documenter tout les différents événements de la méthode Scrum en ajoutant sur l’ENT des photos de votre travail
+(réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint). 
+Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf). 
 
 ## **Execution du programme**
 
