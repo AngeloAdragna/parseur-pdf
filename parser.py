@@ -42,7 +42,6 @@ def list_pdfs(repertoire: Path, args = None) -> list:
         print("* Réponses possibles :                             *")
         print("*\t Positives : o, oui, y, yes, touche entrée *")
         print("*\t Négatives : n, non, no                    *")
-        print("*\t Négatives : n, non, no                    *")
         print("*"*52)
         for file in files:
             select = input(f"Souhaitez-vous sélectionner {file} ? (O/N) : ").lower()

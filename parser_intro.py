@@ -5,6 +5,7 @@ def extract_introduction(content: str) -> str:
     Extrait la section 'Introduction' seule, jusqu'au début de la section suivante.
     Le texte est reformatté avec des retours à la ligne tous les ~100 caractères.
     """
+    # Découpage du texte ligne par ligne pour faciliter le traitement
     lines = content.splitlines()
 
     intro_patterns = [
@@ -13,7 +14,7 @@ def extract_introduction(content: str) -> str:
     ]
 
     next_section_pattern = r"^\s*(?:2|II)\.?\s+[A-Z][^\n]{0,100}$"
-    specific_phrase = "A noisy-channel model for sentence compression"
+    specific_phrase = "A noisy-channel model for sentence compression"  # Spécifique au fichier marcu_statistics_sentence_pass_one.pdf qui ne contient pas de numérotation
 
     start_idx = end_idx = None
 
@@ -46,17 +47,14 @@ def extract_introduction(content: str) -> str:
     if end_idx is None:
         for j in range(start_idx + 1, len(lines)):
             stripped_line = lines[j].strip()
-            if (
-                re.match(next_section_pattern, stripped_line)
-                and not re.search(r"Introduction", stripped_line, re.IGNORECASE)
-            ):
+            if re.match(next_section_pattern, stripped_line) and not re.search(r"Introduction", stripped_line, re.IGNORECASE) :
                 end_idx = j
                 break
 
     if end_idx is None:
         end_idx = len(lines)
 
-    intro_text = " ".join(lines[start_idx:end_idx]).replace("-\n", "").replace("\n", " ")
+    intro_text = " ".join(lines[start_idx:end_idx]).replace("\n", " ").replace("- ", "")
     intro_text = re.sub(r"\s+", " ", intro_text).strip()
 
     # Reformatage ~100 caractères sans couper les mots
