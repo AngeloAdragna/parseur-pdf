@@ -5,8 +5,8 @@ Cette partie du parser se concentre sur l'extraction et le traitement de l'abstr
 Elle permet d'extraire l'abstract dd'un fichier, et au besoin, de faire en sorte de le mettre sur une seule ligne
 
 """
-
 import re
+import parser_utils
 
 def get_list(text: str):
     """
@@ -81,19 +81,13 @@ def get_string(text: str):
         if abstract[-1] == '-' if len(abstract) > 0 else False:
             p_index = len(abstract) # Index du "-"
             
-            # Extraction du mot qui a le tiret (regex équivalent : "\w+-"), sans le "-"
-            p_word = abstract[:p_index].split()[-1][:-1] if p_index >= 0 else ""
+            # Extraction du mot qui a le tiret (regex équivalent : "\w+-")
+            p_word = abstract[:p_index].split()[-1] if p_index >= 0 else ""
             # Extraction du premier mot de la ligne suivante
             n_word = line.strip().split()[0] if line.strip() else ""
             
-            # Si les deux mots ont une valeur (sinon pas de traitement à faire - prévention des erreurs)
-            if p_word and n_word:
-                # Création du mot sans tiret par concaténation des deux mots
-                word = p_word + n_word
-                
-                if word.lower() in txt_lower:
-                    abstract = abstract[:-1] + line.strip() # On ajoute la ligne, mais en retirant le "-"
-                    continue # Passer à la ligne suivante
+            if parser_utils.check_nl(p_word, n_word):
+                abstract = abstract[:-1] # On ajoute la ligne, mais en retirant le "-"
                 
             # Le mot n'existe pas, ou il n'y a rien à traiter, alors ajout de la ligne sans " "
             abstract += line.strip()
@@ -107,7 +101,7 @@ def get_string(text: str):
         
         
         
-        
+
 
 # Fonction de test locale
 if __name__ == "__main__":
