@@ -7,6 +7,7 @@ import shutil
 from pathlib import Path
 import time
 
+import parser_utils
 import parser_title
 import parser_abstract
 import parser_biblio
@@ -189,6 +190,7 @@ def add_infos_to_file(fichier: Path, args) -> None:
     filename = get_file_name(fichier)
     with open(fichier, "r", encoding="utf-8") as f:
         content = f.read()
+        parser_utils.set_content(content)
     title = parser_title.get_string(content)   
     abstract = parser_abstract.get_string(content)
 
