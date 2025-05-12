@@ -206,21 +206,13 @@ Retranscription :
 
 ### **Ce que nous avons déterminé**
 
-- Les backlogs doivent être réalisés en premier lieu, lors de la première réunion, afin de répartir les tâches entre chaque personne.
+- Par défaut si une balise n'est pas détecté ou pas détectable la balise XML résultante sera vide.
+  
+- La balise discussion et évalutation doivent être fusionnées.
+- 
+- Les remerciements doivent être ignorés.
 
-- La réunion a permis d'établir la liste de questions pour le client, afin d'obtenir davantage de détails et de spécifications.
-
-- Le Burndown est facile à réaliser à la toute fin du sprint.
-
--La rédaction doit cependant se faire au fur et à mesure de l'avancement de chacun.
-
--La mise en commun du travail de chacun peut parfois s'avérer ardue, en raison du manque de détails dans le fonctionnement des productions personnelles des développeurs.
-
--Il faut prendre en compte la deadline trop proche de la fin du sprint, afin d'éviter un rush final.
-
--Médiation et conseils apportés aux développeurs.
-
-### **Ce qui a bien fonctionné**
+### **Ce qui a bien fonctionné** A faire
 
 - Bonne répartition des tâches entre les membres, chacun a pu avancer sur sa partie sans trop d'interférences.
 
@@ -235,7 +227,7 @@ Retranscription :
 - Les comptes rendus sont de meilleure qualité.
 -
 
-### **Ce qui a posé problème**
+### **Ce qui a posé problème**  A faire a la fin
 
 - Le fichier ACL2004 pose toujours problème car il ne suit aucun des patterns définis.
 
@@ -247,7 +239,7 @@ Retranscription :
 
 - La rédaction des documentations (docstrings, README) est parfois restée en retrait face à l’avancée du code.
 
-### **Ce qu’on doit améliorer**
+### **Ce qu’on doit améliorer**  A faire a la fin
 
 - Mettre en place des tests unitaires, notamment pour parse_arguments afin de préparer l’ajout d’options futures.
 
@@ -261,7 +253,7 @@ Retranscription :
 
 ---
 
-## **Conclusion** :
+## **Conclusion** :  A faire a la fin
 
 ### Selon Angelo Adragna
 
