@@ -14,7 +14,7 @@ import parser_auteur
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
 
-def list_pdfs(repertoire: Path) -> list:
+def list_pdfs(repertoire: Path, args = None) -> list:
     """
     Liste les documents pdf contenus dans un répertoire, SUPPOSE VALIDE.
 
@@ -30,7 +30,29 @@ def list_pdfs(repertoire: Path) -> list:
 
     """
     chemin = Path(repertoire)
-    return list(chemin.glob("*.pdf"))
+    files = list(chemin.glob("*.pdf"))
+    selected_files = []
+
+    if args and args.m and args.m == True: 
+        print("*"*52)
+        print("* Sélection des fichiers                           *")
+        print("* Réponses possibles :                             *")
+        print("*\t Positives : o, oui, y, yes, touche entrée *")
+        print("*\t Négatives : n, non, no                    *")
+        print("*\t Négatives : n, non, no                    *")
+        print("*"*52)
+        for file in files:
+            select = input(f"Souhaitez-vous sélectionner {file} ? (O/N) : ").lower()
+            while select not in ["", "o", "n", "oui", "non", "y", "yes", "no"]:
+                select = input(f"Réponse invalide. Souhaitez-vous sélectionner {file} ? (O/N) : ").lower()
+            if select in ["", "o", "oui", "y", "yes"]:
+                selected_files.append(file)
+                print("\n\t Fichier sélectionné \n")
+    else :
+        selected_files = files
+
+
+    return selected_files
 
 
 def pdfs_to_format(repertoire_entree: Path, repertoire_sortie: str, args):
@@ -62,7 +84,11 @@ def pdfs_to_format(repertoire_entree: Path, repertoire_sortie: str, args):
         raise ValueError("Le repertoire d'entree et celui de sortie doivent etre differents")
     
     # Récupérer la liste des fichiers pdfs
-    pdfs = list_pdfs(repertoire_entree)
+    pdfs = list_pdfs(repertoire_entree, args)
+
+    if pdfs == [] :
+        print("Aucun fichier n'a ete sélectionné. Sortie du programme...")
+        return
     
     # Création du répertoire de sortie
     chemin = Path(repertoire_sortie)
@@ -293,7 +319,7 @@ def parse_arguments():
     group.add_argument("-r", action="store_true", help="Les fichiers texte contiennent la sortie de pdftotext -raw (pour tests)" )
 
     # Ajout d'un argument -m (menu) pour sélectionner quels fichiers parser
-    group.add_argument("-m", action="store_true", help="Menu : Sélection des fichiers à parser 1 par 1")
+    parser.add_argument("-m", action="store_true", help="Menu : Sélection des fichiers à parser 1 par 1")
 
     args = parser.parse_args()
 
