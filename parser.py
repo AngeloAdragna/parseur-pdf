@@ -13,6 +13,7 @@ from parser_abstract import get_string as get_abstract
 from parser_biblio import get_list as get_biblio
 from parser_auteur import get_string as get_auteur
 from parser_corps import get_string as get_corps
+from parser_intro import extract_introduction as get_intro
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
 
@@ -212,7 +213,7 @@ def add_infos_to_file(fichier: Path, args) -> None:
                 # Récupérer la bibliographie
                 biblio = get_biblio(content)
 
-                intro = []
+                intro = get_intro(content)
                 corps = get_corps(content)
                 conclusion = []
                 discussion = []
@@ -231,8 +232,7 @@ def add_infos_to_file(fichier: Path, args) -> None:
                 f.write(f"\t<abstract>\n\t\t{abstract}\n\t</abstract>\n")
 
                 f.write("\t<intro>\n")
-                for i in intro:
-                    f.write(f"\t\t{i}\n")
+                f.write(f"\t\t{intro}\n")
                 f.write("\t</intro>\n")
 
                 f.write(f"\t<corps>\n\t\t{corps}\n\t</corps>\n")
