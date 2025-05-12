@@ -1,2 +1,2 @@
-# Bienvenue sur le sprint 3 !
-Pour en savoir plus, consultez [la présentation détaillé du sprint 3](README_sprint3.md)
+# Bienvenue sur le sprint 4 !
+Pour en savoir plus, consultez [la présentation détaillé du sprint 4](README_sprint4.md)
