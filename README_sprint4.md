@@ -69,8 +69,9 @@ Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos 
 - Répartition des tâches selon les affinités de chacun. Bonne communication.
 - Le code à correctement été refactor, ce qui permet aux développeurs de partir sur une base harmonisée.
 - Les différents rendus des devs étaient très satisfaisant hormis pour Elvin qui à rendu un travail moyennement satisfaisant et en retard.
-- Un problème com
-## **Réunion planification Sprint 05/05/25**
+- Un problème commun aux développeurs semble être le manque de robustesses du aux différements formats possibles au seins des PDF.
+-  
+## **Réunion planification Sprint 13/05/25**
 
 ![notes sur papier](images/reunion.jpg)  
 Retranscription :
