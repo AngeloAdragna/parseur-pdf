@@ -178,10 +178,15 @@ def add_infos_to_file(fichier: Path, args) -> None:
                 f.write(f"Abstract : {abstract}\n")
             elif args.x :
                 # CAS DU PARSING AU FORMAT XML
-                # TODO : Récupérer le tableau d'auteurs
+                # Récupérer le tableau d'auteurs
                 auteur = parser_auteur.get_string(content,title,abstract)
                 # Récupérer la bibliographie
                 biblio = parser_biblio.get_list(content)
+
+                intro = []
+                corps = []
+                conclusion = []
+                discussion = []
 
                 f.write("<article>\n")
 
@@ -195,6 +200,26 @@ def add_infos_to_file(fichier: Path, args) -> None:
                 f.write("\t</auteur>\n")
 
                 f.write(f"\t<abstract>\n\t\t{abstract}\n\t</abstract>\n")
+
+                f.write("\t<intro>\n")
+                for i in intro:
+                    f.write(f"\t\t{i}\n")
+                f.write("\t</intro>\n")
+
+                f.write("\t<corps>\n")
+                for c in corps:
+                    f.write(f"\t\t{c}\n")
+                f.write("\t</corps>\n")
+
+                f.write("\t<conclusion>\n")
+                for c in conclusion:
+                    f.write(f"\t\t{c}\n")
+                f.write("\t</conclusion>\n")
+
+                f.write("\t<discussion>\n")
+                for d in discussion:
+                    f.write(f"\t\t{d}\n")
+                f.write("\t</discussion>\n")
 
                 f.write("\t<biblio>\n")
                 for b in biblio:
@@ -266,6 +291,10 @@ def parse_arguments():
     group.add_argument("-t", action="store_true", help="Parser en plain text (par défaut).")
     group.add_argument("-x", action="store_true", help="Parser en XML.")
     group.add_argument("-r", action="store_true", help="Les fichiers texte contiennent la sortie de pdftotext -raw (pour tests)" )
+
+    # Ajout d'un argument -m (menu) pour sélectionner quels fichiers parser
+    group.add_argument("-m", action="store_true", help="Menu : Sélection des fichiers à parser 1 par 1")
+
     args = parser.parse_args()
 
     # Si aucune option n'est spécifiée, -t est sélectionné par défaut
