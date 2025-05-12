@@ -17,7 +17,7 @@
 
 - Angelo est `SCRUM Master` et `Product Owner`, il doit rédiger le rapport avec les différents artefacts.
 - Corentin, Elliot, Colin et Elvin sont développeurs.
-- Les développeurs s’occupent de l’enrichissement du xml avec de nouvelles balises : introduction ,corps, conclusion, discussion.
+- Les développeurs s’occupent de l’enrichissement du xml avec de nouvelles balises : introduction ,corps, conclusion, discussion ainsi que l'ajoue d'un menu au lancement.
 - Corentin doit récupérer la section `intro` et le menu de lancement.
 - Elliot doit récupérer la section `corps`.
 - Colin doit récupérer la section `discussion` (`evaluation`) et s'occupe de la redondance de certains codes.
@@ -51,7 +51,7 @@ Ainsi il faut documenter tout les différents événements de la méthode Scrum 
 (réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint). 
 Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf). 
 
-## **Execution du programme**
+## **Execution du programme** >A faire
 
     Format txt sans option  : python parser.py CORPUS_TRAIN/ CORPUS_TXT/
     Format txt avec option  : python parser.py -t CORPUS_TRAIN/ CORPUS_TXT/
@@ -62,16 +62,14 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 Le répértoire CORPUS_TXT/ contient les fichiers texte avec uniquement le nom du fichier, titre et abstract.
 Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos demandées pour le xml.
 
-## **Revu Sprint 2**
+## **Revu Sprint 3**
 
-- Debrief sur le produit du second sprint positif. Le travail a été complexe mais correctement effectué par chaque membre de la `SCRUM Team`.
+- Debrief sur le produit du troisième sprint mitigé. Le travail a été complexe mais effectué par chaque membre de la `SCRUM Team`.
 - Liste de questions à donner au Scrum Master pour qu'il échange avec le client sur les besoins.
-- Répartition des tâches selon les affinités de chacun. Bonne communication et cohésion d'équipe.
-- Questionnement, refactor et harmonisation des fichiers pour une meilleure lisibilité et compréhension.
-- Les artefacts ne semblent plus poser de problèmes, bien qu'un léger doute plane encore. Cependant, la méthode SCRUM est volontairement peu détaillée, donc cela semble naturel.
-- Les différents rendus des devs étaient trop proches du rendu du produit du sprint 2.
-- Très bonne cohésion d'équipe. Elliot a réalisé un acte d'entraide remarquable. En effet, Corentin a eu un imprévu, ce qui fait qu'il aurait été en retard sur la réalisation de son compte rendu. C'est donc Elliot qui s'est volontairement proposé pour réaliser le susdit compte rendu.
-
+- Répartition des tâches selon les affinités de chacun. Bonne communication.
+- Le code à correctement été refactor, ce qui permet aux développeurs de partir sur une base harmonisée.
+- Les différents rendus des devs étaient très satisfaisant hormis pour Elvin qui à rendu un travail moyennement satisfaisant et en retard.
+- Un problème com
 ## **Réunion planification Sprint 05/05/25**
 
 ![notes sur papier](images/reunion.jpg)  
