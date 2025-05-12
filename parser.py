@@ -12,7 +12,7 @@ from parser_title import get_string as get_title
 from parser_abstract import get_string as get_abstract
 from parser_biblio import get_list as get_biblio
 from parser_auteur import get_string as get_auteur
-from parser_corps import get_string
+from parser_corps import get_string as get_corps
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
 
@@ -213,7 +213,7 @@ def add_infos_to_file(fichier: Path, args) -> None:
                 biblio = get_biblio(content)
 
                 intro = []
-                corps = parser_corps.get_string(content)
+                corps = get_corps(content)
                 conclusion = []
                 discussion = []
 
