@@ -128,9 +128,9 @@ if __name__ == "__main__":
             Quand l'ouverture du fichier n'a pas réussi
         """
         with open(filepath, 'r', encoding="utf-8") as file:
-            print(f"Ouverture du fichier {filepath}")
-            parser_utils.set_content(file.read())
-            return get_list(file.read())
+            c = file.read()
+            parser_utils.set_content(c)
+            return get_list(c)
         raise FileNotFoundError(filepath)
     
     input_folder = "CORPUS_TXT"
