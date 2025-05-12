@@ -18,7 +18,7 @@
 - Angelo est `SCRUM Master` et `Product Owner`, il doit rédiger le rapport avec les différents artefacts.
 - Corentin, Elliot, Colin et Elvin sont développeurs.
 - Les développeurs s’occupent de l’enrichissement du xml avec de nouvelles balises : introduction ,corps, conclusion, discussion ainsi que l'ajoue d'un menu au lancement.
-- Corentin doit récupérer la section `intro` et le menu de lancement.
+- Corentin doit récupérer la section `intro` et réaliser le menu de lancement.
 - Elliot doit récupérer la section `corps`.
 - Colin doit récupérer la section `discussion` (`evaluation`) et s'occupe de la redondance de certains codes.
 - Elvin doit récupérer la section `conclusion` comprenant également  par exemple  `Travaux à venir` ou `Perspectives`.
@@ -62,7 +62,7 @@ Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf).
 Le répértoire CORPUS_TXT/ contient les fichiers texte avec uniquement le nom du fichier, titre et abstract.
 Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos demandées pour le xml.
 
-## **Revu Sprint 3**
+## **Revu Sprint 4**
 
 - Debrief sur le produit du troisième sprint mitigé. Le travail a été complexe mais effectué par chaque membre de la `SCRUM Team`.
 - Liste de questions à donner au Scrum Master pour qu'il échange avec le client sur les besoins.
@@ -70,38 +70,39 @@ Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos 
 - Le code à correctement été refactor, ce qui permet aux développeurs de partir sur une base harmonisée.
 - Les différents rendus des devs étaient très satisfaisant hormis pour Elvin qui à rendu un travail moyennement satisfaisant et en retard.
 - Un problème commun aux développeurs semble être le manque de robustesses du aux différements formats possibles au seins des PDF.
--  
-## **Réunion planification Sprint 13/05/25**
+  
+## **Réunion planification Sprint 13/05/25** A faire images
 
-![notes sur papier](images/reunion.jpg)  
+![notes sur papier](images/reunion4.jpg)  
 Retranscription :
 
-- Échange avec le client pour connaître son besoin par rapport à l'extraction des auteurs. Le client souhaite-t-il avoir une balise auteur par auteur ? La réponse est oui.
-- S'assurer que le parsage est réalisé sur tout le document PDF et pas uniquement la première page. Sinon, le système devra être modifié afin de récupérer le champ bibliographique, souvent à la fin du PDF.
-- Améliorer les différentes fonctions, notamment le parsage d'abstract.
+- Échange avec le client pour connaître ses besoins par rapport à l'extraction des auteurs :
+   - Le client souhaite-t-il que `discussion` et `evaluation` soient fusionnées ? La réponse est oui.
+   - Que souhaite le client si une section est manquante dans le PDF originel ? La balise xml sera vide.
+   - Que souhaite le client par rapport à une potentielle section de `remerciements` ? On l'ignore.
 - Réalisation du backlog en priorité, puis des autres artefacts.
-- Détermination de la docstring par Colin et Angelo.
-- Discussion de l'équipe afin de confirmer le choix de continuer en Python.
 
 ## **Backlog**
 
-- Option XML au lancement (texte brut par défaut) et traduction texte XML.
-- Récupérer la section auteur.
-- Récupérer la section bibliographique.
-- Harmoniser les fichiers de code.
+- Menu menu au début de l’exécution du système afin de choisir certains PDFs à parser au lancement.  
+- Récupérer la section introduction.
+- Récupérer la section corps.
+- Récupérer la section discussion. 
+- Récupérer la section conclusion. 
+- Supprimer certaines redondances dans les fichiers de code.
 - Améliorer les fonctionnalités du code.
-- Réaliser les artefacts compris dans le conteneur de ce sprint 3.
+- Réaliser les artefacts compris dans le conteneur de ce sprint 4.
 
-## **Burndown**
+## **Burndown**  A faire images
 
-![Exemple sortie](images/burndown2.jpg)
+![Exemple sortie](images/burndown4.jpg)
 
 ## _Consignes pour le compte rendu des développeurs_ :
 
-- Déposez votre compte rendu au plus tard le 09/05/2025 à 18h sur la branche 3.
+- Déposez votre compte rendu au plus tard le mercredi 14/05/2025 à 16h sur la branche 4.
 - Fournir AU MOINS une image de l’avancement par fonctionnalité par développeur.
-- Votre compte rendu doit comporter une analyse de votre développement, les aspects positifs, négatifs, limitations…
-- Indiquer quel jour vous avez fini chaque fonctionnalité.
+- Votre compte rendu doit comporter une analyse de votre développement, les aspects positifs, négatifs, limitations… Vous pourrez vous baser sur le squelette pour vous guider si nécéssaire.
+- Indiquer quel jour vous avez fini chaque fonctionnalité !
 
 ## **Travail de chaque menebre de la `SCRUM Team` pendant la mêlée (Revue Sprint)**
 
@@ -111,15 +112,34 @@ Retranscription :
 
 - Les backlogs doivent être réalisés en premier lieu, lors de la première réunion, afin de répartir les tâches entre chaque personne.
 - La réunion a permis d'établir la liste de questions pour le client, afin d'obtenir davantage de détails et de spécifications.
-- Le Burndown est facile à réaliser à la toute fin du sprint.
-- La rédaction doit cependant se faire au fur et à mesure de l'avancement de chacun.
-- La mise en commun du travail de chacun peut parfois s'avérer ardue, en raison du manque de détails dans le fonctionnement des productions personnelles des développeurs.
-- J'ai pris en compte la deadline trop proche de la fin du sprint, afin d'éviter un rush final.
+- Le Burndown se termine à la fin du sprint 4.
+- La rédaction se fait au fil du sprint.
+- Création d'un squelette de rendu pour facilier la mise en commun du travail de chacun. Je propose donc un modèle en raison du manque de détails dans les productions personnelles des développeurs.
 - Médiation et conseils aux développeurs.
 
 ---
 
-## 2. **Corentin Saccoman** : L'intégration du fonctionnement XML depuis l'option de lancement jusqu'à l'écriture des balises XML.
+## 2. **Corentin Saccoman** : Récupération de la section `intro` et réaliser le menu de lancement.
+### Analyse du code
+
+
+### Pistes d'amélioration
+
+
+### Analyse de performances
+
+
+
+### **Remarque**
+
+
+
+### Dates clés :
+
+ 
+  ---
+
+## 3. **Elliot Pozucek** : Récupération de la section `corps`.
 
 ### Analyse du code
 
@@ -140,7 +160,7 @@ Retranscription :
  
   ---
 
-## 3. **Elliot Pozucek** : Récupération de la section bibliographique et renvoi dans un fichier texte brut.
+## 4. **Colin Palazzetti Rubera** : Récupération de la section `discussion` (`evaluation`) et s'occupe de la redondance de certains codes.
 
 ### Analyse du code
 
@@ -161,7 +181,7 @@ Retranscription :
  
   ---
 
-## 4. **Colin Palazzetti Rubera** : Harmonisation des différents fichiers de code, notamment avec les docstrings au format Numpydoc.
+## 5. **Elvin Fichot-Corgeron** : Récupération de la section `conclusion` comprenant également  par exemple  `Travaux à venir` ou `Perspectives`.
 
 ### Analyse du code
 
@@ -182,46 +202,17 @@ Retranscription :
  
   ---
 
-## 5. **Elvin Fichot-Corgeron** : Récupération de la section de l’auteur et renvoi dans un fichier texte brut.
-
-### Analyse du code
-
-
-### Pistes d'amélioration
-
-
-### Analyse de performances
-
-
-
-### **Remarque**
-
-
-
-### Dates clés :
-
- 
-  ---
-
-## **Retour sur le travail effectué (Rétrospective Sprint 3)**
+## **Retour sur le travail effectué (Rétrospective Sprint 4)**
 
 ### **Ce que nous avons déterminé**
 
-- Les backlogs doivent être réalisés en premier lieu, lors de la première réunion, afin de répartir les tâches entre chaque personne.
+- Par défaut si une balise n'est pas détecté ou pas détectable la balise XML résultante sera vide.
+  
+- La balise discussion et évalutation doivent être fusionnées.
+- 
+- Les remerciements doivent être ignorés.
 
-- La réunion a permis d'établir la liste de questions pour le client, afin d'obtenir davantage de détails et de spécifications.
-
-- Le Burndown est facile à réaliser à la toute fin du sprint.
-
--La rédaction doit cependant se faire au fur et à mesure de l'avancement de chacun.
-
--La mise en commun du travail de chacun peut parfois s'avérer ardue, en raison du manque de détails dans le fonctionnement des productions personnelles des développeurs.
-
--Il faut prendre en compte la deadline trop proche de la fin du sprint, afin d'éviter un rush final.
-
--Médiation et conseils apportés aux développeurs.
-
-### **Ce qui a bien fonctionné**
+### **Ce qui a bien fonctionné** A faire
 
 - Bonne répartition des tâches entre les membres, chacun a pu avancer sur sa partie sans trop d'interférences.
 
@@ -236,7 +227,7 @@ Retranscription :
 - Les comptes rendus sont de meilleure qualité.
 -
 
-### **Ce qui a posé problème**
+### **Ce qui a posé problème**  A faire a la fin
 
 - Le fichier ACL2004 pose toujours problème car il ne suit aucun des patterns définis.
 
@@ -248,7 +239,7 @@ Retranscription :
 
 - La rédaction des documentations (docstrings, README) est parfois restée en retrait face à l’avancée du code.
 
-### **Ce qu’on doit améliorer**
+### **Ce qu’on doit améliorer**  A faire a la fin
 
 - Mettre en place des tests unitaires, notamment pour parse_arguments afin de préparer l’ajout d’options futures.
 
@@ -262,7 +253,7 @@ Retranscription :
 
 ---
 
-## **Conclusion** :
+## **Conclusion** :  A faire a la fin
 
 ### Selon Angelo Adragna
 
