@@ -93,8 +93,7 @@ def get_string(text: str):
             continue # Ignorer le traitement normal
         
         # Traitement normal
-        abstract += " "
-        abstract += line.strip()
+        abstract += " " + line.strip()
         
     return abstract.strip()
         
