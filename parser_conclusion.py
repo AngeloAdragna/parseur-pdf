@@ -22,10 +22,8 @@ def get_string(content: str) -> list[str]:
     list[str]
         Liste des lignes extraites des sections cibles.
     """
-    # Sections à exclure (titre qui marquent la fin de section utile)
     mots_stop = ["Acknowledgements", "Acknowledgments", "References", "Acknowledgment"]
 
-    # Sections qu'on veut extraire
     sections_cibles = [
         "Conclusion", "Conclusions",
         "Future Work",
@@ -40,15 +38,14 @@ def get_string(content: str) -> list[str]:
     stop_pattern = build_section_regex(mots_stop)
 
     lines = content.splitlines()
-    result_lines = []  # Liste qui contiendra toutes les lignes du résultat
-    current_section_lines = []  # Lignes de la section en cours
+    result_lines = []  
+    current_section_lines = [] 
     inside_section = False
 
     for line in lines:
         stripped = line.strip()
 
         if section_pattern.match(stripped):
-            # Si on était déjà dans une section, on sauvegarde les lignes
             if current_section_lines:
                 result_lines.extend(current_section_lines)
                 current_section_lines = []
@@ -56,8 +53,7 @@ def get_string(content: str) -> list[str]:
             inside_section = True
             continue
 
-        elif stripped in mots_stop:  # Modification ici: on vérifie l'égalité exacte
-            # Fin de section - on sauvegarde les lignes
+        elif stripped in mots_stop: 
             if current_section_lines:
                 result_lines.extend(current_section_lines)
                 current_section_lines = []
@@ -65,7 +61,6 @@ def get_string(content: str) -> list[str]:
             continue
 
         elif re.match(r"^\s*(\d{1,2}|[IVXLCDM]+)?[.\)]?\s*[A-Z][A-Za-z\s]{1,50}$", stripped) and len(stripped.split()) <= 6:
-            # Nouveau titre probablement
             if current_section_lines:
                 result_lines.extend(current_section_lines)
                 current_section_lines = []
@@ -75,11 +70,9 @@ def get_string(content: str) -> list[str]:
         if inside_section:
             current_section_lines.append(line)
 
-    # Ajouter les dernières lignes si nécessaire
     if current_section_lines:
         result_lines.extend(current_section_lines)
 
-    # Filtrer les lignes vides si besoin
     result_lines = [clean_string(line) for line in result_lines if line.strip()]
 
     return result_lines
@@ -127,19 +120,17 @@ def clean_string(section: str) -> str:
     for line in section.splitlines():
         stripped = line.strip()
 
-        # Ignorer les lignes vides
+
         if not stripped:
             continue
 
-        # Supprimer les numéros de pages isolés
         if re.fullmatch(r"\d{1,4}", stripped):
             continue
 
-        # Supprimer les noms d’auteurs typiques
+
         if re.fullmatch(r"([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?\s*(?:&|et|,|and)\s*)+[A-Z][a-z]+", stripped):
             continue
 
-        # Supprimer les lignes très courtes sans signification
         if len(stripped) <= 2:
             continue
 

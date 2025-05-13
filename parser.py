@@ -14,7 +14,7 @@ from parser_biblio import get_list as get_biblio
 from parser_auteur import get_string as get_auteur
 from parser_corps import get_string as get_corps
 from parser_intro import extract_introduction as get_intro
-import parser_conclusion
+from parser_conclusion import get_string as get_conclusion
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
 
@@ -215,7 +215,7 @@ def add_infos_to_file(fichier: Path, args) -> None:
 
                 intro = get_intro(content)
                 corps = get_corps(content)
-                conclusion = parser_conclusion.get_string(content)
+                conclusion = get_conclusion(content)
                 discussion = []
 
                 f.write("<article>\n")
