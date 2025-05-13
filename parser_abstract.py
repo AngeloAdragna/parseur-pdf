@@ -80,7 +80,7 @@ def get_string(text: str):
         if abstract[-1] == '-' if len(abstract) > 0 else False:
             p_index = len(abstract) # Index du "-"
             
-            # Extraction du mot qui a le tiret (regex équivalent : "\w+-")
+            # Extraction du mot qui a le tiret (regex équivalent : "\w+-$")
             p_word = abstract[:p_index].split()[-1] if p_index >= 0 else ""
             # Extraction du premier mot de la ligne suivante
             n_word = line.strip().split()[0] if line.strip() else ""
