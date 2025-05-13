@@ -73,7 +73,6 @@ def get_string(text: str):
     list(string)
         Texte en une ligne contenant l'abstract
     """
-    txt_lower = text.lower()
     abstract = ""
     abstract_lst = get_list(text)
     for i, line in enumerate(abstract_lst):
