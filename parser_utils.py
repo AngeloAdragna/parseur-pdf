@@ -61,8 +61,28 @@ def check_nl(before, after):
         True si le mot est présent dans le texte, False sinon
         True permet d'assumer que le mot existe
     """
-    if before.endswith("-"):
-        before = before[:-1]
-    if after.startswith("-"):
-        after = after[1:]
+    before = re.sub(r"\W", "", before)
+    after = re.sub(r"\W", "", after)
     return check_word(before + after)
+
+def return_word(before, after):
+    """
+    Retourne le mot complet en vérifiant les deux parties
+    Si le mot complet existe, il est retourné tel quel
+    Sinon, il est retourné avec un tiret entre les deux parties
+    
+    Parameters
+    ----------
+    before: string
+        Première partie du mot à vérifier
+    after: string
+        Deuxième partie du mot à vérifier
+        
+    Returns
+    -------
+    string
+        Mot complet, séparé par un tiret si nécessaire
+    """
+    if check_nl(before, after):
+        return before + after
+    return f"{before}-{after}"
