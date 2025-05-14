@@ -27,7 +27,7 @@ def get_list(text: str):
     discussions = text.split("\n")
     begin_found = False
     i=0
-    print(f"len discussions: {len(discussions)}")
+    # print(f"len discussions: {len(discussions)}")
     while i<len(discussions):
         if not(begin_found) and re.match(r"^[0-9XVI]*\.? *\w*Discussions?", discussions[i], re.IGNORECASE):
             # print(f"Begin found at {i}: {discussions[i]}")
