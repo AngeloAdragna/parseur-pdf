@@ -51,16 +51,25 @@ Ainsi il faut documenter tout les différents événements de la méthode Scrum 
 (réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint). 
 Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf). 
 
-## **Execution du programme** >A faire
+## **Execution du programme**
+```sh
+# Affichage de l'aide pour les options : 
+python parser.py -h
 
-    Format txt sans option  : python parser.py CORPUS_TRAIN/ CORPUS_TXT/
-    Format txt avec option  : python parser.py -t CORPUS_TRAIN/ CORPUS_TXT/
-    Format xml              : python parser.py -x CORPUS_TRAIN/ CORPUS_XML/
+# Pas d'option de sélection des fichiers à parser :
+python parser.py CORPUS_TRAIN/ CORPUS_TXT/          # Format txt sans option
+python parser.py -t CORPUS_TRAIN/ CORPUS_TXT/       # Format txt avec option
+python parser.py -x CORPUS_TRAIN/ CORPUS_XML/       # Format xml 
 
-    Résultats attendus:
+# Sélection manuelle des fichiers à parser :
+python parser.py -m CORPUS_TRAIN/ CORPUS_TXT/       # Format txt sans option
+python parser.py -t -m CORPUS_TRAIN/ CORPUS_TXT/    # Format txt avec option
+python parser.py -x -m CORPUS_TRAIN/ CORPUS_XML/    # Format xml
+```
+**Résultats attendus :**   
+Le répértoire CORPUS_TXT/ contiendra les fichiers texte avec uniquement le nom du fichier, le titre et l'abstract  
+Le répértoire CORPUS_XML/ contiendra les fichiers xml avec toutes les infos demandées pour le xml
 
-Le répértoire CORPUS_TXT/ contient les fichiers texte avec uniquement le nom du fichier, titre et abstract.
-Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos demandées pour le xml.
 
 ## **Revu Sprint 4**
 
@@ -71,7 +80,7 @@ Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos 
 - Les différents rendus des devs étaient très satisfaisant hormis pour Elvin qui à rendu un travail moyennement satisfaisant et en retard.
 - Un problème commun aux développeurs semble être le manque de robustesses du aux différements formats possibles au seins des PDF.
   
-## **Réunion planification Sprint 13/05/25** A faire images
+## **Réunion planification Sprint 13/05/25**
 
 ![notes sur papier](images/reunion4.jpg)  
 Retranscription :
@@ -93,7 +102,7 @@ Retranscription :
 - Améliorer les fonctionnalités du code.
 - Réaliser les artefacts compris dans le conteneur de ce sprint 4.
 
-## **Burndown**  A faire images
+## **Burndown**
 
 ![Exemple sortie](images/burndown4.jpg)
 
@@ -551,51 +560,75 @@ Le temps d'éxécution du programme n'a pas changé et reste le même que sans l
 ## **Retour sur le travail effectué (Rétrospective Sprint 4)**
 
 ### **Ce que nous avons déterminé**
+- Le menu au début de l’exécution du système sera implémenté afin de permettre à l'utilisateur de sélectionner les fichiers PDF à parser, plutôt que de traiter un répertoire complet.
+- La section `discussion` et `evaluation` seront fusionnées dans un seul élément XML `discussion`, selon la demande du client.
+- En cas de section manquante dans un PDF, la balise XML correspondante sera laissée vide, sans générer d'erreur ni d'exception.
+- La section `remerciements` sera ignorée et ne sera pas incluse dans le rendu XML.
+- Le format XML sera enrichi pour inclure les sections `introduction`, `corps`, `conclusion`, et `discussion`, conformément à la structure demandée par le client.
+- Les balises XML seront organisées de manière à correspondre aux sections exactes présentes dans le document, sans introduire de nouvelles sections non demandées.
+- La priorité sera donnée à la compatibilité des fonctionnalités avec le format des fichiers PDF utilisés, en tenant compte des différentes variantes possibles de structure.
 
-- Par défaut si une balise n'est pas détecté ou pas détectable la balise XML résultante sera vide.
-  
-- La balise discussion et évalutation doivent être fusionnées.
-- 
-- Les remerciements doivent être ignorés.
-
-### **Ce qui a bien fonctionné** 
-
-- Bonne répartition des tâches entre les membres, chacun a pu avancer sur sa partie sans trop d'interférences.
-
+### **Ce qui a bien fonctionné**
+- Bonne répartition des tâches entre les membres, chacun a pu avancer sur sa partie sans trop d’interférences.
 - L’intégration progressive des travaux (Colin, Elliot, Corentin) a permis une mise en commun fluide.
-
 - Les réunions Scrum ont été efficaces pour identifier les points bloquants et ajuster les priorités.
-
 - La génération des fichiers XML et TXT selon les besoins du client a été bien maîtrisée.
+- L’ajout du menu de sélection manuelle de fichiers améliore l’ergonomie de l’outil.
+- La détection de la section `Introduction` est globalement robuste, même si quelques cas spéciaux demeurent.
+- Le découpage précis du `Corps` de texte avec préservation des retours à la ligne facilite les traitements futurs.
+- Une réelle progression dans la qualité des contributions individuelles et de la documentation.
+- Réelle entraide entre Corentin et Elliot afin de pouvoir supprimer l'introduction à l'aide du REGEX de Corentin de la section `Corps` d'Elliot.
 
-- L’outil de mesure des performances a aidé à identifier les parties gourmandes du code.
+### **Ce qui a posé problème**
+- Le fichier *marcu_statistics_sentence_pass_one.pdf* reste problématique car il ne suit aucun des formats habituels pour les titres de section.
+- L'absence de numérotation dans certains fichiers empêche une récupération fiable des sections comme `Introduction`.
+- La reconnaissance automatique des débuts et fins de section `Corps` reste complexe en raison de l’hétérogénéité du corpus.
+- Certains cas extrêmes dans les séparations ligne/colonne ou les notes de bas de page parasitent encore le parsing.
+- Quelques divergences entre les formats XML générés par différents membres ont nécessité une harmonisation finale.
+- Une dépendance persistante à l’outil `pdftotext` (Linux uniquement) complique la portabilité.
 
-- Les comptes rendus sont de meilleure qualité.
-
-### **Ce qui a posé problème** 
-
-
-### **Ce qu’on doit améliorer** 
-
-
+### **Ce qu’on doit améliorer**
+- Uniformiser davantage la structure des balises XML générées par chaque module pour éviter des incohérences.
+- Proposer une détection plus sémantique pour les débuts de section en se basant sur le contenu et non uniquement les titres.
+- Prévoir une phase de nettoyage de texte en amont pour corriger automatiquement les caractères spéciaux ou artefacts liés au format PDF.
+- Ajouter des tests unitaires pour les nouvelles fonctions (`extract_introduction`, découpage du `corps`, menu de sélection).
+- Rendre l’application plus portable en envisageant une alternative multiplateforme à `pdftotext`.
+- Améliorer la couverture documentaire avec des exemples concrets dans le README final.
 
 ---
 
-## **Conclusion** : 
+## **Conclusion** :
 
 ### Selon Angelo Adragna
-
+- Suivi rigoureux de la méthode Scrum, avec une planification plus détaillée et des revues efficaces.
+- Coordination fluide malgré les difficultés techniques rencontrées sur certains fichiers.
+- Le squelette commun a facilité l’unification du rendu final.
+- Bonne anticipation des points de friction en amont des deadlines.
+- Une dynamique de groupe constructive et un gain notable en autonomie dans la rédaction des comptes rendus.
 
 ### Selon Corentin Saccoman
-
-
+- L’ajout du menu interactif permet une vraie valeur ajoutée à l’expérience utilisateur.
+- L'extraction de la section `Introduction` a nécessité des compromis mais fonctionne bien dans la majorité des cas.
+- Bonne maîtrise des expressions régulières et adaptation au corpus, avec des réflexions sur les limites à long terme.
+- Volonté de rendre le code robuste malgré les exceptions.
+- Quelques frustrations sur l'impossibilité de généraliser certains patterns, mais vision claire des pistes futures.
 
 ### Selon Elliot Pozucek
-
-
+- Le traitement de la section `Corps` a gagné en clarté, grâce au découpage ligne à ligne et au respect de la structure d’origine.
+- Le maintien des retours à la ligne est un choix pertinent pour une utilisation ultérieure du contenu.
+- Quelques difficultés à gérer les transitions entre les sections (`abstract`, `introduction`, `corps`), mais des solutions concrètes ont été apportées.
+- Le temps de traitement reste raisonnable malgré les nouveaux traitements.
+- Suggestion d’intégrer un système de logs plus fin pour suivre l’évolution de chaque fichier.
 
 ### Selon Colin Palazzetti Rubera
-
+- Travail de normalisation des formats XML et harmonisation des conventions entre les modules.
+- Poursuite des efforts sur la documentation (docstrings, structure).
+- Identification d’un besoin de meilleure robustesse dans les extractions d’informations critiques (ex. : titre, auteurs).
+- Propositions concrètes pour renforcer la résilience du système en cas de fichier malformé ou ambigu.
 
 ### Global
-
+Les modules développés sont plus stables, les intégrations se font sans blocage majeur, et les livrables sont conformes aux attentes.  
+L’autonomie de chaque membre est notable et les prises d’initiative (menu, gestion des sections, normalisation) vont au-delà des attentes initiales.  
+L’outil commence à être réellement exploitable pour le client, avec un usage plus flexible et une structure de sortie bien définie.  
+Il reste des améliorations possibles pour la robustesse et la portabilité, mais le cœur du système est désormais en place.  
+L'objectif reste le produit, c'est pourquoi, même si l'équipe souhaitait aller plus loin en termes de fonctionnalités, elle a su se contraindre à ce qui était imposé.
