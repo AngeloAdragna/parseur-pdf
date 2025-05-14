@@ -558,7 +558,7 @@ Le temps d'éxécution du programme n'a pas changé et reste le même que sans l
 - 
 - Les remerciements doivent être ignorés.
 
-### **Ce qui a bien fonctionné** A faire
+### **Ce qui a bien fonctionné** 
 
 - Bonne répartition des tâches entre les membres, chacun a pu avancer sur sa partie sans trop d'interférences.
 
@@ -571,67 +571,31 @@ Le temps d'éxécution du programme n'a pas changé et reste le même que sans l
 - L’outil de mesure des performances a aidé à identifier les parties gourmandes du code.
 
 - Les comptes rendus sont de meilleure qualité.
--
 
-### **Ce qui a posé problème**  A faire a la fin
+### **Ce qui a posé problème** 
 
-- Le fichier ACL2004 pose toujours problème car il ne suit aucun des patterns définis.
 
-- Les méthodes de recherche de pattern pour les références bibliographiques restent trop simples et spécifiques à notre corpus.
+### **Ce qu’on doit améliorer** 
 
-- Certaines optimisations de regex et de factorisation n’ont pas pu être intégrées à temps.
 
-- L’absence de gestion multiplateforme (ex. : Windows) n’a pas été traitée, alors qu’elle pourrait causer des erreurs.
-
-- La rédaction des documentations (docstrings, README) est parfois restée en retrait face à l’avancée du code.
-
-### **Ce qu’on doit améliorer**  A faire a la fin
-
-- Mettre en place des tests unitaires, notamment pour parse_arguments afin de préparer l’ajout d’options futures.
-
-- Rendre le code plus robuste en prévoyant les cas particuliers comme ACL2004, avec une gestion dédiée.
-
-- Améliorer la robustesse des méthodes de détection des sections (abstract, références) dans les textes.
-
-- Factoriser certaines parties du code et optimiser les regex pour réduire les coûts de performance.
-
-- Penser à une compatibilité multiplateforme (Windows/Linux) et prévoir la gestion d’erreurs liées à l’environnement.
 
 ---
 
-## **Conclusion** :  A faire a la fin
+## **Conclusion** : 
 
 ### Selon Angelo Adragna
 
-- La méthodologie Scrum (planification, mêlée quotidienne, revue, rétrospective) a structuré efficacement le travail.
-- Rôle clé en médiation, coordination des deadlines et rédaction progressive des artefacts.
-- Préparation des backlogs dès la première réunion et liste précise de questions pour cadrer les objectifs.
-- Mise en commun parfois difficile à cause d’un manque de détails sur les productions personnelles.
-- La prise en compte d’une deadline avancée a permis d’éviter un rush final.
 
 ### Selon Corentin Saccoman
 
-- Intégration du mode XML, structuration des fonctions pour gérer `-t` et `-x`.
-- Respect des attentes client en limitant certaines informations au mode XML.
-- Proposition d’ajouter des tests unitaires sur les arguments pour anticiper les évolutions.
-- Performances satisfaisantes, mais vigilance sur l’impact de la structure XML sur la taille des fichiers.
+
 
 ### Selon Elliot Pozucek
 
-- Développement de la récupération automatisée des références bibliographiques (méthodes adaptées au corpus mais encore peu robustes).
-- Ajout du mode `-r` pour les tests internes ; certaines méthodes sont gourmandes en temps d’exécution.
-- Limites identifiées liées à l’absence de structure sémantique (retours à la ligne) ; proposition d’y réfléchir pour les prochains sprints.
-- Cas particuliers (ex. ACL2004) nécessitant un traitement spécifique.
+
 
 ### Selon Colin Palazzetti Rubera
 
-- Harmonisation des docstrings au format Numpydoc pour améliorer la lisibilité et la documentation.
-- Détection d’améliorations potentielles : optimisation des regex, factorisation du code.
-- Problème de compatibilité (dépendance à `pdftotext` sous Linux), proposition de renforcer la portabilité.
-- Correction d’un petit bug dans la recherche d’abstracts.
 
 ### Global
 
-Le travail global effectué par l'équipe est satisfaisant.  
-Le travail des personnes impliquées est efficace et très satisfaisant.  
-La communication est bonne, et l'on distingue une réelle amélioration qualitative dans le travail de chacun.
