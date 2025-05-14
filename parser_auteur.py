@@ -95,7 +95,7 @@ def mapAuteurs(auteurs):
             asterisk_nom = re.sub(r'[∗\*]$', '', line.strip())
         
         # Trouver la ligne commençant par ∗ ou *
-        if re.match(r'^[∗\*]\s', line.strip()) or line.strip().startswith('∗') or line.strip().startswith('*'):
+        if re.match(r'^[∗\*]\s?', line.strip()):
             # On récupère les lignes suivantes jusqu’à trouver un email
             for j in range(i, len(lignes)):
                 l = lignes[j].strip()

@@ -8,11 +8,7 @@ def extract_introduction(content: str) -> str:
     # Découpage du texte ligne par ligne pour faciliter le traitement
     lines = content.splitlines()
 
-    intro_patterns = [
-        r"^\s*\d{0,2}\.?\s*(Introduction|INTRODUCTION)\b",
-        r"^\s*[IVX]{0,3}\.?\s*(Introduction|INTRODUCTION)\b"
-    ]
-
+    intro_pattern = r"^\s*[IVX0-9]{0,3}\.?\s*(Introduction)\b"
     next_section_pattern = r"^\s*(?:2|II)\.?\s+[A-Z][^\n]{0,100}$"
     specific_phrase = "A noisy-channel model for sentence compression"  # Spécifique au fichier marcu_statistics_sentence_pass_one.pdf qui ne contient pas de numérotation
 
@@ -20,7 +16,7 @@ def extract_introduction(content: str) -> str:
 
     # Recherche du début de l'introduction
     for i, line in enumerate(lines):
-        if any(re.match(pat, line.strip()) for pat in intro_patterns):
+        if re.match(intro_pattern, line.strip()):
             start_idx = i + 1 # + 1 pour ignorer le titre "Introduction" de la section
             break
 
@@ -54,8 +50,8 @@ def extract_introduction(content: str) -> str:
     if end_idx is None:
         end_idx = len(lines)
 
-    intro_text = " ".join(lines[start_idx:end_idx]).replace("\n", " ").replace("- ", "")
-    intro_text = re.sub(r"\s+", " ", intro_text).strip()
+    intro_text = " ".join(lines[start_idx:end_idx])
+    intro_text = re.sub(r"(\s+|-?\n)", " ", intro_text).strip()
 
     # Reformatage ~100 caractères sans couper les mots
     formatted = ""

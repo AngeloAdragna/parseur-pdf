@@ -24,7 +24,7 @@ def get_list(text: str):
         Liste de lignes contenant l'abstract
     """
     abstract = text.split("\n")
-    begin_found = end_found = False
+    begin_found = False
     i=0
     while i<len(abstract):
         # regex : Commence par "abstract", potentiellement précédé d'espace.s
@@ -37,9 +37,8 @@ def get_list(text: str):
         
         # regex : Commence par "Introduction", potentiellement précédé d'espace.s
         # ou d'une numérotation
-        if not(end_found) and re.match(r"^([1I]\.?)? ?Introduction", abstract[i], re.IGNORECASE):
+        if re.match(r"^([1I]\.?)? ?Introduction", abstract[i], re.IGNORECASE):
             abstract = abstract[:i]
-            end_found = True
             break # No need to continue the script
         
         i+=1 

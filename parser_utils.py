@@ -61,9 +61,8 @@ def check_nl(before, after):
         True si le mot est présent dans le texte, False sinon
         True permet d'assumer que le mot existe
     """
-    before = re.sub(r"\W", "", before)
-    after = re.sub(r"\W", "", after)
-    return check_word(before + after)
+    word = re.sub(r"\W", "", before+after)
+    return check_word(word)
 
 def return_word(before, after):
     """

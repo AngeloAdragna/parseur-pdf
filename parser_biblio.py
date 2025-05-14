@@ -53,10 +53,8 @@ def get_list(content: str) -> str:
     refs_raw = content[section_match.end():].strip()
 
     # on nettoie le texte brut
-    refs_raw = re.sub(r"-\n", "", refs_raw)      # jointure des mots cassés
-    refs_raw = re.sub(r"\n", " ", refs_raw)      # suppression des sauts de ligne
-    refs_raw = re.sub(r"\s+", " ", refs_raw).strip()
-
+    refs_raw = re.sub(r"(-?\n|\s+)", "", refs_raw)      # jointure des mots cassés
+    
     # il faut détecter le format utilisé
     has_bracket = re.search(r"\[\d+\]", refs_raw)               # format '[n]'
     has_dot = re.search(r"(?:^|\n)\s*\d{1,3}\.\s", content)     # format numéroté 'n.'
