@@ -19,14 +19,35 @@ Et vu que pour mes tests j'ai limité à un seul fichier, ça ne marchait évide
 - vérification de l'optimisation des affectations de variables
 
 ### Pistes d'amélioration
-
-
+IL y aura toujours moyen d'améliorer, dans les idées en vrac
+- Faire un menu interactif pour le choix des pdf à traiter :
+```
+[ ] pdf 1
+[ ] pdf 2
+[x] pdf 3
+[x] pdf 4
+[ ] pdf 5
+```
 
 ### Analyse de performances
-Les performances moins bonnes de python sont compensées par 
+Les performances moins bonnes de python sont compensées par une simplicité de lecture
+
+Pour ce qui est de l'optimisation, j'ai essayé de rassembler les regex lorsque c'était possible et de retirer des affectations qui se suivent :
+```py
+a += b
+a += c
+a += d
+```
+devient
+```py
+a += b + c + d
+```
+
 
 ### **Remarque**
+Pour gagner du temps dans l'harminisation, il aurait fallu mettre une structure de base pour les parties (`parser_xxx.py`), qui aurait permis d'avoir directement une consistence.
 
+Ceci n'aurait été possible que si les potentielles améliorations demandées avaient été présentées par le client au départ (et pas une idée floue de l'attendu)
 
 
 ### Dates clés :
