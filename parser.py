@@ -244,8 +244,7 @@ def add_infos_to_file(fichier: Path, args) -> None:
                 f.write("\t</conclusion>\n")
 
                 f.write("\t<discussion>\n")
-                for d in discussion:
-                    f.write(f"\t\t{d}\n")
+                f.write(f"\t\t{discussion}\n")
                 f.write("\t</discussion>\n")
 
                 f.write("\t<biblio>\n")
