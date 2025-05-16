@@ -18,11 +18,11 @@
 - Angelo est `SCRUM Master` et `Product Owner`, il doit rédiger le rapport avec les différents artefacts.
 - Corentin, Elliot, Colin et Elvin sont développeurs.
 - Les développeurs travaillent par binômes.
-- Une partie de l’équipe (Corentin et Elliot) doit passer votre système sur les 10 articles pour détecter les limites fixes.
+- Une partie de l’équipe (Corentin et Elliot) doit passer votre système sur les 10 articles pour détecter les limites fixes,ils devront verifier si le nombre de frontières veritables découpé par l'humain est identique à celui découpé automatiquement.
 - Un second binôme devra s'occuper d'établir le corpus de référence les frontières (souples) des sections en analysant miniscieusement à la main chaque phrases et comptabiliser à la main le nombre de points.
 
 ## **Objectif**
-
+Le Département de contrôle de qualité du LIA demande une évaluation de la qualité du système.
 Cette évaluation peut être réalisée en fonction de la précision obtenue sur un corpus de référence
 (découpage de sections fait par des humains). Ainsi, les fragments de texte extraits présents dans les
 références seront comptabilisés positivement; leur absence sera pénalisée (voir l’exemple en Annexe).
@@ -35,16 +35,7 @@ Il faut ajouter une dernière phase d’évaluation du système qui reporte le r
 La précision sera mesurée sur un corpus de test de 10 nouveaux articles PDF. Une partie de l’équipe
 doit passer votre système sur les 10 articles, une autre doit établir le corpus de référence les frontières
 (souples) des sections. Enfin, vous devez calculer (à la main si vous voulez être agiles) la précision de
-votre système comme la moyenne sur l’ensemble des articles parsés. Finalement, un rapport doit être
-écrit sous forme d’article scientifique. Cet article doit avoir les éléments suivantes :
-• Titre
-• Auteurs
-• Abstract
-• Méthode (explication du système)
-• Résultats
-• Conclusions
-L’article doit être rédigé de préférence en Latex (bonus de +1pt) et doit être rendu en format PDF sur le
-ENT (minimum 3, maximum 4 pages).
+votre système comme la moyenne sur l’ensemble des articles parsés.
 
 Les détailles sont dans le [sprint5](sprint5_carnet_du_produit.pdf). 
 
@@ -81,7 +72,6 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 
 ## **Sprint Backlog**
    - Test précision avec des frontières strictes.
-   - Test précision avec des frontières souples.
    - Test précision avec des frontières souples.
    - Calcul de la précision : Précision = Sections_correctes_trouvées_par_le_système / Sections_trouvées_par_le_système
 - Améliorer les fonctionnalités du code.
