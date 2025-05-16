@@ -50,8 +50,8 @@ def extract_introduction(content: str) -> str:
     if end_idx is None:
         end_idx = len(lines)
 
-    intro_text = " ".join(lines[start_idx:end_idx])
-    intro_text = re.sub(r"(\s+|-?\n)", " ", intro_text).strip()
+    intro_text = " ".join(lines[start_idx:end_idx]).replace("\n", " ").replace("- ", "")
+    intro_text = re.sub(r"\s+", " ", intro_text).strip()
 
     # Reformatage ~100 caractères sans couper les mots
     formatted = ""
