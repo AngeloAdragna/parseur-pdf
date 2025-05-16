@@ -15,7 +15,7 @@
 
 ## **Rôles**
 
-- Angelo est `SCRUM Master` et `Product Owner`, il doit rédiger le rapport avec les différents artefacts.
+- Angelo est `SCRUM Master` et `Product Owner`, il doit rédiger le rapport avec les différents artefacts ainsi qu'une ou deux pages synthétiques du projet.
 - Corentin, Elliot, Colin et Elvin sont développeurs.
 - Les développeurs travaillent par binômes.
 - Une partie de l’équipe (Corentin et Elliot) doit passer votre système sur les 10 articles pour détecter les limites fixes,ils devront verifier si le nombre de frontières veritables découpé par l'humain est identique à celui découpé automatiquement.
@@ -98,6 +98,7 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 - La rédaction se fait au fil du sprint.
 - Création d'un squelette de rendu pour facilier la mise en commun du travail de chacun. Je propose donc un modèle en raison du manque de détails dans les productions personnelles des développeurs.
 - Médiation et conseils aux développeurs.
+- Rédaction synthétique en une ou deux pages.
 
 ---
 
