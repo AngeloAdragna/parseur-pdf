@@ -48,11 +48,10 @@ def get_list(text: str):
         
         
     return discussions
-    pass
 
 def get_string(text: str):
     """
-    Retourne la partie discussion dans le texte brut de l'article, en une seule ligne, en enlevant les retours à la ligne
+    Retourne la partie discussion dans le texte brut de l'article, sur plusieurs lignes formatées (~100 caractères).
     ⚠️ Ne doit pas être utilisé en même temps que get_list 
 
     Parameters
@@ -62,37 +61,11 @@ def get_string(text: str):
 
     Returns
     -------
-    list(string)
-        Texte en une ligne contenant la partie discussion
+    str
+        Texte formaté contenant la partie discussion
     """
-    txt_lower = text.lower()
-    discussions = ""
-    discussions_lst = get_list(text)
-    for i, line in enumerate(discussions_lst):
-        # Traitement spécial si la ligne précédente fini par "-"
-        if discussions[-1] == '-' if len(discussions) > 0 else False:
-            p_index = len(discussions) # Index du "-"
-            
-            # Extraction du mot qui a le tiret (regex équivalent : "\w+-")
-            p_word = discussions[:p_index].split()[-1] if p_index >= 0 else ""
-            # Extraction du premier mot de la ligne suivante
-            n_word = line.strip().split()[0] if line.strip() else ""
-            
-            if parser_utils.check_nl(p_word, n_word):
-                discussions = discussions[:-1] # On ajoute la ligne, mais en retirant le "-"
-                
-            # Le mot n'existe pas, ou il n'y a rien à traiter, alors ajout de la ligne sans " "
-            discussions += line.strip()
-            continue # Ignorer le traitement normal
-        
-        # Traitement normal
-        if discussions.endswith("."):
-            discussions += "\n"
-        else:
-            discussions += " "
-        discussions += line.strip()
-        
-    return discussions.strip()
+    lines = get_list(text)
+    return parser_utils.clean_and_format(lines)
         
         
         

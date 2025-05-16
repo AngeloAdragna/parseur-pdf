@@ -3,14 +3,14 @@
 Cette partie du parser se charge de l'extraction de la conclusion.
 
 Elle permet de récupérer la conclusion à partir des sections 'Conclusion' et/ou 'Future Work'.
-
 """
 
 import re
+import parser_utils
 
-def get_string(content: str) -> list[str]:
+def get_string(content: str) -> str:
     """
-    Extrait toutes les sections pertinentes du texte et retourne un tableau de lignes.
+    Extrait la section de conclusion du texte brut et retourne une chaîne formatée.
 
     Parameters
     ----------
@@ -19,8 +19,8 @@ def get_string(content: str) -> list[str]:
 
     Returns
     -------
-    list[str]
-        Liste des lignes extraites des sections cibles.
+    str
+        Texte de conclusion nettoyé et formaté (~100 caractères par ligne).
     """
     mots_stop = ["Acknowledgements", "Acknowledgments", "References", "Acknowledgment"]
 
@@ -38,8 +38,8 @@ def get_string(content: str) -> list[str]:
     stop_pattern = build_section_regex(mots_stop)
 
     lines = content.splitlines()
-    result_lines = []  
-    current_section_lines = [] 
+    result_lines = []
+    current_section_lines = []
     inside_section = False
 
     for line in lines:
@@ -53,7 +53,7 @@ def get_string(content: str) -> list[str]:
             inside_section = True
             continue
 
-        elif stripped in mots_stop: 
+        elif stripped in mots_stop:
             if current_section_lines:
                 result_lines.extend(current_section_lines)
                 current_section_lines = []
@@ -73,16 +73,13 @@ def get_string(content: str) -> list[str]:
     if current_section_lines:
         result_lines.extend(current_section_lines)
 
-    result_lines = [clean_string(line) for line in result_lines if line.strip()]
-
-    return result_lines
+    return parser_utils.clean_and_format(result_lines)
 
 def build_section_regex(keywords : list[str] ) ->list[str]:
     """
-    
     Motif regex pour identifier les sections cibles
 
-     Parameters
+    Parameters
     ----------
     keywords : list[str]
         Sections cibles
@@ -98,42 +95,3 @@ def build_section_regex(keywords : list[str] ) ->list[str]:
         r")\s*$",
         re.IGNORECASE
     )
-
-
-
-def clean_string(section: str) -> str:
-    """
-    Permet de nettoyer le code extrait de la conclusion.
-
-    Parameters
-    ----------
-    section : str
-        Texte brut de la section.
-
-    Returns
-    -------
-    str
-        Texte nettoyé.
-    """
-    cleaned_lines = []
-
-    for line in section.splitlines():
-        stripped = line.strip()
-
-
-        if not stripped:
-            continue
-
-        if re.fullmatch(r"\d{1,4}", stripped):
-            continue
-
-
-        if re.fullmatch(r"([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?\s*(?:&|et|,|and)\s*)+[A-Z][a-z]+", stripped):
-            continue
-
-        if len(stripped) <= 2:
-            continue
-
-        cleaned_lines.append(stripped)
-
-    return "\n".join(cleaned_lines)

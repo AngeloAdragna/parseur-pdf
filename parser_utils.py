@@ -85,3 +85,46 @@ def return_word(before, after):
     if check_nl(before, after):
         return before + after
     return f"{before}-{after}"
+
+def clean_and_format(lines: list[str]) -> str:
+    """
+    Nettoie une liste de lignes de texte et la formate à ~100 caractères par ligne avec indentations.
+
+    Parameters
+    ----------
+    lines : list[str]
+        Lignes extraites d'une section d'un document.
+
+    Returns
+    -------
+    str
+        Texte propre et reformatté.
+    """
+    cleaned_lines = []
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+        line = re.sub(r"-\s*$", "", line)            # Suppression des coupures de mots
+        line = re.sub(r"[\x00-\x1F]+", "", line)     # Suppression des caractères de contrôle
+        cleaned_lines.append(line)
+
+    raw_text = " ".join(cleaned_lines)
+    raw_text = re.sub(r"\s+", " ", raw_text).strip()
+
+    # Reformater tous les ~100 caractères
+    formatted = ""
+    i = 0
+    while i < len(raw_text):
+        if i + 100 >= len(raw_text):
+            formatted += raw_text[i:].strip()
+            break
+        next_space = raw_text.find(" ", i + 100)
+        if next_space == -1:
+            formatted += raw_text[i:].strip()
+            break
+        formatted += raw_text[i:next_space].strip() + "\n\t\t"
+        i = next_space + 1
+
+    return formatted.strip()
+

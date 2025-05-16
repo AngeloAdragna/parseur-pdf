@@ -22,6 +22,12 @@ def get_string(content: str) -> str:
     """
     # Nettoyage en lignes pour trouver la position de fin (dernière section considérée)
     lines = content.splitlines()
+    
+    # Paterne du header de l'introduction
+    intro_patterns = [
+        r"^\s*\d{0,2}\.?\s*(Introduction|INTRODUCTION)\b",
+        r"^\s*[IVX]{0,3}\.?\s*(Introduction|INTRODUCTION)\b"
+    ]
 
     # Motif générique pour la section suivante (numérotée)
     next_section_pattern = r"^\s*(?:2|II)\.?\s+[A-Z][^\n]{0,100}$"
@@ -33,7 +39,7 @@ def get_string(content: str) -> str:
 
     # Trouver l'index de l'introduction
     for i, line in enumerate(lines):
-        if re.match(r"^\s*[IVX0-9]{0,3}\.?\s*(Introduction)\b", line.strip(), re.IGNORECASE):
+        if any(re.match(pat, line.strip()) for pat in intro_patterns):
             intro_idx = i
             break
 
@@ -70,13 +76,19 @@ def get_string(content: str) -> str:
     # Patternes de fin
     # Pas de IgnoreCase car on veut matcher exactement les majuscules en début de mot
     end_keywords = [
-        "Conclusions?( |\w)*", "Discussions?( and future work)?", "Future Work", "Evaluation"]
-    end_pattern = rf"^\s*[IVX0-9]?\.?\s*({'|'.join(keyword for keyword in end_keywords)})\s*$"
+        "Conclusion", "Discussion", "Future Work", "Conclusions", "Evaluation",
+        "Conclusions and Future Work", "Discussion and Future Work",
+        "CONCLUSIONS", "DISCUSSION", "FUTURE WORK"]
+    end_patterns = [
+        rf"^\s*\d{{1,2}}\.?\s+({'|'.join(re.escape(keyword) for keyword in end_keywords)})\s*$",
+        rf"^\s*[IVX]+\.\s+({'|'.join(re.escape(keyword.upper()) for keyword in end_keywords)})\s*$",
+        rf"^\s*({'|'.join(re.escape(keyword) for keyword in end_keywords)})\s*$"
+    ]
 
     # Trouver l'index de la fin (avec les patternes de fin)
     for i in range(len(lines) - 1, start_idx, -1):
         line = lines[i].strip()
-        if re.match(end_pattern, line, re.IGNORECASE):
+        if any(re.match(pat, line) for pat in end_patterns):
             end_idx = i
             break
 
@@ -85,8 +97,8 @@ def get_string(content: str) -> str:
         end_idx = len(lines)
 
     # Concaténer les lignes de start_idx à end_idx (exclu)
-    corps = " ".join(lines[start_idx:end_idx])
-    corps = re.sub(r"(\s+|-?\n)", " ", corps).strip()
+    corps = " ".join(lines[start_idx:end_idx]).replace("\n", " ").replace("- ", "")
+    corps = re.sub(r"\s+", " ", corps).strip()
     corps = re.sub(r"[\x00-\x1F]+", "", corps)    # suppression des caractères illisibles
 
     # Reformater tous les ~100 caractères
