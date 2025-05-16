@@ -1,5 +1,5 @@
 *.txt
-*.xml
+CORPUS_*/
 *.log
 __pycache__/
 *.exe

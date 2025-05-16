@@ -8,7 +8,7 @@ def extract_introduction(content: str) -> str:
     # Découpage du texte ligne par ligne pour faciliter le traitement
     lines = content.splitlines()
 
-    intro_pattern = r"^\s*[IVX0-9]{0,3}\.?\s*(Introduction)\b"
+    intro_pattern = r"^\s*[IVX0-9]{0,3}\.?\s*(Introduction|INTRODUCTION)\b"
     next_section_pattern = r"^\s*(?:2|II)\.?\s+[A-Z][^\n]{0,100}$"
     specific_phrase = "A noisy-channel model for sentence compression"  # Spécifique au fichier marcu_statistics_sentence_pass_one.pdf qui ne contient pas de numérotation
 
