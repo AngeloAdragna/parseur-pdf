@@ -9,7 +9,7 @@
 - Elvin Fichot-Corgeron
 
 **lien vers Github**
-[README Sprint 4](https://github.com/conception-logicielle-CERI/parseur-pdf/edit/sprint-4/README_sprint4.md)
+[README Sprint 5](https://github.com/conception-logicielle-CERI/parseur-pdf/edit/sprint-5/README_sprint5.md)
 
 <!--pandoc README_sprint1.md -o README_sprint1.pdf --pdf-engine=xelatex-->
 
@@ -17,39 +17,36 @@
 
 - Angelo est `SCRUM Master` et `Product Owner`, il doit rédiger le rapport avec les différents artefacts.
 - Corentin, Elliot, Colin et Elvin sont développeurs.
-- Les développeurs s’occupent de l’enrichissement du xml avec de nouvelles balises : introduction ,corps, conclusion, discussion ainsi que l'ajoue d'un menu au lancement.
-- Corentin doit récupérer la section `intro` et réaliser le menu de lancement.
-- Elliot doit récupérer la section `corps`.
-- Colin doit récupérer la section `discussion` (`evaluation`) et s'occupe de la redondance de certains codes.
-- Elvin doit récupérer la section `conclusion` comprenant également  par exemple  `Travaux à venir` ou `Perspectives`.
+- Les développeurs travaillent par binômes.
+- Une partie de l’équipe (Corentin et Elliot) doit passer votre système sur les 10 articles pour détecter les limites fixes.
+- Un second binôme devra s'occuper d'établir le corpus de référence les frontières (souples) des sections en analysant miniscieusement à la main chaque phrases et comptabiliser à la main le nombre de points.
 
 ## **Objectif**
 
-Suite à d’autres études de marché, nous avons conclu que la structure XML doit être enrichie avec les
-sections suivantes:
-```xml
-<article>
- <preamble> Le nom du fichier d’origine </preamble>
- <titre> Le titre du papier </titre>
- <auteur> La section auteurs et leur adresse</auteur>
- <abstract> Le résumé de l’article</abstract>
- <introduction> La introduction</introduction>
- <corps> Le développement du papier</corps>
- <conclusion> La conclusion du papier</conclusion>
- <discussion> La discussion du papier</discussion>
- <biblio> Les références bibliographiques du papier</biblio>
-</article>
-```
+Cette évaluation peut être réalisée en fonction de la précision obtenue sur un corpus de référence
+(découpage de sections fait par des humains). Ainsi, les fragments de texte extraits présents dans les
+références seront comptabilisés positivement; leur absence sera pénalisée (voir l’exemple en Annexe).
+La précision sera calculée comme suit :
+ Précision = Sections_correctes_trouvées_par_le_système / Sections_trouvées_par_le_système
+Une section sera considérée correcte si :
+a) Toutes ses phrases ont été bien détectées : frontières strictes.
+b) Quelques phrases peuvent chevaucher les sections (± 2 phrases) : frontières souples.
+Il faut ajouter une dernière phase d’évaluation du système qui reporte le résultat de la précision.
+La précision sera mesurée sur un corpus de test de 10 nouveaux articles PDF. Une partie de l’équipe
+doit passer votre système sur les 10 articles, une autre doit établir le corpus de référence les frontières
+(souples) des sections. Enfin, vous devez calculer (à la main si vous voulez être agiles) la précision de
+votre système comme la moyenne sur l’ensemble des articles parsés. Finalement, un rapport doit être
+écrit sous forme d’article scientifique. Cet article doit avoir les éléments suivantes :
+• Titre
+• Auteurs
+• Abstract
+• Méthode (explication du système)
+• Résultats
+• Conclusions
+L’article doit être rédigé de préférence en Latex (bonus de +1pt) et doit être rendu en format PDF sur le
+ENT (minimum 3, maximum 4 pages).
 
-Également, une nouvelle exigence du département de production, demande d'ajouter un menu au début
-de l’exécution du système afin de choisir certains PDFs à parser (pas le répertoire complet).  
-Rendu : Avant sprint final  
-Le système final, et les versions intermédiaires doivent être placés sur Github ; chaque version dans
-une branche différente. Le fichier README.md doit contenir une explication générale du système et la
-procédure nécessaire pour lancer les programmes.  
-Ainsi il faut documenter tout les différents événements de la méthode Scrum en ajoutant sur l’ENT des photos de votre travail
-(réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint). 
-Les détailles sont dans le [sprint3](sprint3_carnet_du_produit.pdf). 
+Les détailles sont dans le [sprint5](sprint5_carnet_du_produit.pdf). 
 
 ## **Execution du programme**
 ```sh
