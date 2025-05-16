@@ -194,7 +194,11 @@ def add_infos_to_file(fichier: Path, args) -> None:
     with open(fichier, "r", encoding="utf-8") as f:
         content = f.read()
         utils_set(content)
-    title = get_title(content)   
+    try:
+        title = get_title(content)   
+    except ValueError as e:
+        print(f"Erreur lors de l'extraction du titre pour {filename} : {e}")
+        title = "Titre non trouvé"
     abstract = get_abstract(content)
 
     # si r en argument, on veut laisser la sortie de pdftotext -raw dans les fichiers de sortie
