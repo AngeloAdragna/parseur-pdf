@@ -36,7 +36,6 @@ La précision sera mesurée sur un corpus de test de 10 nouveaux articles PDF. U
 doit passer votre système sur les 10 articles, une autre doit établir le corpus de référence les frontières
 (souples) des sections. Enfin, vous devez calculer (à la main si vous voulez être agiles) la précision de
 votre système comme la moyenne sur l’ensemble des articles parsés.
-
 Les détailles sont dans le [sprint5](sprint5_carnet_du_produit.pdf). 
 
 ## **Execution du programme**
@@ -55,12 +54,11 @@ python parser.py -t -m CORPUS_TRAIN/ CORPUS_TXT/    # Format txt avec option
 python parser.py -x -m CORPUS_TRAIN/ CORPUS_XML/    # Format xml
 ```
 **Résultats attendus :**   
-Le répértoire CORPUS_TXT/ contiendra les fichiers texte avec uniquement le nom du fichier, le titre et l'abstract  
-Le répértoire CORPUS_XML/ contiendra les fichiers xml avec toutes les infos demandées pour le xml
+Le répértoire CORPUS_TXT/ contiendra les fichiers texte avec uniquement le nom du fichier, le titre et l'abstract.
+Le répértoire CORPUS_XML/ contiendra les fichiers xml avec toutes les infos demandées pour le xml.
 
 
 ## **Revu Sprint 5**
-
 - Debrief sur le produit du quatrième sprint mitigé. Le travail a été effecuté sans être testé, ceci à causé de gros problème à l'aube du sprint 5.
 - Répartition des tâches par binômes selon les affinités de chacun. Communication très difficile.
 - Les différents rendus des devs étaient satisfaisants.
@@ -160,16 +158,6 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
   ---
 
 ## **Retour sur le travail effectué (Rétrospective Sprint 5)**
-
-### **Ce que nous avons déterminé**
-- Le menu au début de l’exécution du système sera implémenté afin de permettre à l'utilisateur de sélectionner les fichiers PDF à parser, plutôt que de traiter un répertoire complet.
-- La section `discussion` et `evaluation` seront fusionnées dans un seul élément XML `discussion`, selon la demande du client.
-- En cas de section manquante dans un PDF, la balise XML correspondante sera laissée vide, sans générer d'erreur ni d'exception.
-- La section `remerciements` sera ignorée et ne sera pas incluse dans le rendu XML.
-- Le format XML sera enrichi pour inclure les sections `introduction`, `corps`, `conclusion`, et `discussion`, conformément à la structure demandée par le client.
-- Les balises XML seront organisées de manière à correspondre aux sections exactes présentes dans le document, sans introduire de nouvelles sections non demandées.
-- La priorité sera donnée à la compatibilité des fonctionnalités avec le format des fichiers PDF utilisés, en tenant compte des différentes variantes possibles de structure.
-
 ### **Ce qui a bien fonctionné**
 - Bonne répartition des tâches entre les membres, chacun a pu avancer sur sa partie sans trop d’interférences.
 - L’intégration progressive des travaux (Colin, Elliot, Corentin) a permis une mise en commun fluide.
