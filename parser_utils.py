@@ -105,11 +105,11 @@ def clean_and_format(lines: list[str]) -> str:
         line = line.strip()
         if not line:
             continue
-        line = re.sub(r"-\s*$", "", line)            # Suppression des coupures de mots
+        #line = re.sub(r"-\s*$", "", line)            # Suppression des coupures de mots
         line = re.sub(r"[\x00-\x1F]+", "", line)     # Suppression des caractères de contrôle
         cleaned_lines.append(line)
 
-    raw_text = " ".join(cleaned_lines)
+    raw_text = " ".join(cleaned_lines).replace("\n", " ").replace("- ", "")
     raw_text = re.sub(r"\s+", " ", raw_text).strip()
 
     # Reformater tous les ~100 caractères
