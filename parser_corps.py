@@ -44,7 +44,7 @@ def get_string(content: str) -> str:
             break
 
     if intro_idx is None:
-        return "Introduction non trouvée"
+        return "Section non trouvée"
     
     # # Fusionner les lignes pour recherche textuelle
     full_text = " ".join(lines[intro_idx:])

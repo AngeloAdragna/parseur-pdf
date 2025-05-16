@@ -21,7 +21,7 @@ def extract_introduction(content: str) -> str:
             break
 
     if start_idx is None:
-        return None
+        return "Section non trouvée"
 
     # Fusionner les lignes pour recherche textuelle
     full_text = " ".join(lines[start_idx:])

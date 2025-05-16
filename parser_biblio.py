@@ -47,7 +47,7 @@ def get_list(content: str) -> str:
         section_match = match
 
     if not section_match:
-        return "Aucune section de références détectée."
+        return["Aucune section de références détectée."]
 
     # on extrait le contenu qui nous intéresse
     refs_raw = content[section_match.end():].strip()
