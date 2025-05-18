@@ -10,7 +10,7 @@
 
 ### **Remarque**
 
-### **Réussi**
+### **Précision**
 
 ### **Piste d'amélioration**
 

@@ -61,7 +61,7 @@ python parser.py -x -m --no-verbose CORPUS_TRAIN/ CORPUS_XML/ # Séléction manu
 python parser.py -r CORPUS_TRAIN/ CORPUS_RAW/    
 ```
 **Résultats attendus :**   
-Le répértoire CORPUS_TXT/ contiendra les fichiers texte avec uniquement le nom du fichier, le titre et l'abstract.
+Le répértoire CORPUS_TXT/ contiendra les fichiers texte avec uniquement le nom du fichier, le titre et l'abstract.  
 Le répértoire CORPUS_XML/ contiendra les fichiers xml avec toutes les infos demandées pour le xml.
 
 
