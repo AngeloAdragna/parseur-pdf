@@ -55,6 +55,7 @@ def compute_precisions(xml_file_path: str) -> None:
             print(f"{nom.ljust(max_name_length)} : {precision_str}")
 
         # Affichage de la précision globale
+        global_precision = global_precision / len(results)
         print(f"\nPrécision globale : {global_precision:.2%}")
 
     except FileNotFoundError:
