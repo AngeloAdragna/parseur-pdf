@@ -85,13 +85,13 @@ def pdfs_to_format(repertoire_entree: Path, repertoire_sortie: str, args):
     """
     # D'abord vérifier que le répertoire d'entrée est bien différent de celui de sortie (il ne faut pas écraser l'entrée)
     if str(repertoire_entree) == repertoire_sortie:
-        raise ValueError("Le repertoire d'entree et celui de sortie doivent etre differents")
+        raise ValueError("Le répertoire d'entrée et celui de sortie doivent être différents.")
     
     # Récupérer la liste des fichiers pdfs
     pdfs = list_pdfs(repertoire_entree, args)
 
     if pdfs == [] :
-        print("Aucun fichier n'a ete sélectionné. Sortie du programme...")
+        print("Aucun fichier n'a été sélectionné. Sortie du programme...")
         return
     
     # Création du répertoire de sortie
@@ -136,7 +136,8 @@ def convert_pdf_file(fichier_pdf: Path, repertoire_sortie: Path, args):
             ["pdftotext", "-raw", str(fichier_pdf), str(fichier_sortie)],
             check=True
         )
-        print(f"{fichier_pdf.name} converti en {fichier_sortie.name}")
+        if not args.no_verbose :
+            print(f"{fichier_pdf.name} converti en {fichier_sortie.name}")
     except subprocess.CalledProcessError as e:
         print(f"Erreur lors de la conversion de {fichier_pdf.name} : {e}")
 
@@ -321,6 +322,9 @@ def parse_arguments():
     group.add_argument("-x", action="store_true", help="Parser en XML.")
     group.add_argument("-r", action="store_true", help="Les fichiers texte contiennent la sortie de pdftotext -raw (pour tests)" )
 
+    # Ajout d'un argument --no-verbose pour désactiver les messages d'information
+    parser.add_argument("--no-verbose", action="store_true", help="N'affiche pas les informations détaillées pendant l'exécution.")
+
     # Ajout d'un argument -m (menu) pour sélectionner quels fichiers parser
     parser.add_argument("-m", action="store_true", help="Menu : Sélection des fichiers à parser 1 par 1")
 
@@ -364,9 +368,10 @@ def main():
     if not pdfs:
         print("Aucun fichier PDF trouvé dans ce répertoire.")
     else:
-        print("Fichiers PDF trouvés :")
-        for pdf in pdfs:
-            print(" -", pdf.name)
+        if not args.no_verbose:
+            print("Fichiers PDF trouvés :")
+            for pdf in pdfs:
+                print(" -", pdf.name)
 
     # Convertir les fichiers PDF en texte
     pdfs_to_format(chemin_entree, dossier_sortie, args)

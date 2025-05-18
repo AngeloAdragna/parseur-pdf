@@ -2,6 +2,12 @@
 
 ### **Développement**
 
+#### Comptage des frontières véritables
+
+#### Comtage des frontières trouvées
+
+#### Ajout de l'option --no-verbose
+
 ### **Remarque**
 
 ### **Réussi**

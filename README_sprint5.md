@@ -43,14 +43,22 @@ Les détailles sont dans le [sprint5](sprint5_carnet_du_produit.pdf).
 python parser.py -h
 
 # Pas d'option de sélection des fichiers à parser :
-python parser.py CORPUS_TRAIN/ CORPUS_TXT/          # Format txt sans option
-python parser.py -t CORPUS_TRAIN/ CORPUS_TXT/       # Format txt avec option
-python parser.py -x CORPUS_TRAIN/ CORPUS_XML/       # Format xml 
+python parser.py CORPUS_TRAIN/ CORPUS_TXT/                    # Format txt sans option
+python parser.py -t CORPUS_TRAIN/ CORPUS_TXT/                 # Format txt avec option
+python parser.py -x CORPUS_TRAIN/ CORPUS_XML/                 # Format xml 
 
 # Sélection manuelle des fichiers à parser :
-python parser.py -m CORPUS_TRAIN/ CORPUS_TXT/       # Format txt sans option
-python parser.py -t -m CORPUS_TRAIN/ CORPUS_TXT/    # Format txt avec option
-python parser.py -x -m CORPUS_TRAIN/ CORPUS_XML/    # Format xml
+python parser.py -m CORPUS_TRAIN/ CORPUS_TXT/                 # Format txt sans option
+python parser.py -t -m CORPUS_TRAIN/ CORPUS_TXT/              # Format txt avec option
+python parser.py -x -m CORPUS_TRAIN/ CORPUS_XML/              # Format xml
+
+# Option pour ne pas afficher les informations de parsage
+python parser.py --no-verbose CORPUS_TRAIN/ CORPUS_TXT/       # Format txt sans option sans les infos de parsage
+python parser.py -x --no-verbose CORPUS_TRAIN/ CORPUS_XML/    # Format xml sans les infos de parsage
+python parser.py -x -m --no-verbose CORPUS_TRAIN/ CORPUS_XML/ # Séléction manuelle des fichiers à parser sans les infos de parsage
+
+# Format raw (sortie brute de pdftotext) pour le débug
+python parser.py -r CORPUS_TRAIN/ CORPUS_RAW/    
 ```
 **Résultats attendus :**   
 Le répértoire CORPUS_TXT/ contiendra les fichiers texte avec uniquement le nom du fichier, le titre et l'abstract.
