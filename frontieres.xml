@@ -1,3 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Ce fichier contient les données nécessaires à l'évaluation du CORPUS_TEST -->
+<!-- La balise <frontieres-veritables> contient le nombre de sections réellement présentent dans l'article en pdf -->
+<!-- La balise <frontieres-trouvees> contient le nombre de sections présentent dans le XML après parsage. On ne tient pas compte de la section <preamble> (toujours présente) -->
+
 <A_Benders_Decomposition_Approach_toCorrelation_Clustering.pdf>
 	<titre>
         1-2
@@ -23,9 +29,13 @@
 	<biblio>
 		730-818
 	</biblio>
+
 	<frontieres-veritables>
 		7
 	</frontieres-veritables>
+    <frontieres-trouvees>
+        7
+    </frontieres-trouvees>
 </A_Benders_Decomposition_Approach_toCorrelation_Clustering.pdf>
 
 <A_memetic_algorithm_for_community_detectionin_signed_networks.pdf>
@@ -53,9 +63,13 @@
 	<biblio>
 		1419-1653
 	</biblio>
+
 	<frontieres-veritables>
 		7
 	</frontieres-veritables>
+    <frontieres-trouvees>
+        7
+    </frontieres-trouvees>
 </A_memetic_algorithm_for_community_detectionin_signed_networks.pdf>
 
 <An_Improved_Branch-and-Cut_Code_for_the_Maximum_Balanced_Subgraph_of_a_Signed_Graph.pdf>
@@ -83,9 +97,13 @@
 	<biblio>
         1381-1432
 	</biblio>
+
 	<frontieres-veritables>
 		6
 	</frontieres-veritables>
+    <frontieres-trouvees>
+        6
+    </frontieres-trouvees>
 </An_Improved_Branch-and-Cut_Code_for_the_Maximum_Balanced_Subgraph_of_a_Signed_Graph.pdf>
 
 
@@ -103,20 +121,24 @@
         54-204
 	</introduction>
 	<corps>
-        205-1501
+        205-1215
 	</corps>
 	<conclusion>
-        1503-1627
+        1503-1622
 	</conclusion>
 	<discussion>
-        None
+        1217-1501
 	</discussion>
 	<biblio>
-        1381-1801
+        1629-1801
 	</biblio>
+
 	<frontieres-veritables>
-		7
+		8
 	</frontieres-veritables>
+    <frontieres-trouvees>
+        8
+    </frontieres-trouvees>
 </Cabrera_RESUMES_2019.pdf>
 
 <Conversational_Networks_for_Automatic_Online_Moderation.pdf>
@@ -144,9 +166,13 @@
 	<biblio>
         1818-1982
 	</biblio>
+
 	<frontieres-veritables>
 		7
 	</frontieres-veritables>
+    <frontieres-trouvees>
+        7
+    </frontieres-trouvees>
 </Conversational_Networks_for_Automatic_Online_Moderation.pdf>
 
 <Dynamical_Models_Explaining_Socia_Balance_and_Evolution_of_Cooperation.pdf>
@@ -166,7 +192,7 @@
         66-788
     </corps>
     <conclusion>
-        None
+        507-556
     </conclusion>
     <discussion>
         None
@@ -176,9 +202,11 @@
     </biblio>
 
     <frontieres-veritables>
-        6
+        7
     </frontieres-veritables>
-
+    <frontieres-trouvees>
+        7
+    </frontieres-trouvees>
 </Dynamical_Models_Explaining_Socia_Balance_and_Evolution_of_Cooperation.pdf>
 
 <Exact_Clustering_via_Integer_Programming_and_Maximum_Satisfiability.pdf>
@@ -210,6 +238,9 @@
     <frontieres-veritables>
         7
     </frontieres-veritables>
+    <frontieres-trouvees>
+        7
+    </frontieres-trouvees>
 </Exact_Clustering_via_Integer_Programming_and_Maximum_Satisfiability.pdf>
 
 <LDA_resume.pdf>
@@ -241,6 +272,9 @@
     <frontieres-veritables>
         8
     </frontieres-veritables>
+    <frontieres-trouvees>
+        8
+    </frontieres-trouvees>
 </LDA_resume.pdf>
 
 <Partitioning_large_signed_two-mode_networks_Problems_and_prospects.pdf>
@@ -272,6 +306,9 @@
     <frontieres-veritables>
         7
     </frontieres-veritables>
+    <frontieres-trouvees>
+        7
+    </frontieres-trouvees>
 </Partitioning_large_signed_two-mode_networks_Problems_and_prospects.pdf>
 
 <Polibits_42_02.pdf>
@@ -303,4 +340,7 @@
     <frontieres-veritables>
         8
     </frontieres-veritables>
+    <frontieres-trouvees>
+        8
+    </frontieres-trouvees>
 </Polibits_42_02.pdf>
