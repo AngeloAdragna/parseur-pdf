@@ -64,7 +64,6 @@ Les performances varient fortement selon la qualité du PDF (présence de colonn
 ## Analyse et pistes d’amélioration
 
 - **Robustesse** : Le parseur souffre de problèmes liés à la diversité des structures PDF. Des traitements adaptatifs sont nécessaires (ex : détection automatique de colonnes).
-- **Frontières souples** : Les scores pourraient être améliorés en intégrant la notion de chevauchement toléré dans le traitement.
 - **Débogage facilité** : L'ajout du mode `--no-verbose` et du fichier `precision.py` ont facilité les tests.
 
 ---
