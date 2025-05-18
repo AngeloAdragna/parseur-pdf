@@ -35,7 +35,7 @@
             7
         </frontieres-trouvees>
         <frontieres-correctes>
-            0
+            7
         </frontieres-correctes>
     </document>
 
@@ -62,7 +62,7 @@
             None
         </discussion>
         <biblio>
-            1419-1653
+            1419-1677
         </biblio>
         <frontieres-veritables>
             7
@@ -71,7 +71,7 @@
             7
         </frontieres-trouvees>
         <frontieres-correctes>
-            0
+            2
         </frontieres-correctes>
     </document>
 
@@ -107,7 +107,7 @@
             6
         </frontieres-trouvees>
         <frontieres-correctes>
-            0
+            4
         </frontieres-correctes>
     </document>
 
@@ -128,7 +128,7 @@
             205-1215
         </corps>
         <conclusion>
-            1503-1622
+            1503-1604
         </conclusion>
         <discussion>
             1217-1501
@@ -143,7 +143,7 @@
             8
         </frontieres-trouvees>
         <frontieres-correctes>
-            0
+            5
         </frontieres-correctes>
     </document>
 
@@ -179,7 +179,7 @@
             7
         </frontieres-trouvees>
         <frontieres-correctes>
-            0
+			6
         </frontieres-correctes>
     </document>
 
@@ -215,7 +215,7 @@
             7
         </frontieres-trouvees>
         <frontieres-correctes>
-            0
+            3
         </frontieres-correctes>
     </document>
 
@@ -251,7 +251,7 @@
             7
         </frontieres-trouvees>
         <frontieres-correctes>
-            0
+            5
         </frontieres-correctes>
     </document>
 
@@ -287,7 +287,7 @@
             8
         </frontieres-trouvees>
         <frontieres-correctes>
-            0
+            6
         </frontieres-correctes>
     </document>
 
@@ -323,7 +323,7 @@
             7
         </frontieres-trouvees>
         <frontieres-correctes>
-            0
+            4
         </frontieres-correctes>
     </document>
 
@@ -359,7 +359,7 @@
             8
         </frontieres-trouvees>
         <frontieres-correctes>
-            0
+            6
         </frontieres-correctes>
     </document>
 </documents>
