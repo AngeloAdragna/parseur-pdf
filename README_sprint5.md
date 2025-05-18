@@ -109,31 +109,129 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 
 ---
 
-## 2. **Corentin Saccoman** : Test précision avec des frontières strictes (en binôme avec Elliot)
+## 2. **Elliot Pozucek**, **Corentin Saccoman** : Test précision avec des frontières strictes (en binôme)
 
-### **Retour sur les documents découpés**
+### **Développement**
+
+#### Comptage des frontières
+
+Afin d'évaluer la précision de notre algorithme sur l'ensemble de test, nous avons besoin de connaître le nombre de frontières présentes dans chaque article, le nombre de frontières trouvées par notre algorithme et le nombre de frontières trouvées par notre algorithme qui sont correctes (bien délimitées à +/- 2 lignes près).
+
+Pour être précis :
+
+ - nous avons créé un fichier `frontieres.xml`
+ - ce fichier contient les mêmes balises que les fichiers xml résultants de l'algorithme (\<titre>, \<auteur>, etc)
+ - trois balises ont été ajoutées :
+    - \<frontieres-veritables> : le nombre de frontières réellement présentes dans l'article
+    - \<frontieres-trouvees> : le nombre de frontières trouvées par l'algorithme
+    - \<frontieres-correctes> : le nombre de frontières trouvées par l'algorithme qui sont correctes (bien délimitées à +/- 2 lignes près)
+ - Une balise <document> a été ajoutée pour chaque article, avec un nom (ex: \<document nom="article1">)
+
+##### Comtage des frontières réelles
+
+Voici la méthode utilisée pour compter le nombre de frontières présentes dans un article :
+ - on éxécute l'algorithme avec l'option -r (python parser.py -r CORPUS_TEST/ CORPUS_TEST_RAW/)
+ - pour chaque article :
+    - on ouvre le pdf et le fichier txt (raw)
+    - pour chaque section :
+        - on repère dans le pdf le début de la section
+        - on cherche la première ligne de la section dans le txt (raw)
+        - on écrit le numéro de la ligne dans le fichier `frontieres.xml`
+        - on cherche la fin de la section dans le pdf
+        - on cherche la première ligne de la section dans le txt (raw)
+        - on écrit le numéro de la ligne dans le fichier `frontieres.xml`
+        - cela donne par exemple : \<titre>1-3\</titre> (le titre se situe entre la ligne 1 et la ligne 3 dans le txt raw)
+        - si la section n'existe pas dans le pdf, on écrit `None`
+    - une fois ce travail effectué pour chaque section, on compte le nombre de sections réellement présentes dans l'article en comptant le nombre de balises où il n'y a pas de `None` et on écrit le résultat dans le fichier `frontieres.xml`, dans la balise \<frontieres-veritables>
+ - une fois ce travail effectué pour chaque article, le fichier `frontieres.xml` contient le nombre de sections présentes dans chaque article
+
+##### Comptage des frontières trouvées
+
+Voici la méthode utilisée pour compter le nombre de frontières trouvées par notre algorithme :
+ - on éxécute l'algorithme avec l'option -x (python parser.py -x CORPUS_TEST/ CORPUS_TEST_XML/)
+ - pour chaque article :
+    - on ouvre le fichier xml
+    - on compte le nombre de balises non-vides (la balise \<preambule> est ignorée), le nombre de balises non-vides correspond au nombre de sections trouvées par l'algorithme
+    - on écrit le résultat dans le fichier `frontieres.xml`, dans la balise \<frontieres-trouvees>
+ - une fois ce travail effectué pour chaque article, le fichier `frontieres.xml` contient le nombre de sections trouvées par l'algorithme dans chaque article
+
+#### Ajout de l'option --no-verbose (Elliot)
+
+Lors de la réalisation de ma partie du sprint-5, j'ai remarqué que le terminal était très pollué par les messages de parsing. Bien que ces messages soient utiles, j'ai décidé de créer une option `--no-verbose` pour permette de les désactiver.
+
+J'ai donc ajouté la ligne suivante dans `parser.py`, dans la fonction `parse_arguments()` : 
+```python
+# Ajout d'un argument --no-verbose pour désactiver les messages d'information
+parser.add_argument("--no-verbose", action="store_true", help="N'affiche pas les informations détaillées pendant l'exécution.")
+```
+
+J'ai ensuite ajouté une vérification dans les méthodes `convert_pdf_file()` et lors de l'énumération des fichiers pdf dans le `main` afin de ne pas afficher les messages si l'option `--no-verbose` est activée.
+
+```python
+# convert_pdf_file
+if not args.no_verbose :
+    print(f"{fichier_pdf.name} converti en {fichier_sortie.name}")
+
+# main
+if not args.no_verbose:
+    print("Fichiers PDF trouvés :")
+    for pdf in pdfs:
+        print(" -", pdf.name)
+```
+
+Cette option est robuste et fonctionne avec toutes les autres options (j'ai testé avec toutes les combinaisons d'options possibles).  
+Par exemple, on peut exécuter la commande suivante :
+```bash
+python parser.py -x --no-verbose CORPUS_TEST/ CORPUS_TEST_XML/
+```
+Cela va exécuter l'algorithme avec l'option -x (génération du fichier xml) et l'option `--no-verbose` (pas de messages d'information).
+
+---
+
+#### Ajout du fichier precision.py (Elliot)
+
+Une fois que le fichier `frontieres.xml` a été correctement rempli, j'ai voulu créer un script permettant de calculer la précision de notre algorithme en fonction de ce fichier.  
+J'ai donc créé le fichier `precision.py` qui contient la fonction `calcul_precision()`. Cette fonction prend en entrée un chemin (str) et écrit dans le terminal la précision de l'algorithme sur chaque article de l'ensemble de test, ainsi que la précision globale sur cet ensemble. Ce script ne fonctionne qu'avec le fichier `frontieres.xml` ou avec un fichier xml de même structure.
+
+La précision pour chaque article est calculée conformément à la formule donnée dans l'Objectif du sprint-5 :
+
+```python
+precision = frontieres_correctes / frontieres_trouvees
+```
+
+Le script va parser le fichier xml donné en entrée (`frontieres.xml`) et va, pour chaque article, récupérer le nombre de frontières trouvées et le nombre de frontières correctes. La précision est calculée puis affichée dans le terminal. Les erreurs sont gérées (ex: si le nombre de frontières trouvées est égal à 0, pas un nombre, si les balises ne sont pas présentes, etc).
+
+Voici un exemple d'utilisation (précision = 0 car pas encore de comptage des frontières correctes) :
+
+![](images/elliot_img1.png)
+
+
+#### Comptage manuel du score de chaque fichier (Corentin)
+Une fois le nombre de frontières déterminées, il a fallu vérifier manuellement leur correspondance avec la réalité.  
+J'ai alors rempli la balise \<frontieres-correctes> afin d'apporter une consolidation aux résultats trouvés pas Colin et Elvin.  
+
+J'ai effectué cette mesure manuelle sur l'intégralité des fichiers de test.  
+Pour ce qui est des résultats trouvés par Elvin, ils concordaient.  
+
+Suite à ces mesures et au remplissage des balises du fichiers `frontieres.xml`, j'ai pu exécuter le programme `precision.py` afin de calculer la précision individuelle de chaque fichier ainsi que la précision globale du parseur.  
+![](images/corentin_img1.png)  
+
+Le score global est fortement affecté par le deuxième fichier, ayant un formatage assez singulier, dégradant les performances du parseur.
+
+### **Remarque**
 
 ### **Précision**
 
 ### **Piste d'amélioration**
 
 ### **Dates clés** :
+- Corentin, Elliot, 16/05 : Réalisation du fichier `frontieres.xml` et découpage manuel des fichiers de test.
+- Elliot, 18/05 : Réalisation du programme de test de précision, ajout d'un argument au parseur, actualisation du balisage de `frontieres.xml`
+- Corentin, 18/05 : Détermination des performances du parseur et attente des résulats de Colin pour vérifications.
 
   ---
 
-## 3. **Elliot Pozucek** : Test précision avec des frontières strictes (en binôme avec Corentin)
-
-### **Retour sur les documents découpés**
-
-### **Précision**
-
-### **Piste d'amélioration**
-
-### **Dates clés** :
-
-  ---
-
-## 4. **Colin Palazzetti Rubera** : Test précision avec des frontières souples.
+## 3. **Colin Palazzetti Rubera** : Test précision avec des frontières souples.
 
 ### **Retour sur les documents découpés**
 
@@ -145,15 +243,120 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
  
   ---
 
-## 5. **Elvin Fichot-Corgeron** : Test précision avec des frontières souples.
+## 4. **Elvin Fichot-Corgeron** : Test précision avec des frontières souples.
 
-### **Retour sur les documents découpés**
+Le but de ma tâche est d'analyser les résultats trouvés par le parseur pour ensuite les comparer avec les frontières souples et ainsi calculer le score de précision.
 
-### **Précision**
+Le score de précision se calcule avec la formule suivante :
 
-### **Piste d'amélioration**
+$ Précision = nbsectioncorrectes/sectiontrouvé$
 
-### **Dates clés** :
+Pour rappel, on considére qu'une section est correcte si elle est dans la frontière souple (au plus 2 lignes d'écart avec la frontière stricte)
+
+### Dynamical_Models_Explaining_Socia_Balance_and_Evolution_of_Cooperation
+
+#### Frontières souples
+
+- Titre : L1-2 valide
+- Auteur : L2-7 + L19-~32 non valide
+- Abstract : L8- ~32 non valide
+- Introduction : L33- ~607 non valide
+- Corps : L~608-~780 non valide
+- Conclusion : L507-556 valide
+- Discussion : Il n'y a pas de discussion
+- Biblio : L790-892 valide
+
+#### Précision
+
+Il y a au total 7 sections et nous en trouvons 3 de correctes.
+
+Le taux de précision est donc de 3/7 = 0.43
+
+### Exact_Clustering_via_Integer_Programming_and_Maximum_Satisfiability
+
+#### Frontières souples
+
+- Titre : L1-2 : valide
+- Auteur : L3-14 valide recupère bien toutes les informations même si certaines sont dupliqués
+- Abstract : L16-37 valide
+- Introduction : L39-172 non valide
+- Corps : L173-922 non valide
+- Conclusion : L924-964 valide (souple)
+- Discussion : Pas de discussion dans le document
+- Biblio : L971-1063 valide (souple)
+
+#### Précision
+
+Il y a au total 7 sections et nous en trouvons 5 de correctes.
+
+Le taux de précision est donc de 5/7 = 0.71
+
+### LDA_resume
+
+#### Frontières souples
+
+- Titre : L1-2 valide
+- Auteur : L3-18 non valide il manque plusieurs lignes qui ne sont pas détecter
+- Abstract : L20-37 valide
+- Introduction : L39-104 valide
+- Corps : L105-796 non valide
+- Conclusion : L798-811 valide
+- Discussion : L666-796 valide
+- Biblio : L813-877 valide
+
+#### Précision
+
+Il y a au total 8 sections et nous en trouvons 6 de correctes.
+
+Le taux de précision est donc de 6/8 = 0.75
+
+### Partitioning_large_signed_two-mode_networks_Problems_and_prospects
+
+#### Frontières trouvés par le parseur
+
+- Titre : en tête de document non valide
+- Auteur : L1 non valide
+- Abstract : L3 non valide
+- Introduction : L36-117 valide
+- Corps : L118-1739 valide
+- Conclusion : Pas de conclusion dans le document
+- Discussion : L1740-1819 valide
+- Biblio : L2069-2192 valide (souple)
+
+#### Précision
+
+Il y a au total 7 sections et nous en trouvons 4 de correctes.
+
+Le taux de précision est donc de 4/7 = 0.57
+
+### Polibits_42_02
+
+#### Frontières souples
+
+- Titre : L1-2 : valide
+- Auteur : L3 : valide
+- Abstract : L4-18 : valide
+- Introduction : L33-82 valide
+- Corps : L135-552 : non valide
+- Conclusion : L554-566 : non valide
+- Discussion : L512-552 : valide
+- Biblio : L661-746 : valide
+
+#### Précision
+
+Il y doit y avoir en tout 8 sections nous en trouvons 6 de correctes.
+
+Le taux de précision est donc de 6/8 = 0.75
+
+## Remarque
+
+Pour ce sprint j'ai rencontré une petite difficulté notament pour évaluer les auteurs. En effet il avait été convenu au sprint 2 de noter les auteurs de la manière suivante : _nom_ _adresses_ (universitaire et mail si précisés) Cependant, cette notation n'était pas en accord avec la manière de déterminer si une section est correcte. J'ai donc regardé bien en détails les lignes pour voir si les informations étaient plutôt cohérentes et essayé de me rapprocher au plus de la marge de souplesse déterminée.
+
+Lorsque que j'ai noté les ~ pour les lignes c'est que la marge d'erreur est bien plus grande que 2 lignes et que cela ne changera pas le résultat.
+
+## Retrospective sur le projet en entier
+
+De mon point de vue, j'ai trouvé le projet très intéressant. Il démontre clairement la nécessité pour un développeur d'avoir un code robuste, car le projet peut évoluer à n'importe quel moment. Pour ce qui est de la méthode Scrum, j'ai déjà eu l'occasion de travailler avec aussi bien lors de plusieurs projets dans mon ancienne formation ou bien aussi en entreprise lors de mon alternance.
 
   ---
 
