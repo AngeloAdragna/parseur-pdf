@@ -62,8 +62,8 @@ def list_pdfs(repertoire: Path, args = None) -> list:
 def pdfs_to_format(repertoire_entree: Path, repertoire_sortie: str, args):
     """
     Crée le répertoire de sortie contenant les plaintext (ou xml) correspondant
-    au parsing des pdf du répertoire
-
+    au parsing des pdf du répertoire. Cette fonction est responsable de la mesure du temps
+    d'exécution.
 
     Parameters
     ----------
@@ -93,7 +93,10 @@ def pdfs_to_format(repertoire_entree: Path, repertoire_sortie: str, args):
     if pdfs == [] :
         print("Aucun fichier n'a été sélectionné. Sortie du programme...")
         return
-    
+
+    # Début de la mesure du temps
+    start_time = time.time()
+
     # Création du répertoire de sortie
     chemin = Path(repertoire_sortie)
     if chemin.exists():
@@ -104,6 +107,10 @@ def pdfs_to_format(repertoire_entree: Path, repertoire_sortie: str, args):
     for pdf in pdfs:
         convert_pdf_file(pdf, repertoire_sortie, args)
 
+    # Fin de la mesure du temps
+    end_time = time.time()
+    # Log de la durée d'exécution
+    log_execution_time(end_time - start_time)
 
 def convert_pdf_file(fichier_pdf: Path, repertoire_sortie: Path, args):
     """
@@ -349,9 +356,6 @@ def main():
     # (ou le texte brut si -r est spécifié)
     # Le répértoire CORPUS_XML/ contiendra les fichiers texte avec toutes les infos demandées pour le xml
 
-    # Début de la mesure du temps
-    start_time = time.time()
-
     args = parse_arguments()
 
     dossier_entree = args.dossier_entree
@@ -375,11 +379,6 @@ def main():
 
     # Convertir les fichiers PDF en texte
     pdfs_to_format(chemin_entree, dossier_sortie, args)
-
-    # Fin de la mesure du temps
-    end_time = time.time()
-    # Log de la durée d'exécution
-    log_execution_time(end_time - start_time)
 
 if __name__ == "__main__":
     main()
