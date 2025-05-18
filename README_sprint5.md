@@ -23,19 +23,18 @@
 
 ## **Objectif**
 Le Département de contrôle de qualité du LIA demande une évaluation de la qualité du système.
-Cette évaluation peut être réalisée en fonction de la précision obtenue sur un corpus de référence
-(découpage de sections fait par des humains). Ainsi, les fragments de texte extraits présents dans les
-références seront comptabilisés positivement; leur absence sera pénalisée (voir l’exemple en Annexe).
+Cette évaluation peut être réalisée en fonction de la précision obtenue sur un corpus de référence (découpage de sections fait par des humains). Ainsi, les fragments de texte extraits présents dans les références seront comptabilisés positivement; leur absence sera pénalisée.
 La précision sera calculée comme suit :
- Précision = Sections_correctes_trouvées_par_le_système / Sections_trouvées_par_le_système
+
+    Précision = Sections_correctes_trouvées_par_le_système / Sections_trouvées_par_le_système
+
 Une section sera considérée correcte si :
-a) Toutes ses phrases ont été bien détectées : frontières strictes.
-b) Quelques phrases peuvent chevaucher les sections (± 2 phrases) : frontières souples.
+- a) Toutes ses phrases ont été bien détectées : frontières strictes.
+- b) Quelques phrases peuvent chevaucher les sections (± 2 phrases) : frontières souples.
+
 Il faut ajouter une dernière phase d’évaluation du système qui reporte le résultat de la précision.
-La précision sera mesurée sur un corpus de test de 10 nouveaux articles PDF. Une partie de l’équipe
-doit passer votre système sur les 10 articles, une autre doit établir le corpus de référence les frontières
-(souples) des sections. Enfin, vous devez calculer (à la main si vous voulez être agiles) la précision de
-votre système comme la moyenne sur l’ensemble des articles parsés.
+La précision sera mesurée sur un corpus de test de 10 nouveaux articles PDF. Une partie de l’équipe doit passer votre système sur les 10 articles, une autre doit établir le corpus de référence les frontières (souples) des sections. Enfin, vous devez calculer (à la main si vous voulez être agiles) la précision de votre système comme la moyenne sur l’ensemble des articles parsés.
+
 Les détailles sont dans le [sprint5](sprint5_carnet_du_produit.pdf). 
 
 ## **Execution du programme**
@@ -86,7 +85,7 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 - Indiquer quel jour vous avez fini chaque fonctionnalité !
 - Penser à bien décrire la précision de chaque document pour les frontières souples.
 
-## **Travail de chaque menebre de la `SCRUM Team` pendant la mêlée (Revue Sprint)**
+## **Travail de chaque membre de la `SCRUM Team` pendant la mêlée (Revue Sprint)**
 
 ---
 
@@ -102,7 +101,7 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 
 ---
 
-## 2. **Corentin Saccoman** : Récupération de la section `introduction` et réalisation du menu de sélection de fichiers.
+## 2. **Corentin Saccoman** : Test précision avec des frontières strictes (en binôme avec Elliot)
 
 ### **Développement**
 
@@ -116,7 +115,7 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 
   ---
 
-## 3. **Elliot Pozucek** : Récupération de la section `corps` de chaque fichier.
+## 3. **Elliot Pozucek** : Test précision avec des frontières strictes (en binôme avec Corentin)
 
 ### **Développement**
 
@@ -130,7 +129,7 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 
   ---
 
-## 4. **Colin Palazzetti Rubera** : Récupération de la section `discussion` (`evaluation`) et s'occupe de la redondance de certains codes.
+## 4. **Colin Palazzetti Rubera** : Test précision avec des frontières souples.
 
 ### **Développement**
 
@@ -144,7 +143,7 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
  
   ---
 
-## 5. **Elvin Fichot-Corgeron** :
+## 5. **Elvin Fichot-Corgeron** : Test précision avec des frontières souples.
 
 ### **Développement**
 
