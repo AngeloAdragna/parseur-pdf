@@ -15,11 +15,11 @@
 
 ## **Rôles**
 
-- Angelo est `SCRUM Master` et `Product Owner`, il doit rédiger le rapport avec les différents artefacts ainsi qu'une ou deux pages synthétiques du projet.
+- Angelo est `SCRUM Master` et `Product Owner`, il doit rédiger le rapport avec les différents artefacts ainsi qu'une ou deux pages synthétiques récapitulant le résultat du sprint.
 - Corentin, Elliot, Colin et Elvin sont développeurs.
 - Les développeurs travaillent par binômes.
-- Une partie de l’équipe (Corentin et Elliot) doit passer votre système sur les 10 articles pour détecter les limites fixes,ils devront verifier si le nombre de frontières veritables découpé par l'humain est identique à celui découpé automatiquement.
-- Un second binôme devra s'occuper d'établir le corpus de référence les frontières (souples) des sections en analysant miniscieusement à la main chaque phrases et comptabiliser à la main le nombre de points.
+- Une partie de l’équipe (Corentin et Elliot) doit passer le système sur les 10 articles pour détecter les limites fixes et verifier si le nombre de frontières veritables découpé par l'humain est identique à celui découpé automatiquement.
+- Un second binôme (Colin et Elvin) devra s'occuper d'établir le corpus de référence (les frontières souples) des sections en analysant miniscieusement à la main chaque phrases et comptabiliser le nombre de points.
 
 ## **Objectif**
 Le Département de contrôle de qualité du LIA demande une évaluation de la qualité du système.
@@ -81,15 +81,15 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 - Premier retour de la part des développeurs le dimanche 18/05/2025 sur le travail effecté.
 - Déposez votre compte rendu au plus tard le ? à ? sur la branche 5.
 - Fournir AU MOINS une image de l’avancement par fonctionnalité par développeur.
-- Votre compte rendu doit comporter une analyse de votre développement, les aspects positifs, négatifs, limitations… Vous pourrez vous baser sur le squelette pour vous guider si nécéssaire.
-- Indiquer quel jour vous avez fini chaque fonctionnalité !
-- Penser à bien décrire la précision de chaque document pour les frontières souples.
+- Votre compte rendu doit comporter une analyse succinte de votre travail, tourné principalement autour de la `précision`… Vous pourrez vous baser sur le squelette pour vous guider si nécéssaire.
+- Indiquer quel jour vous avez fini chaque étape de votre progression !
+- Penser à bien décrire les différents calculs de précision de chaque document.
 
 ## **Travail de chaque membre de la `SCRUM Team` pendant la mêlée (Revue Sprint)**
 
 ---
 
-## 1. **Angelo Adragna** : Documentation des événements/artefacts Scrum (réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint).
+## 1. **Angelo Adragna** : Documentation des événements/artefacts Scrum (réunions de planification de sprint, mêlée quotidienne, revue de sprint, rétrospective du sprint) et rédaction condensé en 2 pages tournée vers la précision du programme.
 
 - Les backlogs doivent être réalisés en premier lieu, lors de la première réunion, afin de répartir les tâches entre chaque personne.
 - La réunion a permis d'établir la liste de questions pour le client, afin d'obtenir davantage de détails et de spécifications.
@@ -103,11 +103,9 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 
 ## 2. **Corentin Saccoman** : Test précision avec des frontières strictes (en binôme avec Elliot)
 
-### **Développement**
+### **Retour sur les documents découpés**
 
-### **Remarque**
-
-### **Réussi**
+### **Précision**
 
 ### **Piste d'amélioration**
 
@@ -117,11 +115,9 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 
 ## 3. **Elliot Pozucek** : Test précision avec des frontières strictes (en binôme avec Corentin)
 
-### **Développement**
+### **Retour sur les documents découpés**
 
-### **Remarque**
-
-### **Réussi**
+### **Précision**
 
 ### **Piste d'amélioration**
 
@@ -131,11 +127,9 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 
 ## 4. **Colin Palazzetti Rubera** : Test précision avec des frontières souples.
 
-### **Développement**
+### **Retour sur les documents découpés**
 
-### **Remarque**
-
-### **Réussi**
+### **Précision**
 
 ### **Piste d'amélioration**
 
@@ -145,11 +139,9 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 
 ## 5. **Elvin Fichot-Corgeron** : Test précision avec des frontières souples.
 
-### **Développement**
+### **Retour sur les documents découpés**
 
-### **Remarque**
-
-### **Réussi**
+### **Précision**
 
 ### **Piste d'amélioration**
 
@@ -157,7 +149,7 @@ La communication était mauvaise, le `SCRUM MASTER` à peiné à tenir notes de 
 
   ---
 
-## **Retour sur le travail effectué (Rétrospective Sprint 5)**
+## **Retour sur le travail effectué (Rétrospective Sprint 5)** A faire
 ### **Ce qui a bien fonctionné**
 - Bonne répartition des tâches entre les membres, chacun a pu avancer sur sa partie sans trop d’interférences.
 - L’intégration progressive des travaux (Colin, Elliot, Corentin) a permis une mise en commun fluide.
