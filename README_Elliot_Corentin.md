@@ -111,16 +111,51 @@ Suite à ces mesures et au remplissage des balises du fichiers `frontieres.xml`,
 
 Le score global est fortement affecté par le deuxième fichier, ayant un formatage assez singulier, dégradant les performances du parseur.
 
+#### Ajout du fichier stat_exec_time.py (Elliot)
+
+Comme la date de rendu du sprint-5 a été décaléé, j'ai pu ajouter une fonctionnalité supplémentaire à notre programme. J'ai créé le fichier `stat_exec_time.py` qui permet de faire une analyse statistique des temps d'éxécution du parser.  
+Ce fichier contient trois méthodes :
+- `get_times` : récupère les temps d'éxécution dans le fichier de log spécifié en argument (par défaut `exec_time_py.log`) et les retourne sous forme de liste 
+- `analyze_execution_times` : calcul et affiche la moyenne des temps d'éxécution, le minimum, le maximum, la médiane et l'écart-type 
+- `plot_execution_times` : génère un graphique avec les temps d'éxécution (un point par exécution) et une courbe lissée par moyenne glissante.
+
+Sur ma machine (Elliot), j'ai obtenu les résultats suivants :
+```txt
+Nombre d'exécutions : 182
+Min                 : 0.41s
+Max                 : 1.31s
+Moyenne             : 0.72s
+Médiane             : 0.52s
+Écart-type          : 0.31s
+```
+
+![](images/elliot_exec_stat_fig.png)
+
 ### **Remarque**
 
+Je n'ai pas de remarques particulières, si ce n'est qu'il serait appréciable que les membres de l'équipe qui modifient le code et surtout les expressions régulières testent leur code avant de le *push*.
+
 ### **Précision**
+
 On apperçoit que notre programme obtient un score de précision de 66.49% sur le jeu de test.
+
+### **Temps d'éxécution**
+
+Au cours des 5 sprints, le temps d'éxécution de l'algorithme a été mesuré et *logger* dans le fichier `exec_time_py.log` grâce à ma méthode `log_execution_time` de `parser.py`.  
+Ce fichier de *log* n'est pas partagé entre les membres du groupe (pour éviter un maximum les conflits de *merge*). Ainsi, les mesures de temps d'éxécution sont relatives à chaque développeur.
+
+Pour ma part (Elliot), à la fin du sprint-5, j'ai un temps d'éxécution moyen de 0.72 secondes pour 180 éxécutions.  
+
+
 ### **Piste d'amélioration**
 Le résultat n'est pas surprenant. Le programme est assez précis sur les documents qui respectent rigoureusement la structure établie sur les fichiers d'entrainement. Cependant, dès que cette structure varie, les performances en subissent les conséquences.  
 Il n'y a pas vraiment d'amélioration possible à apporter au programme. En effet, nous ne pouvons pas prédire comment un article de recherche va être rédigé, quel nom va avoir chaque partie etc...  
 Afin d'éviter de saisir des mots hors de leur contexte (par exemple de prendre un titre au milieu d'une phrase à cause d'une numérotation), nous pourrions apporter une vérification sur le contexte du groupe de mots trouvé, afin d'augmenter la robustesse du programme.  
 Néanmoins, des sections comme celles des auteurs ou le titre, n'étant pas identifiées distinctement, demeurent impossibles à relever sans une part de hasard.
+
 ### **Dates clés** :
+
 - Corentin, Elliot, 16/05 : Réalisation du fichier `frontieres.xml` et découpage manuel des fichiers de test.
 - Elliot, 18/05 : Réalisation du programme de test de précision, ajout d'un argument au parseur, actualisation du balisage de `frontieres.xml`
 - Corentin, 18/05 : Détermination des performances du parseur et attente des résulats de Colin pour vérifications.
+- Elliot, 21/05 : Ajout du fichier `stat_exec_time.py` pour faire une analyse statistique des temps d'éxécution du parser.

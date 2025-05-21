@@ -300,7 +300,7 @@ def log_execution_time(duration: float, log_file: Path = Path("exec_time_py.log"
 
         if times:
             average_time = sum(times) / len(times)
-            print(f"Moyenne des temps d'exécution : {average_time:.2f} secondes")
+            print(f"Moyenne des temps d'exécution : {average_time:.2f} secondes, sur {len(times)} exécutions.")
         else:
             print("Aucune donnée valide dans le fichier de log.")
 
