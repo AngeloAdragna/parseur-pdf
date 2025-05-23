@@ -237,13 +237,137 @@ Néanmoins, des sections comme celles des auteurs ou le titre, n'étant pas iden
 ## 3. **Colin Palazzetti Rubera** : Test précision avec des frontières souples.
 
 ### **Retour sur les documents découpés**
+Je n'ai pas suivi le meme processus qu'Elvin, étant donné que je me suis remis à la tache après que Corentin et Elliot aient mis en ligne la première version des découpages, ainsi, j'ai pu ne vérifier que les frontières qui avaient été marquées comme incorrectes, considérant que la vérification étant brute, si le système disait correct, alors c'est correct en souple, dans le cas contraire, il faut vérifier si les opérations de modification des réponses n'ont pas altéré la vérification
+
+Ainsi, je ne vérifie que si le programme a raison en disant que la frontières est incorrecte
+
+
+#### A_Benders_Decomposition_Approach_toCorrelation_Clustering
+7/7 frontières, je peux passer
+
+#### A_memetic_algorithm_for_community_detectionin_signed_networks
+2/7, à vérifier
+- Titre
+  - +5
+  - non vérifiée
+- Auteur
+  - +7
+  - non vérifiée
+- Abstract
+  - Correct
+  - Correct
+- Introduction
+  - Non trouvée
+- Corps
+  - +42
+  - non vérifiée
+- Conclusion
+  - Correct
+  - Correct
+- Discussion
+  - Correct (Non trouvée)
+- Biblio
+  - Correct
+  - Correct
+
+J'ai trouvé une différence du nombre de frontières correctes, mais cela est probablement du au fait que la section biblio a été modifiée, et que la discussion n'existe pas
+> 4/7 au lieu de 2/7
+
+#### An_Improved_Branch-and-Cut_Code_for_the_Maximum_Balanced_Subgraph_of_a_Signed_Graph
+4/6, à vérifier
+- Titre
+  - Correct
+  - -1
+- Auteur
+  - -1
+  - Correct
+- Abstract
+  - Correct
+  - Incorrect (fin du document)
+- Introduction
+  - Correct
+  - Correct
+- Corps
+  - Correct
+  - Incorrect (fin du document)
+- Conclusion
+  - Correct (Non trouvée)
+- Discussion
+  - Correct (Non trouvée)
+- Biblio
+  - Correct
+  - +1
+
+> 4/6, confirmant le résultat du programme
+
+#### Cabrera_RESUMES_2019
+5/8, à vérifier
+- Titre
+  - +2
+  - +2
+- Auteur
+  - -5
+  - Non vérifiée
+- Abstract
+  - +14
+  - Non vérifiée
+- Introduction
+  - Correct
+  - Correct
+- Corps
+  - Correct
+  - Correct
+- Conclusion
+  - Correct
+  - Correct
+- Discussion
+  - +18
+  - Non vérifiée
+- Biblio
+  - Correct
+  - +1
+
+> 5/8, correct
+
+#### Conversational_Networks_for_Automatic_Online_Moderation
+6/7, à vérifier
+- Titre
+  - Correct
+  - -1
+- Auteur
+  - -1
+  - -1
+- Abstract
+  - Correct
+  - Correct
+- Introduction
+  - Section non trouvée
+- Corps
+  - Correct
+  - Correct
+- Conclusion
+  - Correct
+  - Correct
+- Discussion
+  - Correct (non trouvée)
+- Biblio
+  - Correct
+  - Correct
+
+> 7/8, correct, sachant que le programme n'a pas vérifié pour la discussion
 
 ### **Précision**
+Le programme créé par le reste de l'équipe vérifie bien les découpages, avec quelques différences mineures, qui sont dues au fait que certaines sections modifient le texte avant de le renvoyer (Biblio, auteur, abstract), ce qui rend plus difficile la recherche.
 
 ### **Piste d'amélioration**
+Il n'y a pas d'amélioration particulières sur le programme, mais une structure un peu plus universelle des rapports serait un plus pour ce genre d'outil.
+De plus, pour le peu de temps/ressources utilisées par ce programme, les résultats sont plus que satisfaisants.
 
-### **Dates clés** :
- 
+### **Note sur le travail**
+Je n'ai pas été bon sur l'organisation du travail, je comptais m'occuper du travail sur mon dimanche, pour le rendu le dimanche suivant, mais vu que le rendu a été déplacé tardivement, l'équipe a du faire le travail en urgence, et je n'étais pas disponible (mon chat avait décidé de s'enfermer chez le voisin)
+
+Ainsi, quand j'ai compris que le rendu avait été déplacée, j'ai du faire un peu de travail, chaque soir après mon stage, mais je n'ai pas été efficient, ni efficace.
+
   ---
 
 ## 4. **Elvin Fichot-Corgeron** : Test précision avec des frontières souples.
